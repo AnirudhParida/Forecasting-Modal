@@ -1,0 +1,10 @@
+.env
+.venv/
+__pycache__/
+*.pyc
+data/raw/
+data/panel/
+data/topology.json
+artifacts/
+*.pt
+.ipynb_checkpoints/

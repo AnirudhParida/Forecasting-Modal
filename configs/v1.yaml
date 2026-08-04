@@ -1,0 +1,75 @@
+# Netraa POC configuration.
+#
+# Scope (approved): one SERVICE hosted on one HOST.
+# Horizon (approved): next quarter.
+
+base_url: https://nlq64817.live.dynatrace.com
+registry: metrics_registry.yaml
+data_dir: data
+artifacts_dir: artifacts
+
+scope:
+  # Overridden by NETRAA_HOST_ID / NETRAA_SERVICE_ID if set in .env.
+  host_id: HOST-D9739223FC540A23
+  service_id: SERVICE-C16E984A4D0792A9
+
+# ---------------------------------------------------------------------------
+# Two grids. A quarter-ahead forecast on a 1-minute grid would be 129,600 steps
+# ahead, which is not a forecast. So the fine grid serves dependency discovery
+# (where minute-scale lags live) and the coarse grid serves the forecaster.
+#
+# `netraa probe` measures what the tenant actually retains and rewrites the
+# lookback_days values below to what is genuinely available.
+# ---------------------------------------------------------------------------
+grids:
+  fine:
+    resolution: 5m
+    pandas_freq: 5min
+    lookback_days: 14
+    purpose: dependency_map
+
+  coarse:
+    resolution: 1d
+    pandas_freq: 1D
+    lookback_days: 400
+    purpose: forecast
+
+# Drop a node from the panel if fewer than this fraction of its buckets were
+# ever observed. Dropped nodes are logged by name, never removed silently.
+min_coverage: 0.20
+
+# Seasonal period in steps, per grid — used by the seasonal_naive baseline.
+# 7 daily steps = one week; 288 five-minute steps = one day.
+season_steps:
+  coarse: 7
+  fine: 288
+
+forecast:
+  grid: coarse
+  input_steps: 90        # 90 days of context
+  horizons: [7, 30, 60, 90]
+  quantiles: [0.1, 0.5, 0.9]
+
+graph:
+  grid: fine             # lags are discovered on the 5-minute grid
+  max_lag_steps: 24      # 24 x 5min = 2 hours
+  xcorr_threshold: 0.30
+  granger_alpha: 0.05
+  mi_threshold: 0.05
+  top_k: 8               # max incoming edges retained per node
+  min_overlap: 60        # min overlapping non-null samples to score a pair
+
+model:
+  hidden: 32
+  blocks: 2
+  kernel_size: 3
+  dropout: 0.2
+  node_embed_dim: 16
+  graph_prior_weight: 0.1     # lambda on ||A_learned - A_prior||_1
+  graph_sparsity_weight: 0.01
+  lr: 0.001
+  weight_decay: 0.0001
+  epochs: 200
+  batch_size: 16
+  patience: 25
+  seed: 42

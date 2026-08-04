@@ -1,0 +1,371 @@
+# Canonical metric registry — single source of truth for the whole pipeline.
+#
+# Replaces the three ad-hoc dicts in fetch_cpu/disk/memory_influencers.py.
+#
+# Fixes:
+#   B3  Entries are keyed by `key` (unique), not by the generated query string.
+#       The three scripts mapped service_cpm / service_instance_cpm /
+#       transaction_volume onto the SAME selector (builtin:service.requestCount.total),
+#       so a dict keyed by query silently kept only the last one. Duplicates are
+#       now collapsed into one canonical entry with an explicit `aliases` list.
+#   B2  `entity_type` declares which entity the metric is actually dimensioned by.
+#       The old scripts filtered JVM metrics on dt.entity.host, but builtin:tech.jvm.*
+#       carries dt.entity.process_group_instance and has no host dimension — so the
+#       filter matched nothing and every JVM metric silently returned empty.
+#   B5  `transform` and `unit` are declared so unit violations are caught at
+#       validation time instead of surfacing as negative memory percentages.
+#
+# Fields
+#   key          canonical node name (stable; used in the panel and dependency map)
+#   selector     Dynatrace base metric ID
+#   entity_type  HOST | SERVICE | PROCESS_GROUP_INSTANCE | SERVICE_METHOD
+#                -> determines the filter dimension AND which topology IDs are used
+#   split_by     dimension to keep as separate series ("" = merge all)
+#   agg          avg | sum | max | min   (applied when merging other dimensions)
+#   role         driver | intermediate | target
+#   resource     cpu | memory | disk | network | jvm | service
+#   transform    none | abs | log1p | diff
+#   unit         percent | count | byte | millisecond | ratio | unspecified
+#   enabled      false = kept for reference, not fetched
+
+metrics:
+
+  # ---------------------------------------------------------------- SERVICE
+  - key: service_cpm
+    selector: builtin:service.requestCount.total
+    entity_type: SERVICE
+    split_by: ""
+    agg: sum
+    role: driver
+    resource: service
+    transform: none
+    unit: count
+    aliases: [service_instance_cpm, transaction_volume]
+    note: >
+      Canonical for builtin:service.requestCount.total. The old scripts declared
+      this same selector under three different names; they were never three
+      distinct signals.
+
+  - key: endpoint_cpm
+    selector: builtin:service.keyRequest.count.total
+    entity_type: SERVICE_METHOD
+    split_by: dt.entity.service_method
+    agg: sum
+    role: driver
+    resource: service
+    transform: none
+    unit: count
+    note: >
+      Dimensioned by dt.entity.service_method, NOT dt.entity.service. The old
+      scripts filtered on dt.entity.service, which is why this column never
+      appeared in cpu_influencers_last_10m.csv. Topology resolution supplies the
+      key-request IDs belonging to the target service.
+
+  - key: instance_traffic
+    selector: builtin:service.requestCount.server
+    entity_type: SERVICE
+    split_by: ""
+    agg: sum
+    role: driver
+    resource: service
+    transform: none
+    unit: count
+
+  - key: database_access_cpm
+    selector: builtin:service.dbChildCallCount
+    entity_type: SERVICE
+    split_by: ""
+    agg: sum
+    role: intermediate
+    resource: service
+    transform: none
+    unit: count
+
+  - key: service_response_time
+    selector: builtin:service.response.time
+    entity_type: SERVICE
+    split_by: ""
+    agg: avg
+    role: intermediate
+    resource: service
+    transform: none
+    unit: microsecond
+    enabled: false
+    note: >
+      Not in the original three scripts. Required if you later want the
+      SLA-constrained optimisation from the roadmap. Flip enabled to true to
+      include it.
+
+  # ------------------------------------------------------------------- HOST CPU
+  - key: host_cpu_usage
+    selector: builtin:host.cpu.usage
+    entity_type: HOST
+    split_by: ""
+    agg: avg
+    role: target
+    resource: cpu
+    transform: none
+    unit: percent
+    aliases: [meter_vm_cpu_total_percentage]
+
+  - key: host_cpu_load1
+    selector: builtin:host.cpu.load
+    entity_type: HOST
+    split_by: ""
+    agg: avg
+    role: intermediate
+    resource: cpu
+    transform: none
+    unit: unspecified
+    aliases: [meter_vm_cpu_load1]
+    note: >
+      The old scripts used builtin:host.cpu.load1 / load5 / load15. Dynatrace
+      exposes a single load-average metric ID; load5/load15 did not resolve,
+      which is the second reason those columns were missing. `validate` confirms
+      the true ID against the metric descriptor endpoint before any backfill.
+
+  # ------------------------------------------------------------------ HOST MEM
+  - key: host_mem_usage
+    selector: builtin:host.mem.usage
+    entity_type: HOST
+    split_by: ""
+    agg: avg
+    role: target
+    resource: memory
+    transform: abs
+    unit: percent
+    aliases: [meter_vm_memory_used]
+    note: >
+      B5 — memory_influencers_last_10m.csv contains -941.98 for a percent metric.
+      transform=abs is applied as an explicit interim decision (approved for POC).
+      `validate` reports the descriptor unit and the observed range so the real
+      cause stays visible rather than being silently masked.
+
+  - key: host_mem_available
+    selector: builtin:host.mem.available
+    entity_type: HOST
+    split_by: ""
+    agg: avg
+    role: intermediate
+    resource: memory
+    transform: abs
+    unit: byte
+    aliases: [meter_vm_memory_available]
+
+  - key: host_mem_total
+    selector: builtin:host.mem.total
+    entity_type: HOST
+    split_by: ""
+    agg: avg
+    role: intermediate
+    resource: memory
+    transform: none
+    unit: byte
+    aliases: [meter_vm_memory_total]
+
+  - key: host_mem_buff_cache
+    selector: builtin:host.mem.buffersAndCache
+    entity_type: HOST
+    split_by: ""
+    agg: avg
+    role: intermediate
+    resource: memory
+    transform: abs
+    unit: byte
+    aliases: [meter_vm_memory_buff_cache]
+
+  # -------------------------------------------------------------- HOST NETWORK
+  - key: host_net_rx
+    selector: builtin:host.net.nic.bytesRx
+    entity_type: HOST
+    split_by: nic
+    agg: sum
+    role: intermediate
+    resource: network
+    transform: log1p
+    unit: byte
+    aliases: [meter_vm_network_receive]
+
+  - key: host_net_tx
+    selector: builtin:host.net.nic.bytesTx
+    entity_type: HOST
+    split_by: nic
+    agg: sum
+    role: intermediate
+    resource: network
+    transform: log1p
+    unit: byte
+    aliases: [meter_vm_network_transmit]
+
+  # ----------------------------------------------------------------- HOST DISK
+  - key: disk_read_iops
+    selector: builtin:host.disk.reads
+    entity_type: HOST
+    split_by: dt.entity.disk
+    agg: sum
+    role: target
+    resource: disk
+    transform: none
+    unit: count
+
+  - key: disk_write_iops
+    selector: builtin:host.disk.writes
+    entity_type: HOST
+    split_by: dt.entity.disk
+    agg: sum
+    role: target
+    resource: disk
+    transform: none
+    unit: count
+
+  - key: disk_read_throughput
+    selector: builtin:host.disk.bytesRead
+    entity_type: HOST
+    split_by: dt.entity.disk
+    agg: sum
+    role: target
+    resource: disk
+    transform: log1p
+    unit: byte
+
+  - key: disk_write_throughput
+    selector: builtin:host.disk.bytesWritten
+    entity_type: HOST
+    split_by: dt.entity.disk
+    agg: sum
+    role: target
+    resource: disk
+    transform: log1p
+    unit: byte
+
+  - key: disk_read_latency
+    selector: builtin:host.disk.readTime
+    entity_type: HOST
+    split_by: dt.entity.disk
+    agg: avg
+    role: intermediate
+    resource: disk
+    transform: none
+    unit: millisecond
+
+  - key: disk_write_latency
+    selector: builtin:host.disk.writeTime
+    entity_type: HOST
+    split_by: dt.entity.disk
+    agg: avg
+    role: intermediate
+    resource: disk
+    transform: none
+    unit: millisecond
+
+  - key: disk_queue_length
+    selector: builtin:host.disk.queueLength
+    entity_type: HOST
+    split_by: dt.entity.disk
+    agg: avg
+    role: intermediate
+    resource: disk
+    transform: none
+    unit: unspecified
+
+  - key: disk_busy_time
+    selector: builtin:host.disk.activeTime
+    entity_type: HOST
+    split_by: dt.entity.disk
+    agg: avg
+    role: target
+    resource: disk
+    transform: none
+    unit: percent
+
+  # ------------------------------------------------------------------- JVM/PGI
+  # All builtin:tech.jvm.* metrics are dimensioned by
+  # dt.entity.process_group_instance. The old scripts filtered them on
+  # dt.entity.host, which matched nothing -> every JVM column was silently absent.
+  - key: jvm_thread_live_count
+    selector: builtin:tech.jvm.threads.count
+    entity_type: PROCESS_GROUP_INSTANCE
+    split_by: dt.entity.process_group_instance
+    agg: avg
+    role: intermediate
+    resource: jvm
+    transform: none
+    unit: count
+    aliases: [instance_jvm_thread_live_count]
+
+  - key: jvm_thread_peak_count
+    selector: builtin:tech.jvm.threads.peakCount
+    entity_type: PROCESS_GROUP_INSTANCE
+    split_by: dt.entity.process_group_instance
+    agg: max
+    role: intermediate
+    resource: jvm
+    transform: none
+    unit: count
+    aliases: [instance_jvm_thread_peak_count]
+
+  - key: jvm_process_cpu
+    selector: builtin:tech.jvm.processCpuUsage
+    entity_type: PROCESS_GROUP_INSTANCE
+    split_by: dt.entity.process_group_instance
+    agg: avg
+    role: intermediate
+    resource: jvm
+    transform: none
+    unit: percent
+    aliases: [meter_instance_jvm_process_cpu_utilization]
+
+  - key: jvm_memory_heap_used
+    selector: builtin:tech.jvm.memory.runtime.used
+    entity_type: PROCESS_GROUP_INSTANCE
+    split_by: dt.entity.process_group_instance
+    agg: avg
+    role: target
+    resource: memory
+    transform: none
+    unit: byte
+    aliases: [instance_jvm_memory_heap]
+
+  - key: jvm_memory_heap_max
+    selector: builtin:tech.jvm.memory.runtime.max
+    entity_type: PROCESS_GROUP_INSTANCE
+    split_by: dt.entity.process_group_instance
+    agg: max
+    role: intermediate
+    resource: memory
+    transform: none
+    unit: byte
+    aliases: [instance_jvm_memory_heap_max]
+
+  - key: jvm_memory_pool_used
+    selector: builtin:tech.jvm.memory.pool.used
+    entity_type: PROCESS_GROUP_INSTANCE
+    split_by: dt.entity.process_group_instance
+    agg: avg
+    role: intermediate
+    resource: memory
+    transform: none
+    unit: byte
+    aliases: [instance_jvm_memory_pools]
+
+  - key: jvm_gc_collection_count
+    selector: builtin:tech.jvm.memory.pool.collectionCount
+    entity_type: PROCESS_GROUP_INSTANCE
+    split_by: dt.entity.process_group_instance
+    agg: sum
+    role: intermediate
+    resource: jvm
+    transform: none
+    unit: count
+    aliases: [instance_jvm_gc_count]
+
+  - key: jvm_gc_collection_time
+    selector: builtin:tech.jvm.memory.gc.collectionTime
+    entity_type: PROCESS_GROUP_INSTANCE
+    split_by: dt.entity.process_group_instance
+    agg: sum
+    role: intermediate
+    resource: jvm
+    transform: none
+    unit: millisecond
+    aliases: [instance_jvm_gc_time]
