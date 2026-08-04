@@ -52,6 +52,19 @@ def _topology(cfg):
     return Topology.load(cfg.topology_path)
 
 
+def _load_panel(cfg, grid: str):
+    """Load a saved panel, with a next-step hint instead of a stack trace."""
+    from .features.panel import Panel
+
+    meta = cfg.panel_dir / f"{grid}_meta.json"
+    if not meta.exists():
+        raise SystemExit(
+            f"no panel found for grid={grid} ({meta} missing).\n"
+            f"Run: python -m netraa.cli panel --grid {grid}"
+        )
+    return Panel.load(cfg.panel_dir, grid)
+
+
 # --------------------------------------------------------------------- probe
 def cmd_probe(args, cfg) -> int:
     from .ingest import probe
@@ -175,13 +188,11 @@ def cmd_panel(args, cfg) -> int:
 
 # --------------------------------------------------------------------- graph
 def cmd_graph(args, cfg) -> int:
-    from .features.panel import Panel
     from .features.transforms import apply_node_transforms, clip_outliers
     from .graph import statistical
 
     grid = args.grid or cfg.graph.grid
-    panel = Panel.load(cfg.panel_dir, grid)
-    panel = clip_outliers(apply_node_transforms(panel))
+    panel = clip_outliers(apply_node_transforms(_load_panel(cfg, grid)))
 
     params = {
         "max_lag_steps": cfg.graph.max_lag_steps,
@@ -203,13 +214,12 @@ def cmd_graph(args, cfg) -> int:
 # ------------------------------------------------------------------ backtest
 def cmd_backtest(args, cfg) -> int:
     from .eval import backtest as bt
-    from .features.panel import Panel
     from .graph import statistical
     from .models import dataset as ds_mod
     from .models.train import save_artifacts
 
     grid = args.grid or cfg.forecast.grid
-    panel = Panel.load(cfg.panel_dir, grid)
+    panel = _load_panel(cfg, grid)
 
     ds = ds_mod.prepare(
         panel,
@@ -387,11 +397,27 @@ COMMANDS = {
 def main(argv: list[str] | None = None) -> int:
     args = build_parser().parse_args(argv)
     _setup_logging(args.verbose)
-    cfg = load_config(args.config)
+
     try:
+        cfg = load_config(args.config)
         return COMMANDS[args.command](args, cfg)
     except KeyboardInterrupt:
+        print("\ninterrupted", file=sys.stderr)
         return 130
+    except SystemExit as exc:
+        # Deliberate, already-explained exits (missing topology, missing panel).
+        if exc.code not in (0, None):
+            print(f"\n{exc.code}", file=sys.stderr)
+            return 1
+        raise
+    except (ValueError, RuntimeError, FileNotFoundError) as exc:
+        # Expected operator errors: show the message and the next step, not a
+        # 40-line traceback. Re-run with -v for the full trace.
+        print(f"\nerror: {exc}", file=sys.stderr)
+        if args.verbose:
+            raise
+        print("(re-run with -v for the full traceback)", file=sys.stderr)
+        return 1
 
 
 if __name__ == "__main__":
