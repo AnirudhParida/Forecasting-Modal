@@ -165,6 +165,45 @@ def _mutual_information(x: np.ndarray, y: np.ndarray, bins: int = 12) -> float:
     return float(np.clip(mi / norm, 0.0, 1.0)) if norm > 1e-12 else 0.0
 
 
+# ----------------------------------------------------------------- screening
+def _informative_nodes(
+    values: np.ndarray, mask: np.ndarray, min_unique: int = 8
+) -> np.ndarray:
+    """Boolean flag per node: does this series carry enough information to score?
+
+    Near-constant series (host_mem_total, a config value that changed once) have
+    almost no entropy, so the normalised MI against them saturates to 1.0 and
+    they float to the top of the edge table. They cannot support a dependency
+    claim in either direction, so they are excluded from scoring entirely.
+    """
+    N = values.shape[1]
+    ok = np.zeros(N, dtype=bool)
+    for j in range(N):
+        obs = (mask[:, j] > 0) & np.isfinite(values[:, j])
+        col = values[obs, j]
+        ok[j] = len(np.unique(col)) >= min_unique and np.std(col) > 1e-12
+    return ok
+
+
+def _linear_detrend(values: np.ndarray, mask: np.ndarray) -> np.ndarray:
+    """Remove each node's linear trend, fitted on its observed points only.
+
+    Two unrelated metrics that both drift over a 400-day panel correlate near
+    1.0 at whatever lag the scan happens to try — that is how a disk counter
+    ends up 'causing' JVM heap at 13 days. Correlation and MI are therefore
+    scored on detrended series; Granger differences internally already.
+    """
+    out = values.copy()
+    t = np.arange(values.shape[0], dtype="float64")
+    for j in range(values.shape[1]):
+        obs = (mask[:, j] > 0) & np.isfinite(values[:, j])
+        if obs.sum() < 3 or np.std(values[obs, j]) < 1e-12:
+            continue
+        slope, intercept = np.polyfit(t[obs], values[obs, j], 1)
+        out[:, j] = values[:, j] - (slope * t + intercept)
+    return out
+
+
 # ------------------------------------------------------------ Granger causality
 def _granger_p(
     source: np.ndarray, target: np.ndarray, max_lag: int
@@ -241,18 +280,38 @@ def discover(
     N = len(node_ids)
     freq_seconds = int(pd.Timedelta(panel.freq).total_seconds())
 
+    values = panel.values.to_numpy(dtype="float64")
+    mask_np = panel.mask.to_numpy(dtype="float64")
+
+    informative = _informative_nodes(values, mask_np)
+    if not informative.all():
+        excluded = [node_ids[j] for j in range(N) if not informative[j]]
+        log.info(
+            "excluding %d near-constant node(s) from dependency scoring: %s",
+            len(excluded), ", ".join(excluded),
+        )
+
+    # Correlation and MI are scored on detrended values; Granger runs on the
+    # originals (it differences internally).
+    detrended = _linear_detrend(values, mask_np)
+    det_panel = Panel(
+        values=pd.DataFrame(
+            detrended, index=panel.values.index, columns=panel.values.columns
+        ),
+        mask=panel.mask, nodes=panel.nodes, grid=panel.grid, freq=panel.freq,
+    )
+
     log.info("scanning %d nodes x %d lags", N, max_lag_steps + 1)
     best_corr, best_lag, overlap = lagged_correlation_scan(
-        panel, max_lag_steps, min_overlap
+        det_panel, max_lag_steps, min_overlap
     )
 
     structural = structural_pairs(panel)
-    values = panel.values.to_numpy(dtype="float64")
 
     candidates: list[Edge] = []
     for i in range(N):
         for j in range(N):
-            if i == j:
+            if i == j or not (informative[i] and informative[j]):
                 continue
             r = best_corr[i, j]
             src, dst = node_ids[i], node_ids[j]
@@ -264,8 +323,8 @@ def discover(
                 continue
 
             lag = int(best_lag[i, j])
-            x = values[: len(values) - lag, i] if lag else values[:, i]
-            y = values[lag:, j] if lag else values[:, j]
+            x = detrended[: len(detrended) - lag, i] if lag else detrended[:, i]
+            y = detrended[lag:, j] if lag else detrended[:, j]
             mi = _mutual_information(x, y)
 
             if abs(r) < xcorr_threshold and mi < mi_threshold and not is_structural:
@@ -291,7 +350,14 @@ def discover(
 
     # Granger only on candidates — it is the expensive test and would be
     # wasteful across all N^2 pairs.
+    granger_ran = False
     if run_granger:
+        try:
+            import statsmodels  # noqa: F401
+            granger_ran = True
+        except ImportError:
+            log.warning("statsmodels not installed — falling back to lag-based precedence")
+    if granger_ran:
         idx = {n: k for k, n in enumerate(node_ids)}
         for edge in candidates:
             edge.granger_p = _granger_p(
@@ -302,9 +368,15 @@ def discover(
 
     accepted: list[Edge] = []
     for edge in candidates:
-        precedence = (
-            edge.granger_p is not None and edge.granger_p <= granger_alpha
-        ) or edge.lag_steps > 0
+        granger_pass = edge.granger_p is not None and edge.granger_p <= granger_alpha
+        if granger_ran:
+            # A lag alone is not precedence: best_lag is the argmax of |corr|
+            # over the scan, so any two drifting series peak at *some* lag > 0.
+            # When the Granger test ran, the edge must survive it; a pair the
+            # test could not fit (near-singular) is rejected, not waved through.
+            precedence = granger_pass
+        else:
+            precedence = granger_pass or edge.lag_steps > 0
         relevance = edge.strength >= xcorr_threshold or edge.mutual_information >= mi_threshold
 
         if not (relevance and (precedence or edge.structural)):
@@ -340,6 +412,26 @@ def discover(
     if artifacts:
         log.info("dropped %d lag-0 mirror edge(s)", len(artifacts))
     accepted = [e for e in accepted if (e.source, e.target) not in artifacts]
+
+    # Collapse symmetric contemporaneous pairs. When both directions were
+    # accepted at lag 0 (iops <-> throughput on the same disk), the pair carries
+    # no directional information — keeping both just spends two of the target's
+    # top_k slots on one signal. One canonical direction is kept.
+    by_pair = {(e.source, e.target): e for e in accepted}
+    collapsed: set[tuple[str, str]] = set()
+    for (src, dst), edge in by_pair.items():
+        reverse = by_pair.get((dst, src))
+        if (
+            reverse is not None
+            and edge.lag_steps == 0
+            and reverse.lag_steps == 0
+            and not (edge.structural or reverse.structural)
+            and src > dst
+        ):
+            collapsed.add((src, dst))
+    if collapsed:
+        log.info("collapsed %d symmetric contemporaneous pair(s)", len(collapsed))
+    accepted = [e for e in accepted if (e.source, e.target) not in collapsed]
 
     # Keep the strongest top_k incoming edges per target: without this the graph
     # saturates and the "dependency map" stops being a map of anything.

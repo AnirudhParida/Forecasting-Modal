@@ -124,6 +124,122 @@ def test_dependency_discovery_recovers_known_structure():
     print("  recovered lags:", {k: v.lag_steps for k, v in found.items()})
 
 
+def test_near_constant_node_gets_no_edges():
+    """A series that changed once (host_mem_total) saturates normalised MI to
+    1.0 against anything; it must be excluded from scoring entirely."""
+    panel = synthetic_panel(n_steps=800)
+    values = panel.values.copy()
+    values["almost_flat"] = 100.0
+    values.loc[values.index[400:], "almost_flat"] = 101.0  # one step change
+    mask = panel.mask.copy()
+    mask["almost_flat"] = 1.0
+    nodes = pd.concat(
+        [
+            panel.nodes,
+            pd.DataFrame([{
+                "node_id": "almost_flat", "metric_key": "almost_flat",
+                "dimension": "", "entity_type": "HOST", "role": "intermediate",
+                "resource": "memory", "unit": "bytes", "transform": "none",
+                "coverage": 1.0,
+            }]),
+        ],
+        ignore_index=True,
+    )
+    flat_panel = Panel(values=values, mask=mask, nodes=nodes, grid="test", freq="5min")
+
+    edges = statistical.discover(
+        flat_panel, max_lag_steps=12, xcorr_threshold=0.4, top_k=4,
+        min_overlap=100, run_granger=False,
+    )
+    for e in edges:
+        assert "almost_flat" not in (e.source, e.target), (
+            f"near-constant node acquired an edge: {e.source} -> {e.target}"
+        )
+
+
+def test_shared_trend_is_not_a_dependency():
+    """Two independent series that both drift must not be linked: their level
+    correlation is ~1.0 at some lag, which is exactly the spurious edge the
+    detrended scan + mandatory Granger test exist to reject."""
+    rng = np.random.default_rng(7)
+    n = 800
+    t = np.arange(n, dtype="float64")
+    trend_a = 0.05 * t + rng.normal(0, 1.0, n)
+    trend_b = 0.08 * t + rng.normal(0, 1.0, n)
+
+    index = pd.date_range("2026-01-01", periods=n, freq="5min", tz="UTC")
+    values = pd.DataFrame({"trend_a": trend_a, "trend_b": trend_b}, index=index)
+    values.index.name = "timestamp"
+    nodes = pd.DataFrame(
+        [
+            {"node_id": "trend_a", "metric_key": "trend_a", "dimension": "",
+             "entity_type": "HOST", "role": "intermediate", "resource": "memory",
+             "unit": "bytes", "transform": "none", "coverage": 1.0},
+            {"node_id": "trend_b", "metric_key": "trend_b", "dimension": "",
+             "entity_type": "DISK", "role": "intermediate", "resource": "disk",
+             "unit": "bytes", "transform": "none", "coverage": 1.0},
+        ]
+    )
+    mask = pd.DataFrame(1.0, index=values.index, columns=values.columns)
+    panel = Panel(values=values, mask=mask, nodes=nodes, grid="test", freq="5min")
+
+    edges = statistical.discover(
+        panel, max_lag_steps=12, xcorr_threshold=0.3, top_k=4,
+        min_overlap=100, run_granger=True,
+    )
+    assert not edges, (
+        f"independent trending series were linked: "
+        f"{[(e.source, e.target, e.lag_steps) for e in edges]}"
+    )
+
+
+def test_short_history_node_survives_panel_coverage():
+    """A node onboarded late but solid since then must be kept via the
+    tail-coverage rule; a genuinely gappy node at the same overall coverage
+    must still be dropped."""
+    from netraa.features.panel import build_panel
+
+    reg = Registry.load(PROJECT_ROOT / "metrics_registry.yaml")
+    index = pd.date_range("2026-01-01", periods=400, freq="1D", tz="UTC")
+
+    rows = []
+    for ts in index:
+        rows.append({"timestamp": ts, "node_id": "host_cpu_usage",
+                     "metric_key": "host_cpu_usage", "dimension": "",
+                     "entity_type": "HOST", "value": 50.0})
+    for ts in index[-120:]:                      # 30% overall, 100% since start
+        rows.append({"timestamp": ts, "node_id": "late_metric",
+                     "metric_key": "late_metric", "dimension": "",
+                     "entity_type": "HOST", "value": 1.0})
+    for ts in index[::4]:                        # 25% overall, gappy throughout
+        rows.append({"timestamp": ts, "node_id": "gappy_metric",
+                     "metric_key": "gappy_metric", "dimension": "",
+                     "entity_type": "HOST", "value": 2.0})
+
+    panel = build_panel(
+        raw_dir=Path("/nonexistent"), grid="test", freq="1D", registry=reg,
+        min_coverage=0.40, min_tail_coverage=0.60, min_observed_steps=90,
+        ffill_limit=0, long_df=pd.DataFrame(rows),
+    )
+    assert "late_metric" in panel.node_ids, "short-history node was dropped"
+    assert "gappy_metric" not in panel.node_ids, "gappy node was kept"
+    assert "host_cpu_usage" in panel.node_ids
+
+
+def test_mase_is_scale_free():
+    from netraa.eval.metrics import mase
+
+    y_true = np.zeros((5, 2, 3))
+    y_pred = np.ones((5, 2, 3))          # absolute error 1.0 everywhere
+    mask = np.ones((5, 2, 3))
+    out = mase(y_true, y_pred, mask, scale=np.array([2.0, 4.0]))
+    assert np.isclose(out, (1 / 2.0 + 1 / 4.0) / 2), f"mase {out}"
+
+    # A degenerate (zero) scale must be excluded, not divide to infinity.
+    out = mase(y_true, y_pred, mask, scale=np.array([2.0, 0.0]))
+    assert np.isclose(out, 0.5), f"zero scale leaked into mase: {out}"
+
+
 def test_lagged_correlation_is_directional():
     """A[i,j] must mean i leads j, not the reverse."""
     panel = synthetic_panel(lag_a=4)

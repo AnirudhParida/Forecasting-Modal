@@ -26,6 +26,27 @@ def smape(y_true: np.ndarray, y_pred: np.ndarray, mask: np.ndarray) -> float:
     return _apply(mask, ratio) * 100.0
 
 
+def mase(
+    y_true: np.ndarray,
+    y_pred: np.ndarray,
+    mask: np.ndarray,
+    scale: np.ndarray,
+) -> float:
+    """Mean absolute scaled error.
+
+    `scale` is the per-target in-sample MAE of the seasonal-naive forecast,
+    shaped (NT,). Dividing by it puts a 100k-cpm counter and a 0.3-ratio gauge
+    on the same footing — plain MAE aggregated across targets is decided almost
+    entirely by whichever target has the largest units.
+    """
+    shape = [1] * y_true.ndim
+    shape[1] = len(scale)
+    s = np.where(scale > 1e-9, scale, np.nan).reshape(shape)
+    err = np.abs(y_true - y_pred) / s
+    ok = mask * np.isfinite(err)
+    return _apply(ok, np.nan_to_num(err))
+
+
 def pinball(
     y_true: np.ndarray, y_pred_q: np.ndarray, mask: np.ndarray, quantiles: list[float]
 ) -> float:
@@ -67,6 +88,7 @@ def evaluate(
     quantiles: list[float],
     horizons: list[int],
     median_q: float = 0.5,
+    mase_scale: np.ndarray | None = None,
 ) -> dict:
     """Overall and per-horizon metrics.
 
@@ -87,6 +109,9 @@ def evaluate(
         "mae": mae(y_true, y_point, mask),
         "rmse": rmse(y_true, y_point, mask),
         "smape": smape(y_true, y_point, mask),
+        "mase": mase(y_true, y_point, mask, mase_scale)
+        if mase_scale is not None
+        else float("nan"),
         "pinball": pinball(y_true, y_q, mask, qs),
         "coverage_p10_p90": interval_coverage(y_true, y_q, mask, qs),
         "n_observations": int(mask.sum()),
@@ -97,6 +122,9 @@ def evaluate(
             "mae": mae(y_true[:, :, j], y_point[:, :, j], mask[:, :, j]),
             "rmse": rmse(y_true[:, :, j], y_point[:, :, j], mask[:, :, j]),
             "smape": smape(y_true[:, :, j], y_point[:, :, j], mask[:, :, j]),
+            "mase": mase(y_true[:, :, j], y_point[:, :, j], mask[:, :, j], mase_scale)
+            if mase_scale is not None
+            else float("nan"),
         }
     return out
 
@@ -106,12 +134,16 @@ def per_target(
     y_point: np.ndarray,
     mask: np.ndarray,
     target_ids: list[str],
+    mase_scale: np.ndarray | None = None,
 ) -> dict[str, dict]:
-    return {
-        tid: {
+    out = {}
+    for i, tid in enumerate(target_ids):
+        row = {
             "mae": mae(y_true[:, i], y_point[:, i], mask[:, i]),
             "rmse": rmse(y_true[:, i], y_point[:, i], mask[:, i]),
             "smape": smape(y_true[:, i], y_point[:, i], mask[:, i]),
         }
-        for i, tid in enumerate(target_ids)
-    }
+        if mase_scale is not None and mase_scale[i] > 1e-9:
+            row["mase"] = row["mae"] / float(mase_scale[i])
+        out[tid] = row
+    return out

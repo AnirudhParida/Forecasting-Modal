@@ -112,11 +112,17 @@ def calendar_features(index: pd.DatetimeIndex, freq_seconds: int) -> np.ndarray:
     are omitted on the daily grid where they would be constant.
     """
     dow = index.dayofweek.to_numpy()
+    doy = index.dayofyear.to_numpy()
     feats = [
         np.sin(2 * np.pi * dow / 7),
         np.cos(2 * np.pi * dow / 7),
         np.sin(2 * np.pi * (index.day.to_numpy() - 1) / 31),
         np.cos(2 * np.pi * (index.day.to_numpy() - 1) / 31),
+        # Annual cycle: at a 90-day horizon the seasonal-naive baseline wins on
+        # exactly the series with yearly shape; without these terms the model
+        # cannot even see where in the year the forecast lands.
+        np.sin(2 * np.pi * (doy - 1) / 365.25),
+        np.cos(2 * np.pi * (doy - 1) / 365.25),
     ]
     if freq_seconds < 86_400:
         seconds = (

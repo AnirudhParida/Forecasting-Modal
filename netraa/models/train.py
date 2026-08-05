@@ -105,6 +105,12 @@ def train(
         train_loss, n_batches = 0.0, 0
         for xb, yb, mb in train_loader:
             xb, yb, mb = xb.to(device), yb.to(device), mb.to(device)
+            if cfg.input_noise > 0:
+                # Jitter only the value channel, only where observed — noise on
+                # a masked-out zero would contradict the mask channel.
+                noise = torch.randn_like(xb[..., 0]) * cfg.input_noise
+                xb = xb.clone()
+                xb[..., 0] += noise * xb[..., 1]
             optimiser.zero_grad()
             pred = model(xb)
             loss = masked_quantile_loss(pred, yb, mb, quantiles)

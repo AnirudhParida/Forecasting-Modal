@@ -116,6 +116,8 @@ def build_panel(
     min_coverage: float = 0.20,
     ffill_limit: int = 2,
     long_df: pd.DataFrame | None = None,
+    min_tail_coverage: float = 0.60,
+    min_observed_steps: int = 90,
 ) -> Panel:
     """Build a panel for `grid`.
 
@@ -163,9 +165,47 @@ def build_panel(
     mask = resampled.notna().astype("float64")
 
     # Drop nodes too sparse to model. Reported, never silent.
+    #
+    # Overall coverage alone cannot tell a gappy node from a short-history one:
+    # a metric onboarded halfway through a 400-day span scores ~50% while being
+    # solid ever since. Those are kept when their coverage *since first
+    # observation* clears min_tail_coverage with at least min_observed_steps
+    # points — the mask channel carries the missing early span.
     coverage = mask.mean()
-    keep = coverage[coverage >= min_coverage].index.tolist()
+    observed_steps = mask.sum()
+    T = len(mask)
+    first_obs = mask.to_numpy().argmax(axis=0)  # index of first observed bucket
+    tail_coverage = pd.Series(
+        np.where(
+            observed_steps.to_numpy() > 0,
+            observed_steps.to_numpy() / np.maximum(T - first_obs, 1),
+            0.0,
+        ),
+        index=mask.columns,
+    )
+
+    keep, rescued = [], []
+    for nid in resampled.columns:
+        if coverage[nid] >= min_coverage:
+            keep.append(nid)
+        elif (
+            tail_coverage[nid] >= min_tail_coverage
+            and observed_steps[nid] >= min_observed_steps
+        ):
+            keep.append(nid)
+            rescued.append(nid)
+
     dropped = sorted(set(resampled.columns) - set(keep))
+    if rescued:
+        log.info(
+            "keeping %d short-history node(s) on tail coverage: %s",
+            len(rescued),
+            ", ".join(
+                f"{r} ({coverage[r] * 100:.1f}% overall, "
+                f"{tail_coverage[r] * 100:.1f}% since start)"
+                for r in rescued
+            ),
+        )
     if dropped:
         log.warning(
             "dropping %d node(s) below %.0f%% coverage: %s",

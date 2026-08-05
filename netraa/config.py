@@ -78,6 +78,11 @@ class ModelConfig:
     batch_size: int = 16
     patience: int = 25
     seed: int = 42
+    # Gaussian noise (in scaled units) added to the value channel during
+    # training. Overlapping windows over a short panel repeat almost the same
+    # sample hundreds of times; jitter is the cheapest defence against the
+    # model memorising the panel by epoch ~5.
+    input_noise: float = 0.1
 
 
 @dataclass

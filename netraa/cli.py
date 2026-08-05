@@ -174,6 +174,8 @@ def _build_panel(cfg, grid_name: str, long_df=None):
         registry=registry,
         source_grid=source,
         min_coverage=cfg.raw.get("min_coverage", 0.20),
+        min_tail_coverage=cfg.raw.get("min_tail_coverage", 0.60),
+        min_observed_steps=cfg.raw.get("min_observed_steps", 90),
         long_df=long_df,
     )
 
@@ -237,9 +239,17 @@ def cmd_backtest(args, cfg) -> int:
         if candidate.exists():
             edges, _ = statistical.load_dependency_map(candidate)
             adj_prior = statistical.to_adjacency(edges, ds.node_ids)
-            print(
-                f"prior: {int((adj_prior > 0).sum())} edges from {candidate.name}\n"
-            )
+            applied = int((adj_prior > 0).sum())
+            print(f"prior: {applied} edges from {candidate.name}")
+            if applied < len(edges) // 2:
+                print(
+                    f"WARNING: only {applied} of {len(edges)} edges in "
+                    f"{candidate.name} reference nodes present in this panel. "
+                    f"The map was built from a different (probably stale) panel "
+                    f"— rerun `netraa panel` and then `netraa graph` so the "
+                    f"prior and the forecaster see the same node set."
+                )
+            print()
             break
     if adj_prior is None:
         print("prior: none found — run `netraa graph` first for the (a)->(b) link\n")
