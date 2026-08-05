@@ -71,7 +71,7 @@ def cmd_probe(args, cfg) -> int:
 
     registry = _registry(cfg)
     ref = registry.by_key("host_cpu_usage")
-    selector = ref.build_selector([cfg.host_id])
+    selector = ref.build_selector()  # probe only needs a valid selector; no entity filter
 
     with _client(cfg) as client:
         rows = probe.probe_retention(client, selector)
@@ -263,6 +263,32 @@ def cmd_backtest(args, cfg) -> int:
     return 0
 
 
+# ---------------------------------------------------------------------- chart
+def cmd_chart(args, cfg) -> int:
+    """Generate PNG charts from a completed backtest run."""
+    from .eval.charts import generate_all
+
+    grid = args.grid or cfg.forecast.grid
+
+    # Load the panel if it exists; None means coverage heatmap is skipped.
+    panel = None
+    meta = cfg.panel_dir / f"{grid}_meta.json"
+    if meta.exists():
+        panel = _load_panel(cfg, grid)
+    else:
+        print(f"panel not found for grid={grid} -- coverage heatmap will be skipped")
+
+    backtest_json = cfg.artifacts_dir / f"backtest_{grid}.json"
+    generate_all(
+        backtest_json=backtest_json,
+        panel=panel,
+        graph_dir=cfg.graph_dir,
+        out_dir=cfg.artifacts_dir / "charts",
+        grid=grid,
+    )
+    return 0
+
+
 # --------------------------------------------------------------------- smoke
 def cmd_smoke(args, cfg) -> int:
     """Offline end-to-end run on the legacy CSVs.
@@ -378,19 +404,25 @@ def build_parser() -> argparse.ArgumentParser:
     bt_.add_argument("--no-ablation", action="store_true")
 
     sub.add_parser("smoke", help="offline end-to-end run on the legacy CSVs")
+
+    ch = sub.add_parser("chart", help="generate PNG charts from a backtest run")
+    ch.add_argument("--grid", default=None,
+                    help="grid to visualise (default: forecast.grid from config)")
+
     return p
 
 
 COMMANDS = {
-    "probe": cmd_probe,
-    "topology": cmd_topology,
-    "validate": cmd_validate,
-    "backfill": cmd_backfill,
-    "status": cmd_status,
-    "panel": cmd_panel,
-    "graph": cmd_graph,
-    "backtest": cmd_backtest,
-    "smoke": cmd_smoke,
+    "probe":     cmd_probe,
+    "topology":  cmd_topology,
+    "validate":  cmd_validate,
+    "backfill":  cmd_backfill,
+    "status":    cmd_status,
+    "panel":     cmd_panel,
+    "graph":     cmd_graph,
+    "backtest":  cmd_backtest,
+    "chart":     cmd_chart,
+    "smoke":     cmd_smoke,
 }
 
 

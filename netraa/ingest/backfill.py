@@ -133,7 +133,8 @@ def backfill(
             )
             continue
 
-        selector = spec.build_selector(entity_ids)
+        selector = spec.build_selector()
+        ent_sel = spec.entity_selector(entity_ids)
         total_rows = 0
         series_seen: set[str] = set()
         chunks = 0
@@ -142,7 +143,8 @@ def backfill(
         for c_start, c_end in chunk_range(start_ms, end_ms, chunk_days):
             chunks += 1
             try:
-                result = client.query(selector, c_start, c_end, grid.resolution)
+                result = client.query(selector, c_start, c_end, grid.resolution,
+                                      entity_selector=ent_sel)
             except DynatraceError as exc:
                 errors.append(str(exc).splitlines()[0][:100])
                 continue

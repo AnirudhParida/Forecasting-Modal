@@ -1,0 +1,85 @@
+1. One-time setup
+
+cd /home/apmosys/Pictures/Netraa-AI
+
+uv venv .venv --python 3.10
+uv pip install --python .venv/bin/python -r requirements.txt
+
+cp .env.example .env      # then edit: set DYNATRACE_API_TOKEN
+Optional convenience alias for the rest of this:
+
+
+alias netraa='/home/apmosys/Pictures/Netraa-AI/.venv/bin/python -m netraa.cli'
+2. Test — offline, no API token needed
+These work right now:
+
+
+.venv/bin/python tests/test_pipeline.py          # 13 correctness tests
+.venv/bin/python -m netraa.cli smoke             # all 6 stages on the legacy CSVs
+With pytest instead, if you prefer:
+
+
+uv pip install --python .venv/bin/python pytest
+.venv/bin/python -m pytest tests/ -v
+3. Train — the live pipeline, in order
+
+# Step 1 — measure what your tenant actually retains
+.venv/bin/python -m netraa.cli probe
+
+# Step 2 — resolve host/service into PGI, disk, service-method IDs
+.venv/bin/python -m netraa.cli topology
+
+# Step 3 — check every metric BEFORE spending a backfill. Exits 1 on failure.
+.venv/bin/python -m netraa.cli validate
+Stop at step 3 if it reports failures — fix metrics_registry.yaml first. Then edit configs/v1.yaml with the grid values probe recommended, and continue:
+
+
+# Step 4 — backfill BOTH grids (fine feeds the dependency map, coarse feeds the forecaster)
+.venv/bin/python -m netraa.cli backfill --grid fine
+.venv/bin/python -m netraa.cli backfill --grid coarse
+
+# Step 5 — build both panels
+.venv/bin/python -m netraa.cli panel --grid fine
+.venv/bin/python -m netraa.cli panel --grid coarse
+
+# Step 6 — (a) the dependency map. No training, no GPU.
+.venv/bin/python -m netraa.cli graph
+
+# Step 7 — (b) train ST-GNN + graph ablation + 4 baselines, and score them
+.venv/bin/python -m netraa.cli backtest
+Both grids are required. graph reads fine, backtest reads coarse — skipping either leaves step 6 or 7 with nothing to load.
+
+4. Keeping it current
+
+.venv/bin/python -m netraa.cli backfill --grid coarse --incremental   # cron-safe, idempotent
+.venv/bin/python -m netraa.cli status                                  # per-node coverage
+5. Useful variations
+
+# One metric only, for debugging a specific selector
+.venv/bin/python -m netraa.cli backfill --grid fine --only host_cpu_usage,jvm_thread_live_count
+
+# Dependency map: more edges shown, skip the slow Granger pass
+.venv/bin/python -m netraa.cli graph --top 60 --no-granger
+
+# Dependency map on the daily grid instead
+.venv/bin/python -m netraa.cli graph --grid coarse
+
+# Shorter context window if the backfill is thin
+.venv/bin/python -m netraa.cli backtest --input-steps 60
+
+# Skip the ablation (faster, but you lose the "does the graph help?" answer)
+.venv/bin/python -m netraa.cli backtest --no-ablation
+
+# Full traceback on any error
+.venv/bin/python -m netraa.cli <command> -v
+6. Where the output lands
+Path	From
+data/retention_probe.json	probe
+data/topology.json	topology
+data/validation_report.json	validate
+data/raw/grid=*/date=*/data.parquet	backfill
+data/panel/*_values.parquet, *_mask.parquet	panel
+data/graph/dependency_map_fine.json	graph — deliverable (a)
+artifacts/stgnn.pt, stgnn_learned_graph.json	backtest — deliverable (b)
+artifacts/backtest_coarse.json	backtest scores
+One caveat on step 7: it can only run once step 4 has accumulated enough history. With a fresh backfill on the daily grid you need roughly input_steps + max horizon + 3 days before backtest has enough windows to split — it'll tell you the exact shortfall if you run it early.

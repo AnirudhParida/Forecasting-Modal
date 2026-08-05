@@ -103,9 +103,12 @@ def resolve(
         for etype, ids in _collect_related(payload).items():
             buckets[etype] |= ids
 
-    # Process group instances: prefer those attached to BOTH the host and the
-    # service, since the POC forecasts one service on one host. Fall back to the
-    # host's PGIs if the intersection is empty.
+    # Process group instances: use ALL PGIs on the host.
+    # The intersection of host PGIs ∩ service PGIs only yields the PGI directly
+    # linked to the target service (e.g. nginx), which has no JVM instrumentation.
+    # JVM metrics (builtin:tech.jvm.*) live on Tomcat/Java PGIs that are related
+    # to the host but not necessarily to the service entity. For the POC scope
+    # (one host, one service) using all host PGIs gives the correct JVM coverage.
     host_pgis = set()
     service_pgis = set()
     try:
@@ -114,16 +117,14 @@ def resolve(
     except DynatraceError:
         pass
 
-    both = host_pgis & service_pgis
-    if both:
-        buckets["PROCESS_GROUP_INSTANCE"] = both
-    elif host_pgis:
+    if host_pgis:
         buckets["PROCESS_GROUP_INSTANCE"] = host_pgis
-        topo.warnings.append(
-            "no process group instance is related to both the host and the "
-            "service; falling back to all PGIs on the host. JVM metrics may "
-            "include processes outside the service in scope."
-        )
+        if not (host_pgis & service_pgis):
+            topo.warnings.append(
+                "no process group instance is directly related to both the host "
+                "and the service; using all PGIs on the host. JVM metrics may "
+                "include processes outside the service in scope."
+            )
 
     # Disks: relationship walk is the primary source; entity selector is a
     # fallback for tenants that do not expose isDiskOf on the host payload.

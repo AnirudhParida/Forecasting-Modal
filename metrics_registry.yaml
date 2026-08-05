@@ -55,11 +55,11 @@ metrics:
     resource: service
     transform: none
     unit: count
+    enabled: false
     note: >
-      Dimensioned by dt.entity.service_method, NOT dt.entity.service. The old
-      scripts filtered on dt.entity.service, which is why this column never
-      appeared in cpu_influencers_last_10m.csv. Topology resolution supplies the
-      key-request IDs belonging to the target service.
+      Disabled: the Dynatrace tenant rejects the IS_SERVICE_METHOD_OF relationship
+      selector with HTTP 400 ("invalid relationship: SERVICE_METHOD IS_SERVICE_METHOD_OF SERVICE").
+      Re-enable once the API constraint is resolved.
 
   - key: instance_traffic
     selector: builtin:service.requestCount.server
@@ -142,7 +142,7 @@ metrics:
       cause stays visible rather than being silently masked.
 
   - key: host_mem_available
-    selector: builtin:host.mem.available
+    selector: builtin:host.mem.avail.bytes
     entity_type: HOST
     split_by: ""
     agg: avg
@@ -164,7 +164,7 @@ metrics:
     aliases: [meter_vm_memory_total]
 
   - key: host_mem_buff_cache
-    selector: builtin:host.mem.buffersAndCache
+    selector: builtin:host.mem.recl
     entity_type: HOST
     split_by: ""
     agg: avg
@@ -173,12 +173,15 @@ metrics:
     transform: abs
     unit: byte
     aliases: [meter_vm_memory_buff_cache]
+    note: >
+      builtin:host.mem.buffersAndCache does not exist on this tenant.
+      Using builtin:host.mem.recl (reclaimable memory) as the closest equivalent.
 
   # -------------------------------------------------------------- HOST NETWORK
   - key: host_net_rx
     selector: builtin:host.net.nic.bytesRx
     entity_type: HOST
-    split_by: nic
+    split_by: dt.entity.network_interface
     agg: sum
     role: intermediate
     resource: network
@@ -189,7 +192,7 @@ metrics:
   - key: host_net_tx
     selector: builtin:host.net.nic.bytesTx
     entity_type: HOST
-    split_by: nic
+    split_by: dt.entity.network_interface
     agg: sum
     role: intermediate
     resource: network
@@ -199,7 +202,7 @@ metrics:
 
   # ----------------------------------------------------------------- HOST DISK
   - key: disk_read_iops
-    selector: builtin:host.disk.reads
+    selector: builtin:host.disk.readOps
     entity_type: HOST
     split_by: dt.entity.disk
     agg: sum
@@ -209,7 +212,7 @@ metrics:
     unit: count
 
   - key: disk_write_iops
-    selector: builtin:host.disk.writes
+    selector: builtin:host.disk.writeOps
     entity_type: HOST
     split_by: dt.entity.disk
     agg: sum
@@ -269,7 +272,7 @@ metrics:
     unit: unspecified
 
   - key: disk_busy_time
-    selector: builtin:host.disk.activeTime
+    selector: builtin:host.disk.utilTime
     entity_type: HOST
     split_by: dt.entity.disk
     agg: avg
@@ -277,6 +280,9 @@ metrics:
     resource: disk
     transform: none
     unit: percent
+    note: >
+      builtin:host.disk.activeTime does not exist on this tenant.
+      Using builtin:host.disk.utilTime (disk utilization time) as the equivalent.
 
   # ------------------------------------------------------------------- JVM/PGI
   # All builtin:tech.jvm.* metrics are dimensioned by
@@ -294,7 +300,7 @@ metrics:
     aliases: [instance_jvm_thread_live_count]
 
   - key: jvm_thread_peak_count
-    selector: builtin:tech.jvm.threads.peakCount
+    selector: builtin:tech.jvm.threads.count
     entity_type: PROCESS_GROUP_INSTANCE
     split_by: dt.entity.process_group_instance
     agg: max
@@ -302,21 +308,29 @@ metrics:
     resource: jvm
     transform: none
     unit: count
+    enabled: false
     aliases: [instance_jvm_thread_peak_count]
+    note: >
+      builtin:tech.jvm.threads.peakCount does not exist on this tenant.
+      Disabled to avoid duplication with jvm_thread_live_count (same underlying metric).
+      Re-enable with a different selector if peak-thread tracking is needed.
 
   - key: jvm_process_cpu
-    selector: builtin:tech.jvm.processCpuUsage
+    selector: builtin:tech.jvm.threads.totalCpuTime
     entity_type: PROCESS_GROUP_INSTANCE
     split_by: dt.entity.process_group_instance
     agg: avg
     role: intermediate
     resource: jvm
     transform: none
-    unit: percent
+    unit: unspecified
     aliases: [meter_instance_jvm_process_cpu_utilization]
+    note: >
+      builtin:tech.jvm.processCpuUsage does not exist on this tenant.
+      Using builtin:tech.jvm.threads.totalCpuTime as a proxy for JVM CPU activity.
 
   - key: jvm_memory_heap_used
-    selector: builtin:tech.jvm.memory.runtime.used
+    selector: builtin:tech.jvm.memory.runtime.total
     entity_type: PROCESS_GROUP_INSTANCE
     split_by: dt.entity.process_group_instance
     agg: avg
@@ -325,6 +339,10 @@ metrics:
     transform: none
     unit: byte
     aliases: [instance_jvm_memory_heap]
+    note: >
+      builtin:tech.jvm.memory.runtime.used does not exist on this tenant.
+      Using builtin:tech.jvm.memory.runtime.total (total runtime heap) as the closest proxy.
+      runtime.free also exists if a used = total - free derivation is preferred.
 
   - key: jvm_memory_heap_max
     selector: builtin:tech.jvm.memory.runtime.max

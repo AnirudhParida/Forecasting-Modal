@@ -64,28 +64,37 @@ class MetricSpec:
     def entity_dimension(self) -> str:
         return ENTITY_DIMENSION[self.entity_type]
 
-    def build_selector(self, entity_ids: list[str]) -> str:
-        """Compose the full metric selector.
+    def build_selector(self) -> str:
+        """Compose the metric selector (splitBy + aggregation only).
 
-        Always emits an explicit filter, an explicit splitBy and an explicit
-        aggregation. The old scripts emitted only a filter, letting Dynatrace
-        auto-merge dimensions — the likely source of the negative memory
-        values in memory_influencers_last_10m.csv (B5).
+        Entity filtering is NOT embedded in the metricSelector string.
+        Dynatrace's metricSelector `filter(in(...))` accepts exactly one value,
+        so multi-entity filtering must go through the separate `entitySelector`
+        query parameter.  Use `entity_selector(entity_ids)` to build that string
+        and pass it as `entity_selector=` to `DynatraceClient.query()`.
+
+        Always emits an explicit splitBy and explicit aggregation. The old
+        scripts omitted these, letting Dynatrace auto-merge dimensions — the
+        likely source of the negative memory values in
+        memory_influencers_last_10m.csv (B5).
+        """
+        split = f'splitBy("{self.split_by}")' if self.split_by else "splitBy()"
+        return f"{self.selector}:{split}:{self.agg}"
+
+    def entity_selector(self, entity_ids: list[str]) -> str:
+        """Build the entitySelector query parameter for this metric's entity type.
+
+        Uses the entityId(...) syntax which accepts multiple comma-separated IDs
+        and is the correct way to restrict a metrics/query call to specific
+        entities without embedding a filter in the metricSelector string.
         """
         if not entity_ids:
             raise ValueError(
                 f"{self.key}: no {self.entity_type} entity IDs resolved. "
                 "Run `netraa topology` first."
             )
-
-        quoted = ",".join(f'"{e}"' for e in entity_ids)
-        if len(entity_ids) == 1:
-            flt = f'filter(eq("{self.entity_dimension}",{quoted}))'
-        else:
-            flt = f'filter(in("{self.entity_dimension}",entityId({quoted})))'
-
-        split = f'splitBy("{self.split_by}")' if self.split_by else "splitBy()"
-        return f"{self.selector}:{flt}:{split}:{self.agg}"
+        quoted = ", ".join(f'"{e}"' for e in entity_ids)
+        return f"entityId({quoted})"
 
 
 @dataclass

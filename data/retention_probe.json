@@ -1,0 +1,335 @@
+{
+  "probes": [
+    {
+      "resolution": "1m",
+      "lookback_days": 1,
+      "points": 1441,
+      "observed_spacing_s": 60.0,
+      "requested_spacing_s": 60,
+      "downgraded": false,
+      "earliest": "2026-08-04T06:22:00+00:00",
+      "error": ""
+    },
+    {
+      "resolution": "1m",
+      "lookback_days": 7,
+      "points": 10081,
+      "observed_spacing_s": 60.0,
+      "requested_spacing_s": 60,
+      "downgraded": false,
+      "earliest": "2026-07-29T06:22:00+00:00",
+      "error": ""
+    },
+    {
+      "resolution": "1m",
+      "lookback_days": 14,
+      "points": 0,
+      "observed_spacing_s": null,
+      "requested_spacing_s": 60,
+      "downgraded": false,
+      "earliest": null,
+      "error": "GET /api/v2/metrics/query -> HTTP 400"
+    },
+    {
+      "resolution": "1m",
+      "lookback_days": 30,
+      "points": 0,
+      "observed_spacing_s": null,
+      "requested_spacing_s": 60,
+      "downgraded": false,
+      "earliest": null,
+      "error": "GET /api/v2/metrics/query -> HTTP 400"
+    },
+    {
+      "resolution": "1m",
+      "lookback_days": 90,
+      "points": 0,
+      "observed_spacing_s": null,
+      "requested_spacing_s": 60,
+      "downgraded": false,
+      "earliest": null,
+      "error": "GET /api/v2/metrics/query -> HTTP 400"
+    },
+    {
+      "resolution": "1m",
+      "lookback_days": 180,
+      "points": 0,
+      "observed_spacing_s": null,
+      "requested_spacing_s": 60,
+      "downgraded": false,
+      "earliest": null,
+      "error": "GET /api/v2/metrics/query -> HTTP 400"
+    },
+    {
+      "resolution": "1m",
+      "lookback_days": 365,
+      "points": 0,
+      "observed_spacing_s": null,
+      "requested_spacing_s": 60,
+      "downgraded": false,
+      "earliest": null,
+      "error": "GET /api/v2/metrics/query -> HTTP 400"
+    },
+    {
+      "resolution": "1m",
+      "lookback_days": 400,
+      "points": 0,
+      "observed_spacing_s": null,
+      "requested_spacing_s": 60,
+      "downgraded": false,
+      "earliest": null,
+      "error": "GET /api/v2/metrics/query -> HTTP 400"
+    },
+    {
+      "resolution": "5m",
+      "lookback_days": 1,
+      "points": 289,
+      "observed_spacing_s": 300.0,
+      "requested_spacing_s": 300,
+      "downgraded": false,
+      "earliest": "2026-08-04T06:25:00+00:00",
+      "error": ""
+    },
+    {
+      "resolution": "5m",
+      "lookback_days": 7,
+      "points": 2017,
+      "observed_spacing_s": 300.0,
+      "requested_spacing_s": 300,
+      "downgraded": false,
+      "earliest": "2026-07-29T06:25:00+00:00",
+      "error": ""
+    },
+    {
+      "resolution": "5m",
+      "lookback_days": 14,
+      "points": 4033,
+      "observed_spacing_s": 300.0,
+      "requested_spacing_s": 300,
+      "downgraded": false,
+      "earliest": "2026-07-22T06:25:00+00:00",
+      "error": ""
+    },
+    {
+      "resolution": "5m",
+      "lookback_days": 30,
+      "points": 721,
+      "observed_spacing_s": 3600.0,
+      "requested_spacing_s": 300,
+      "downgraded": true,
+      "earliest": "2026-07-06T07:00:00+00:00",
+      "error": ""
+    },
+    {
+      "resolution": "5m",
+      "lookback_days": 90,
+      "points": 0,
+      "observed_spacing_s": null,
+      "requested_spacing_s": 300,
+      "downgraded": false,
+      "earliest": null,
+      "error": "GET /api/v2/metrics/query -> HTTP 400"
+    },
+    {
+      "resolution": "5m",
+      "lookback_days": 180,
+      "points": 0,
+      "observed_spacing_s": null,
+      "requested_spacing_s": 300,
+      "downgraded": false,
+      "earliest": null,
+      "error": "GET /api/v2/metrics/query -> HTTP 400"
+    },
+    {
+      "resolution": "5m",
+      "lookback_days": 365,
+      "points": 0,
+      "observed_spacing_s": null,
+      "requested_spacing_s": 300,
+      "downgraded": false,
+      "earliest": null,
+      "error": "GET /api/v2/metrics/query -> HTTP 400"
+    },
+    {
+      "resolution": "5m",
+      "lookback_days": 400,
+      "points": 0,
+      "observed_spacing_s": null,
+      "requested_spacing_s": 300,
+      "downgraded": false,
+      "earliest": null,
+      "error": "GET /api/v2/metrics/query -> HTTP 400"
+    },
+    {
+      "resolution": "1h",
+      "lookback_days": 1,
+      "points": 25,
+      "observed_spacing_s": 3600.0,
+      "requested_spacing_s": 3600,
+      "downgraded": false,
+      "earliest": "2026-08-04T07:00:00+00:00",
+      "error": ""
+    },
+    {
+      "resolution": "1h",
+      "lookback_days": 7,
+      "points": 169,
+      "observed_spacing_s": 3600.0,
+      "requested_spacing_s": 3600,
+      "downgraded": false,
+      "earliest": "2026-07-29T07:00:00+00:00",
+      "error": ""
+    },
+    {
+      "resolution": "1h",
+      "lookback_days": 14,
+      "points": 337,
+      "observed_spacing_s": 3600.0,
+      "requested_spacing_s": 3600,
+      "downgraded": false,
+      "earliest": "2026-07-22T07:00:00+00:00",
+      "error": ""
+    },
+    {
+      "resolution": "1h",
+      "lookback_days": 30,
+      "points": 721,
+      "observed_spacing_s": 3600.0,
+      "requested_spacing_s": 3600,
+      "downgraded": false,
+      "earliest": "2026-07-06T07:00:00+00:00",
+      "error": ""
+    },
+    {
+      "resolution": "1h",
+      "lookback_days": 90,
+      "points": 2161,
+      "observed_spacing_s": 3600.0,
+      "requested_spacing_s": 3600,
+      "downgraded": false,
+      "earliest": "2026-05-07T07:00:00+00:00",
+      "error": ""
+    },
+    {
+      "resolution": "1h",
+      "lookback_days": 180,
+      "points": 4321,
+      "observed_spacing_s": 3600.0,
+      "requested_spacing_s": 3600,
+      "downgraded": false,
+      "earliest": "2026-02-06T07:00:00+00:00",
+      "error": ""
+    },
+    {
+      "resolution": "1h",
+      "lookback_days": 365,
+      "points": 8761,
+      "observed_spacing_s": 3600.0,
+      "requested_spacing_s": 3600,
+      "downgraded": false,
+      "earliest": "2025-08-05T07:00:00+00:00",
+      "error": ""
+    },
+    {
+      "resolution": "1h",
+      "lookback_days": 400,
+      "points": 401,
+      "observed_spacing_s": 86400.0,
+      "requested_spacing_s": 3600,
+      "downgraded": true,
+      "earliest": "2025-07-02T00:00:00+00:00",
+      "error": ""
+    },
+    {
+      "resolution": "1d",
+      "lookback_days": 1,
+      "points": 2,
+      "observed_spacing_s": 86400.0,
+      "requested_spacing_s": 86400,
+      "downgraded": false,
+      "earliest": "2026-08-05T00:00:00+00:00",
+      "error": ""
+    },
+    {
+      "resolution": "1d",
+      "lookback_days": 7,
+      "points": 8,
+      "observed_spacing_s": 86400.0,
+      "requested_spacing_s": 86400,
+      "downgraded": false,
+      "earliest": "2026-07-30T00:00:00+00:00",
+      "error": ""
+    },
+    {
+      "resolution": "1d",
+      "lookback_days": 14,
+      "points": 15,
+      "observed_spacing_s": 86400.0,
+      "requested_spacing_s": 86400,
+      "downgraded": false,
+      "earliest": "2026-07-23T00:00:00+00:00",
+      "error": ""
+    },
+    {
+      "resolution": "1d",
+      "lookback_days": 30,
+      "points": 31,
+      "observed_spacing_s": 86400.0,
+      "requested_spacing_s": 86400,
+      "downgraded": false,
+      "earliest": "2026-07-07T00:00:00+00:00",
+      "error": ""
+    },
+    {
+      "resolution": "1d",
+      "lookback_days": 90,
+      "points": 91,
+      "observed_spacing_s": 86400.0,
+      "requested_spacing_s": 86400,
+      "downgraded": false,
+      "earliest": "2026-05-08T00:00:00+00:00",
+      "error": ""
+    },
+    {
+      "resolution": "1d",
+      "lookback_days": 180,
+      "points": 181,
+      "observed_spacing_s": 86400.0,
+      "requested_spacing_s": 86400,
+      "downgraded": false,
+      "earliest": "2026-02-07T00:00:00+00:00",
+      "error": ""
+    },
+    {
+      "resolution": "1d",
+      "lookback_days": 365,
+      "points": 366,
+      "observed_spacing_s": 86400.0,
+      "requested_spacing_s": 86400,
+      "downgraded": false,
+      "earliest": "2025-08-06T00:00:00+00:00",
+      "error": ""
+    },
+    {
+      "resolution": "1d",
+      "lookback_days": 400,
+      "points": 401,
+      "observed_spacing_s": 86400.0,
+      "requested_spacing_s": 86400,
+      "downgraded": false,
+      "earliest": "2025-07-02T00:00:00+00:00",
+      "error": ""
+    }
+  ],
+  "recommendation": {
+    "fine": {
+      "resolution": "1m",
+      "lookback_days": 7
+    },
+    "coarse": {
+      "resolution": "1d",
+      "lookback_days": 400
+    },
+    "note": "fine grid feeds dependency discovery; coarse grid feeds the quarter-ahead forecaster. Copy these into configs/v1.yaml."
+  }
+}

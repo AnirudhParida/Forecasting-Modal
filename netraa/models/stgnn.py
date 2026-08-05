@@ -13,8 +13,11 @@ it.
 from __future__ import annotations
 
 import numpy as np
+# pyrefly: ignore [missing-import]
 import torch
+# pyrefly: ignore [missing-import]
 import torch.nn as nn
+# pyrefly: ignore [missing-import]
 import torch.nn.functional as F
 
 from ..graph.learned import AdaptiveAdjacency

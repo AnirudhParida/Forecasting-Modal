@@ -118,10 +118,12 @@ def validate_registry(
             continue
 
         # 4. Does a real query return anything?
-        resolved = spec.build_selector(entity_ids)
+        resolved = spec.build_selector()
+        ent_sel = spec.entity_selector(entity_ids)
         row.resolved_selector = resolved
         try:
-            result = client.query(resolved, probe_from, probe_to, probe_resolution)
+            result = client.query(resolved, probe_from, probe_to, probe_resolution,
+                                  entity_selector=ent_sel)
         except DynatraceError as exc:
             row.status = "NO_DATA"
             row.detail = str(exc).splitlines()[0]

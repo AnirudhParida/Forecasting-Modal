@@ -192,6 +192,7 @@ def run(
             "best_epoch": tr.best_epoch,
             "best_val_loss": tr.best_val_loss,
             "epochs_run": len(tr.history),
+            "history": tr.history,   # full epoch log for training-curve charts
         }
 
         raw = predict(tr.model, ds, test_idx, device=device)
