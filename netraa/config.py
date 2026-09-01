@@ -70,6 +70,8 @@ class ModelConfig:
     kernel_size: int = 3
     dropout: float = 0.2
     node_embed_dim: int = 16
+    top_k: int = 12             # max incoming edges kept per node in the learned adjacency
+                                # (was hardcoded to 8 in train.py; now configurable)
     graph_prior_weight: float = 0.1
     graph_sparsity_weight: float = 0.01
     lr: float = 1e-3

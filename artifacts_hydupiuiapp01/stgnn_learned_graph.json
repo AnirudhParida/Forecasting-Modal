@@ -1,0 +1,515 @@
+{
+  "agreement_with_prior": {
+    "learned_edges": 72,
+    "prior_edges": 31,
+    "overlap": 22,
+    "precision_vs_prior": 0.3055555555555556,
+    "recall_vs_prior": 0.7096774193548387
+  },
+  "edges": [
+    {
+      "source": "host_availability",
+      "target": "host_cpu_usage",
+      "weight": 0.8142077326774597,
+      "prior_weight": 0.0,
+      "in_prior": false
+    },
+    {
+      "source": "host_net_rx_errors",
+      "target": "host_cpu_usage",
+      "weight": 0.6973193883895874,
+      "prior_weight": 0.0,
+      "in_prior": false
+    },
+    {
+      "source": "host_net_rx_dropped",
+      "target": "host_cpu_usage",
+      "weight": 0.5950985550880432,
+      "prior_weight": 0.0,
+      "in_prior": false
+    },
+    {
+      "source": "host_cpu_usage",
+      "target": "host_net_rx_packets",
+      "weight": 0.5023049116134644,
+      "prior_weight": 0.5013127326965332,
+      "in_prior": true
+    },
+    {
+      "source": "host_cpu_usage",
+      "target": "host_net_tx_packets",
+      "weight": 0.49769505858421326,
+      "prior_weight": 0.4986872971057892,
+      "in_prior": true
+    },
+    {
+      "source": "host_net_tx_bytes",
+      "target": "host_cpu_usage",
+      "weight": 0.47585079073905945,
+      "prior_weight": 0.1601288914680481,
+      "in_prior": true
+    },
+    {
+      "source": "host_sessions_reset",
+      "target": "host_net_rx_errors",
+      "weight": 0.3744148313999176,
+      "prior_weight": 0.0,
+      "in_prior": false
+    },
+    {
+      "source": "host_net_tx_dropped",
+      "target": "host_net_rx_dropped",
+      "weight": 0.3481609523296356,
+      "prior_weight": 0.0,
+      "in_prior": false
+    },
+    {
+      "source": "host_net_rx_bytes",
+      "target": "host_sessions_reset",
+      "weight": 0.331415057182312,
+      "prior_weight": 0.3468587398529053,
+      "in_prior": true
+    },
+    {
+      "source": "host_net_rx_bytes",
+      "target": "host_cpu_usage",
+      "weight": 0.33127138018608093,
+      "prior_weight": 0.3311065435409546,
+      "in_prior": true
+    },
+    {
+      "source": "host_net_tx_packets",
+      "target": "host_net_rx_bytes",
+      "weight": 0.3301183581352234,
+      "prior_weight": 0.26506519317626953,
+      "in_prior": true
+    },
+    {
+      "source": "host_net_rx_bytes",
+      "target": "host_cpu_iowait",
+      "weight": 0.31940385699272156,
+      "prior_weight": 0.32203468680381775,
+      "in_prior": true
+    },
+    {
+      "source": "host_net_tx_dropped",
+      "target": "host_net_tx_bytes",
+      "weight": 0.3177492022514343,
+      "prior_weight": 0.0,
+      "in_prior": false
+    },
+    {
+      "source": "host_net_rx_dropped",
+      "target": "host_availability",
+      "weight": 0.3130682706832886,
+      "prior_weight": 0.0,
+      "in_prior": false
+    },
+    {
+      "source": "host_cpu_iowait",
+      "target": "host_cpu_usage",
+      "weight": 0.2755301296710968,
+      "prior_weight": 0.0,
+      "in_prior": false
+    },
+    {
+      "source": "host_net_tx_packets",
+      "target": "host_sessions_reset",
+      "weight": 0.2715781033039093,
+      "prior_weight": 0.25481268763542175,
+      "in_prior": true
+    },
+    {
+      "source": "host_net_rx_packets",
+      "target": "host_net_tx_bytes",
+      "weight": 0.2701956033706665,
+      "prior_weight": 0.2621237337589264,
+      "in_prior": true
+    },
+    {
+      "source": "host_net_tx_packets",
+      "target": "host_cpu_iowait",
+      "weight": 0.23819352686405182,
+      "prior_weight": 0.23743930459022522,
+      "in_prior": true
+    },
+    {
+      "source": "host_net_rx_packets",
+      "target": "host_cpu_iowait",
+      "weight": 0.2328130453824997,
+      "prior_weight": 0.2349148839712143,
+      "in_prior": true
+    },
+    {
+      "source": "host_sessions_reset",
+      "target": "host_cpu_usage",
+      "weight": 0.2292080521583557,
+      "prior_weight": 0.1590951383113861,
+      "in_prior": true
+    },
+    {
+      "source": "host_sessions_reset",
+      "target": "host_availability",
+      "weight": 0.21212488412857056,
+      "prior_weight": 0.0,
+      "in_prior": false
+    },
+    {
+      "source": "host_net_tx_dropped",
+      "target": "host_cpu_usage",
+      "weight": 0.1876402348279953,
+      "prior_weight": 0.0,
+      "in_prior": false
+    },
+    {
+      "source": "host_availability",
+      "target": "host_net_tx_bytes",
+      "weight": 0.18579214811325073,
+      "prior_weight": 0.0,
+      "in_prior": false
+    },
+    {
+      "source": "host_net_tx_errors",
+      "target": "host_net_tx_dropped",
+      "weight": 0.1856735348701477,
+      "prior_weight": 0.0,
+      "in_prior": false
+    },
+    {
+      "source": "host_sessions_new",
+      "target": "host_net_rx_bytes",
+      "weight": 0.1844090223312378,
+      "prior_weight": 0.1703929603099823,
+      "in_prior": true
+    },
+    {
+      "source": "host_net_tx_errors",
+      "target": "host_net_tx_packets",
+      "weight": 0.1824597418308258,
+      "prior_weight": 0.0,
+      "in_prior": false
+    },
+    {
+      "source": "host_cpu_iowait",
+      "target": "host_sessions_new",
+      "weight": 0.18161915242671967,
+      "prior_weight": 0.0,
+      "in_prior": false
+    },
+    {
+      "source": "host_net_tx_bytes",
+      "target": "host_net_tx_packets",
+      "weight": 0.18052713572978973,
+      "prior_weight": 0.17462803423404694,
+      "in_prior": true
+    },
+    {
+      "source": "host_net_rx_packets",
+      "target": "host_net_rx_errors",
+      "weight": 0.17777013778686523,
+      "prior_weight": 0.0,
+      "in_prior": false
+    },
+    {
+      "source": "host_sessions_new",
+      "target": "host_net_tx_bytes",
+      "weight": 0.17646944522857666,
+      "prior_weight": 0.17093728482723236,
+      "in_prior": true
+    },
+    {
+      "source": "host_cpu_iowait",
+      "target": "host_net_tx_dropped",
+      "weight": 0.17570377886295319,
+      "prior_weight": 0.0,
+      "in_prior": false
+    },
+    {
+      "source": "host_sessions_new",
+      "target": "host_net_rx_packets",
+      "weight": 0.17308826744556427,
+      "prior_weight": 0.17072884738445282,
+      "in_prior": true
+    },
+    {
+      "source": "host_net_tx_errors",
+      "target": "host_net_rx_dropped",
+      "weight": 0.17246150970458984,
+      "prior_weight": 0.0,
+      "in_prior": false
+    },
+    {
+      "source": "host_net_tx_bytes",
+      "target": "host_net_rx_bytes",
+      "weight": 0.1724335253238678,
+      "prior_weight": 0.17437565326690674,
+      "in_prior": true
+    },
+    {
+      "source": "host_sessions_new",
+      "target": "host_net_tx_packets",
+      "weight": 0.17162887752056122,
+      "prior_weight": 0.1702527552843094,
+      "in_prior": true
+    },
+    {
+      "source": "host_net_tx_bytes",
+      "target": "host_sessions_reset",
+      "weight": 0.17118850350379944,
+      "prior_weight": 0.16787822544574738,
+      "in_prior": true
+    },
+    {
+      "source": "host_sessions_new",
+      "target": "host_cpu_usage",
+      "weight": 0.16190974414348602,
+      "prior_weight": 0.15874083340168,
+      "in_prior": true
+    },
+    {
+      "source": "host_sessions_reset",
+      "target": "host_cpu_iowait",
+      "weight": 0.16160200536251068,
+      "prior_weight": 0.15670840442180634,
+      "in_prior": true
+    },
+    {
+      "source": "host_net_tx_errors",
+      "target": "host_availability",
+      "weight": 0.13904514908790588,
+      "prior_weight": 0.0,
+      "in_prior": false
+    },
+    {
+      "source": "host_cpu_iowait",
+      "target": "host_net_tx_bytes",
+      "weight": 0.13599424064159393,
+      "prior_weight": 0.0,
+      "in_prior": false
+    },
+    {
+      "source": "host_net_tx_errors",
+      "target": "host_net_tx_bytes",
+      "weight": 0.13360503315925598,
+      "prior_weight": 0.0,
+      "in_prior": false
+    },
+    {
+      "source": "host_net_rx_packets",
+      "target": "host_net_rx_dropped",
+      "weight": 0.12994664907455444,
+      "prior_weight": 0.0,
+      "in_prior": false
+    },
+    {
+      "source": "host_cpu_iowait",
+      "target": "host_availability",
+      "weight": 0.1293906718492508,
+      "prior_weight": 0.0,
+      "in_prior": false
+    },
+    {
+      "source": "host_net_rx_errors",
+      "target": "host_net_rx_bytes",
+      "weight": 0.12548905611038208,
+      "prior_weight": 0.0,
+      "in_prior": false
+    },
+    {
+      "source": "host_net_rx_packets",
+      "target": "host_net_rx_bytes",
+      "weight": 0.12391184270381927,
+      "prior_weight": 0.0,
+      "in_prior": false
+    },
+    {
+      "source": "host_net_tx_packets",
+      "target": "host_net_rx_dropped",
+      "weight": 0.12083925306797028,
+      "prior_weight": 0.0,
+      "in_prior": false
+    },
+    {
+      "source": "host_net_rx_errors",
+      "target": "host_cpu_iowait",
+      "weight": 0.11097246408462524,
+      "prior_weight": 0.0,
+      "in_prior": false
+    },
+    {
+      "source": "host_sessions_new",
+      "target": "host_sessions_reset",
+      "weight": 0.10912774503231049,
+      "prior_weight": 0.0,
+      "in_prior": false
+    },
+    {
+      "source": "host_net_tx_dropped",
+      "target": "host_sessions_reset",
+      "weight": 0.10517849773168564,
+      "prior_weight": 0.0,
+      "in_prior": false
+    },
+    {
+      "source": "host_net_tx_errors",
+      "target": "host_sessions_reset",
+      "weight": 0.09372083842754364,
+      "prior_weight": 0.0,
+      "in_prior": false
+    },
+    {
+      "source": "host_net_tx_errors",
+      "target": "host_net_rx_errors",
+      "weight": 0.0742209181189537,
+      "prior_weight": 0.0,
+      "in_prior": false
+    },
+    {
+      "source": "host_cpu_iowait",
+      "target": "host_net_tx_errors",
+      "weight": 0.057338640093803406,
+      "prior_weight": 0.0,
+      "in_prior": false
+    },
+    {
+      "source": "host_net_rx_dropped",
+      "target": "host_net_tx_bytes",
+      "weight": 0.04961274564266205,
+      "prior_weight": 0.0,
+      "in_prior": false
+    },
+    {
+      "source": "host_cpu_iowait",
+      "target": "host_net_rx_dropped",
+      "weight": 0.04442340508103371,
+      "prior_weight": 0.0,
+      "in_prior": false
+    },
+    {
+      "source": "host_net_rx_dropped",
+      "target": "host_net_rx_bytes",
+      "weight": 0.042220331728458405,
+      "prior_weight": 0.0,
+      "in_prior": false
+    },
+    {
+      "source": "host_net_rx_packets",
+      "target": "host_net_tx_packets",
+      "weight": 0.040959857404232025,
+      "prior_weight": 0.26212748885154724,
+      "in_prior": true
+    },
+    {
+      "source": "host_net_rx_errors",
+      "target": "host_availability",
+      "weight": 0.030390948057174683,
+      "prior_weight": 0.0,
+      "in_prior": false
+    },
+    {
+      "source": "host_net_rx_errors",
+      "target": "host_net_rx_dropped",
+      "weight": 0.0251548383384943,
+      "prior_weight": 0.0,
+      "in_prior": false
+    },
+    {
+      "source": "host_sessions_reset",
+      "target": "host_net_rx_dropped",
+      "weight": 0.022650206461548805,
+      "prior_weight": 0.0,
+      "in_prior": false
+    },
+    {
+      "source": "host_net_tx_packets",
+      "target": "host_availability",
+      "weight": 0.021927308291196823,
+      "prior_weight": 0.0,
+      "in_prior": false
+    },
+    {
+      "source": "host_net_tx_errors",
+      "target": "host_cpu_usage",
+      "weight": 0.018813244998455048,
+      "prior_weight": 0.0,
+      "in_prior": false
+    },
+    {
+      "source": "host_net_tx_dropped",
+      "target": "host_availability",
+      "weight": 0.017948953434824944,
+      "prior_weight": 0.0,
+      "in_prior": false
+    },
+    {
+      "source": "host_net_rx_bytes",
+      "target": "host_availability",
+      "weight": 0.017909757792949677,
+      "prior_weight": 0.0,
+      "in_prior": false
+    },
+    {
+      "source": "host_net_rx_packets",
+      "target": "host_sessions_reset",
+      "weight": 0.016671381890773773,
+      "prior_weight": 0.0,
+      "in_prior": false
+    },
+    {
+      "source": "host_sessions_new",
+      "target": "host_net_rx_dropped",
+      "weight": 0.013100972399115562,
+      "prior_weight": 0.0,
+      "in_prior": false
+    },
+    {
+      "source": "host_net_tx_dropped",
+      "target": "host_net_rx_errors",
+      "weight": 0.0126766636967659,
+      "prior_weight": 0.0,
+      "in_prior": false
+    },
+    {
+      "source": "host_net_tx_packets",
+      "target": "host_net_rx_errors",
+      "weight": 0.011045054532587528,
+      "prior_weight": 0.0,
+      "in_prior": false
+    },
+    {
+      "source": "host_net_rx_errors",
+      "target": "host_net_tx_bytes",
+      "weight": 0.010673237964510918,
+      "prior_weight": 0.0,
+      "in_prior": false
+    },
+    {
+      "source": "host_net_tx_dropped",
+      "target": "host_net_rx_bytes",
+      "weight": 0.01064552366733551,
+      "prior_weight": 0.0,
+      "in_prior": false
+    },
+    {
+      "source": "host_sessions_new",
+      "target": "host_availability",
+      "weight": 0.010265951044857502,
+      "prior_weight": 0.0,
+      "in_prior": false
+    },
+    {
+      "source": "host_net_rx_packets",
+      "target": "host_availability",
+      "weight": 0.007731551304459572,
+      "prior_weight": 0.0,
+      "in_prior": false
+    },
+    {
+      "source": "host_net_tx_packets",
+      "target": "host_net_tx_dropped",
+      "weight": 0.006298406049609184,
+      "prior_weight": 0.0,
+      "in_prior": false
+    }
+  ]
+}

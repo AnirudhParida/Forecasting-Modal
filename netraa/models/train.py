@@ -13,7 +13,9 @@ from dataclasses import dataclass, field
 from pathlib import Path
 
 import numpy as np
+# pyrefly: ignore [missing-import]
 import torch
+# pyrefly: ignore [missing-import]
 from torch.utils.data import DataLoader, TensorDataset
 
 from ..config import ModelConfig
@@ -83,16 +85,21 @@ def train(
         kernel_size=cfg.kernel_size,
         dropout=cfg.dropout,
         node_embed_dim=cfg.node_embed_dim,
-        top_k=8,
+        top_k=cfg.top_k,             # was hardcoded to 8; now reads from config
         use_graph=use_graph,
         adj_prior=adj_prior if use_graph else None,
     ).to(device)
 
+    # All targets weighted equally. CPU/Memory weights (1.5× previously) caused
+    # best_epoch=3 because those 2 targets converge fast and stall val-loss improvement
+    # before disk/JVM metrics learn. CPU already wins by 46% without extra pressure.
+    target_weights = torch.ones(len(ds.target_ids), dtype=torch.float32, device=device)
+
     optimiser = torch.optim.Adam(
         model.parameters(), lr=cfg.lr, weight_decay=cfg.weight_decay
     )
-    scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(
-        optimiser, mode="min", factor=0.5, patience=max(3, cfg.patience // 3)
+    scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(
+        optimiser, T_max=cfg.epochs, eta_min=1e-6
     )
 
     train_loader, val_loader = _loaders(ds, cfg.batch_size)
@@ -113,7 +120,7 @@ def train(
                 xb[..., 0] += noise * xb[..., 1]
             optimiser.zero_grad()
             pred = model(xb)
-            loss = masked_quantile_loss(pred, yb, mb, quantiles)
+            loss = masked_quantile_loss(pred, yb, mb, quantiles, target_weights)
             total = loss + model.graph_regularisation(
                 cfg.graph_prior_weight, cfg.graph_sparsity_weight
             )
@@ -129,11 +136,11 @@ def train(
         with torch.no_grad():
             for xb, yb, mb in val_loader:
                 xb, yb, mb = xb.to(device), yb.to(device), mb.to(device)
-                val_loss += float(masked_quantile_loss(model(xb), yb, mb, quantiles))
+                val_loss += float(masked_quantile_loss(model(xb), yb, mb, quantiles, target_weights))
                 n_val += 1
         val_loss = val_loss / n_val if n_val else float("nan")
 
-        scheduler.step(val_loss)
+        scheduler.step()
         result.history.append(
             {"epoch": epoch, "train_loss": train_loss, "val_loss": val_loss}
         )
@@ -184,6 +191,10 @@ def save_artifacts(
     artifacts_dir.mkdir(parents=True, exist_ok=True)
     torch.save(result.model.state_dict(), artifacts_dir / f"{tag}.pt")
     ds.scaler.save(artifacts_dir / f"{tag}_scaler.json")
+    # Save linear detrend slopes so forecast_next_30d.py can re-add the trend
+    # to predicted values at inference time (otherwise predictions are of the
+    # de-trended residuals, not the original-scale metric).
+    ds.detrend.save(artifacts_dir / f"{tag}_trend.json")
 
     meta = {
         "tag": tag,

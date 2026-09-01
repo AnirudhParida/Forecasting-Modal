@@ -9,8 +9,8 @@
     "series_count": 1,
     "point_count": 25,
     "null_fraction": 0.0,
-    "observed_min": 1686.0,
-    "observed_max": 462901.0,
+    "observed_min": 381.0,
+    "observed_max": 77905.0,
     "resolved_selector": "builtin:service.requestCount.total:splitBy():sum"
   },
   {
@@ -23,8 +23,8 @@
     "series_count": 1,
     "point_count": 25,
     "null_fraction": 0.0,
-    "observed_min": 1686.0,
-    "observed_max": 462898.0,
+    "observed_min": 381.0,
+    "observed_max": 77904.0,
     "resolved_selector": "builtin:service.requestCount.server:splitBy():sum"
   },
   {
@@ -37,8 +37,8 @@
     "series_count": 1,
     "point_count": 25,
     "null_fraction": 0.0,
-    "observed_min": 988.0,
-    "observed_max": 127551.0,
+    "observed_min": 180.0,
+    "observed_max": 192791.0,
     "resolved_selector": "builtin:service.dbChildCallCount:splitBy():sum"
   },
   {
@@ -51,8 +51,8 @@
     "series_count": 1,
     "point_count": 25,
     "null_fraction": 0.0,
-    "observed_min": 19.94404296875,
-    "observed_max": 22.16043972439236,
+    "observed_min": 16.3628173828125,
+    "observed_max": 18.702503797743056,
     "resolved_selector": "builtin:host.cpu.usage:splitBy():avg"
   },
   {
@@ -65,22 +65,22 @@
     "series_count": 1,
     "point_count": 25,
     "null_fraction": 0.0,
-    "observed_min": 0.8711669921875,
-    "observed_max": 1.0708529707314312,
+    "observed_min": 0.7169162326388889,
+    "observed_max": 0.8778171115451389,
     "resolved_selector": "builtin:host.cpu.load:splitBy():avg"
   },
   {
     "key": "host_mem_usage",
     "selector": "builtin:host.mem.usage",
     "status": "UNIT_VIOLATION",
-    "detail": "declared percent but minimum is -443.40. transform=abs will be applied at panel-build time; investigate the selector before trusting it.",
+    "detail": "declared percent but minimum is -612.85. transform=abs will be applied at panel-build time; investigate the selector before trusting it.",
     "descriptor_unit": "Percent",
     "descriptor_dimensions": "dt.entity.host",
     "series_count": 1,
     "point_count": 25,
     "null_fraction": 0.0,
-    "observed_min": -443.40111514105314,
-    "observed_max": -433.3435146755642,
+    "observed_min": -612.8492245658078,
+    "observed_max": -598.0393269856771,
     "resolved_selector": "builtin:host.mem.usage:splitBy():avg"
   },
   {
@@ -93,8 +93,8 @@
     "series_count": 1,
     "point_count": 25,
     "null_fraction": 0.0,
-    "observed_min": 63883512496.35555,
-    "observed_max": 65126089164.05797,
+    "observed_min": 83446109087.2889,
+    "observed_max": 85241362114.80135,
     "resolved_selector": "builtin:host.mem.avail.bytes:splitBy():avg"
   },
   {
@@ -121,8 +121,8 @@
     "series_count": 1,
     "point_count": 25,
     "null_fraction": 0.0,
-    "observed_min": 62746631259.022224,
-    "observed_max": 64139694050.31884,
+    "observed_min": 81090475269.68889,
+    "observed_max": 82485418611.50168,
     "resolved_selector": "builtin:host.mem.recl:splitBy():avg"
   },
   {
@@ -135,8 +135,8 @@
     "series_count": 4,
     "point_count": 100,
     "null_fraction": 0.0,
-    "observed_min": 223.51475694444446,
-    "observed_max": 359637.05672554346,
+    "observed_min": 210.1359809027778,
+    "observed_max": 229963.8,
     "resolved_selector": "builtin:host.net.nic.bytesRx:splitBy(\"dt.entity.network_interface\"):sum"
   },
   {
@@ -149,8 +149,8 @@
     "series_count": 4,
     "point_count": 100,
     "null_fraction": 0.0,
-    "observed_min": 9.416620551215278,
-    "observed_max": 3234672.0,
+    "observed_min": 9.410544840494792,
+    "observed_max": 4328654.933333334,
     "resolved_selector": "builtin:host.net.nic.bytesTx:splitBy(\"dt.entity.network_interface\"):sum"
   },
   {
@@ -164,7 +164,7 @@
     "point_count": 125,
     "null_fraction": 0.0,
     "observed_min": 0.0,
-    "observed_max": 32.196435546875,
+    "observed_max": 31.969029405381946,
     "resolved_selector": "builtin:host.disk.readOps:splitBy(\"dt.entity.disk\"):sum"
   },
   {
@@ -178,7 +178,7 @@
     "point_count": 125,
     "null_fraction": 0.0,
     "observed_min": 0.0,
-    "observed_max": 32.05927640067206,
+    "observed_max": 18.212228732638888,
     "resolved_selector": "builtin:host.disk.writeOps:splitBy(\"dt.entity.disk\"):sum"
   },
   {
@@ -192,7 +192,7 @@
     "point_count": 125,
     "null_fraction": 0.0,
     "observed_min": 0.0,
-    "observed_max": 12897669.808333334,
+    "observed_max": 15178441.955555556,
     "resolved_selector": "builtin:host.disk.bytesRead:splitBy(\"dt.entity.disk\"):sum"
   },
   {
@@ -206,7 +206,7 @@
     "point_count": 125,
     "null_fraction": 0.0,
     "observed_min": 0.0,
-    "observed_max": 870568.9354166667,
+    "observed_max": 750354.6388888889,
     "resolved_selector": "builtin:host.disk.bytesWritten:splitBy(\"dt.entity.disk\"):sum"
   },
   {
@@ -218,9 +218,9 @@
     "descriptor_dimensions": "dt.entity.host,dt.entity.disk",
     "series_count": 2,
     "point_count": 50,
-    "null_fraction": 0.020000000000000018,
-    "observed_min": 0.6525804177642563,
-    "observed_max": 9.599496221662468,
+    "null_fraction": 0.06000000000000005,
+    "observed_min": 0.5828613153914358,
+    "observed_max": 7.467836272182056,
     "resolved_selector": "builtin:host.disk.readTime:splitBy(\"dt.entity.disk\"):avg"
   },
   {
@@ -233,8 +233,8 @@
     "series_count": 3,
     "point_count": 75,
     "null_fraction": 0.31999999999999995,
-    "observed_min": 0.28094203264769796,
-    "observed_max": 3.284471396945447,
+    "observed_min": 0.2603945693678405,
+    "observed_max": 4.396259204185105,
     "resolved_selector": "builtin:host.disk.writeTime:splitBy(\"dt.entity.disk\"):avg"
   },
   {
@@ -248,7 +248,7 @@
     "point_count": 125,
     "null_fraction": 0.0,
     "observed_min": 0.0,
-    "observed_max": 0.1183961217602094,
+    "observed_max": 0.1397274759080675,
     "resolved_selector": "builtin:host.disk.queueLength:splitBy(\"dt.entity.disk\"):avg"
   },
   {
@@ -262,7 +262,7 @@
     "point_count": 125,
     "null_fraction": 0.0,
     "observed_min": 0.0,
-    "observed_max": 5.339468722873264,
+    "observed_max": 6.286922878689236,
     "resolved_selector": "builtin:host.disk.utilTime:splitBy(\"dt.entity.disk\"):avg"
   },
   {
@@ -275,8 +275,8 @@
     "series_count": 3,
     "point_count": 75,
     "null_fraction": 0.0,
-    "observed_min": 29.4,
-    "observed_max": 171.3768115942029,
+    "observed_min": 29.38888888888889,
+    "observed_max": 74.28888888888889,
     "resolved_selector": "builtin:tech.jvm.threads.count:splitBy(\"dt.entity.process_group_instance\"):avg"
   },
   {
@@ -289,8 +289,8 @@
     "series_count": 3,
     "point_count": 75,
     "null_fraction": 0.0,
-    "observed_min": 444.125,
-    "observed_max": 33431.818181818184,
+    "observed_min": 420.2,
+    "observed_max": 6330.909090909091,
     "resolved_selector": "builtin:tech.jvm.threads.totalCpuTime:splitBy(\"dt.entity.process_group_instance\"):avg"
   },
   {
@@ -304,7 +304,7 @@
     "point_count": 75,
     "null_fraction": 0.0,
     "observed_min": 386924544.0,
-    "observed_max": 4215536207.6444445,
+    "observed_max": 1801993875.911111,
     "resolved_selector": "builtin:tech.jvm.memory.runtime.total:splitBy(\"dt.entity.process_group_instance\"):avg"
   },
   {
@@ -318,7 +318,7 @@
     "point_count": 75,
     "null_fraction": 0.0,
     "observed_min": 3007315968.0,
-    "observed_max": 4227858432.0,
+    "observed_max": 3817865216.0,
     "resolved_selector": "builtin:tech.jvm.memory.runtime.max:splitBy(\"dt.entity.process_group_instance\"):max"
   },
   {
@@ -331,8 +331,8 @@
     "series_count": 3,
     "point_count": 75,
     "null_fraction": 0.0,
-    "observed_min": 40620424.418439716,
-    "observed_max": 467993597.77683616,
+    "observed_min": 41079647.46666667,
+    "observed_max": 218582370.5138889,
     "resolved_selector": "builtin:tech.jvm.memory.pool.used:splitBy(\"dt.entity.process_group_instance\"):avg"
   },
   {
@@ -346,7 +346,7 @@
     "point_count": 75,
     "null_fraction": 0.0,
     "observed_min": 1.0,
-    "observed_max": 92.0,
+    "observed_max": 225.0,
     "resolved_selector": "builtin:tech.jvm.memory.pool.collectionCount:splitBy(\"dt.entity.process_group_instance\"):sum"
   },
   {
@@ -360,7 +360,7 @@
     "point_count": 75,
     "null_fraction": 0.0,
     "observed_min": 4.0,
-    "observed_max": 4707.0,
+    "observed_max": 2535.0,
     "resolved_selector": "builtin:tech.jvm.memory.gc.collectionTime:splitBy(\"dt.entity.process_group_instance\"):sum"
   }
 ]

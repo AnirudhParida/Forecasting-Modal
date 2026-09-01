@@ -1,0 +1,262 @@
+{
+  "source_metric": "host_net_rx_bytes",
+  "source_short": "NIC Rx Bytes",
+  "delta_pct": 20.0,
+  "interpretation": "A +20.0% change in NIC Rx Bytes propagates the following signal changes through the dependency graph.",
+  "upstream_drivers": [
+    {
+      "metric": "host_net_tx_packets",
+      "short": "NIC Tx Packets",
+      "weight": 0.3301,
+      "confirmed": true
+    },
+    {
+      "metric": "host_sessions_new",
+      "short": "Sessions New",
+      "weight": 0.1844,
+      "confirmed": true
+    },
+    {
+      "metric": "host_net_tx_bytes",
+      "short": "NIC Tx Bytes",
+      "weight": 0.1724,
+      "confirmed": true
+    },
+    {
+      "metric": "host_net_rx_errors",
+      "short": "NIC Rx Errors",
+      "weight": 0.1255,
+      "confirmed": false
+    },
+    {
+      "metric": "host_net_rx_packets",
+      "short": "NIC Rx Packets",
+      "weight": 0.1239,
+      "confirmed": false
+    },
+    {
+      "metric": "host_net_rx_dropped",
+      "short": "NIC Rx Dropped",
+      "weight": 0.0422,
+      "confirmed": false
+    },
+    {
+      "metric": "host_net_tx_dropped",
+      "short": "NIC Tx Dropped",
+      "weight": 0.0106,
+      "confirmed": false
+    }
+  ],
+  "downstream_impacts": [
+    {
+      "metric": "host_cpu_usage",
+      "short": "CPU Usage%",
+      "total_pct": 9.649,
+      "direct_weight": 0.3313,
+      "confirmed": true,
+      "hops": [
+        {
+          "layer": 1,
+          "value": 6.6254
+        },
+        {
+          "layer": 2,
+          "value": 1.7855
+        },
+        {
+          "layer": 3,
+          "value": 1.238
+        }
+      ],
+      "abs_delta": 0.9753
+    },
+    {
+      "metric": "host_cpu_iowait",
+      "short": "CPU IO-Wait%",
+      "total_pct": 7.3826,
+      "direct_weight": 0.3194,
+      "confirmed": true,
+      "hops": [
+        {
+          "layer": 1,
+          "value": 6.3881
+        },
+        {
+          "layer": 2,
+          "value": 0.5356
+        },
+        {
+          "layer": 3,
+          "value": 0.4589
+        }
+      ],
+      "abs_delta": 1.1891
+    },
+    {
+      "metric": "host_sessions_reset",
+      "short": "Sessions Reset",
+      "total_pct": 6.9758,
+      "direct_weight": 0.3314,
+      "confirmed": true,
+      "hops": [
+        {
+          "layer": 1,
+          "value": 6.6283
+        },
+        {
+          "layer": 3,
+          "value": 0.3475
+        }
+      ],
+      "abs_delta": 0.0243
+    },
+    {
+      "metric": "host_net_tx_packets",
+      "short": "NIC Tx Packets",
+      "total_pct": 2.2358,
+      "direct_weight": 0.0,
+      "confirmed": false,
+      "hops": [
+        {
+          "layer": 2,
+          "value": 1.6487
+        },
+        {
+          "layer": 3,
+          "value": 0.5871
+        }
+      ],
+      "abs_delta": 0.0874
+    },
+    {
+      "metric": "host_net_rx_packets",
+      "short": "NIC Rx Packets",
+      "total_pct": 2.1626,
+      "direct_weight": 0.0,
+      "confirmed": false,
+      "hops": [
+        {
+          "layer": 2,
+          "value": 1.664
+        },
+        {
+          "layer": 3,
+          "value": 0.4986
+        }
+      ],
+      "abs_delta": 0.0834
+    },
+    {
+      "metric": "host_availability",
+      "short": "Host Availability",
+      "total_pct": 1.6072,
+      "direct_weight": 0.0179,
+      "confirmed": false,
+      "hops": [
+        {
+          "layer": 1,
+          "value": 0.3582
+        },
+        {
+          "layer": 2,
+          "value": 1.1163
+        },
+        {
+          "layer": 3,
+          "value": 0.1327
+        }
+      ],
+      "abs_delta": 0.0
+    },
+    {
+      "metric": "host_net_rx_errors",
+      "short": "NIC Rx Errors",
+      "total_pct": 1.4082,
+      "direct_weight": 0.0,
+      "confirmed": false,
+      "hops": [
+        {
+          "layer": 2,
+          "value": 1.2409
+        },
+        {
+          "layer": 3,
+          "value": 0.1674
+        }
+      ],
+      "abs_delta": null
+    },
+    {
+      "metric": "host_net_tx_bytes",
+      "short": "NIC Tx Bytes",
+      "total_pct": 0.9971,
+      "direct_weight": 0.0,
+      "confirmed": false,
+      "hops": [
+        {
+          "layer": 2,
+          "value": 0.4676
+        },
+        {
+          "layer": 3,
+          "value": 0.5295
+        }
+      ],
+      "abs_delta": 0.0451
+    },
+    {
+      "metric": "host_net_tx_dropped",
+      "short": "NIC Tx Dropped",
+      "total_pct": 0.6305,
+      "direct_weight": 0.0,
+      "confirmed": false,
+      "hops": [
+        {
+          "layer": 2,
+          "value": 0.5612
+        },
+        {
+          "layer": 3,
+          "value": 0.0692
+        }
+      ],
+      "abs_delta": null
+    },
+    {
+      "metric": "host_sessions_new",
+      "short": "Sessions New",
+      "total_pct": 0.6287,
+      "direct_weight": 0.0,
+      "confirmed": false,
+      "hops": [
+        {
+          "layer": 2,
+          "value": 0.5801
+        },
+        {
+          "layer": 3,
+          "value": 0.0486
+        }
+      ],
+      "abs_delta": 0.0026
+    },
+    {
+      "metric": "host_net_rx_dropped",
+      "short": "NIC Rx Dropped",
+      "total_pct": 0.5695,
+      "direct_weight": 0.0,
+      "confirmed": false,
+      "hops": [
+        {
+          "layer": 2,
+          "value": 0.217
+        },
+        {
+          "layer": 3,
+          "value": 0.3525
+        }
+      ],
+      "abs_delta": null
+    }
+  ]
+}

@@ -130,16 +130,17 @@ metrics:
     entity_type: HOST
     split_by: ""
     agg: avg
-    role: target
+    role: intermediate   # was: target — demoted because Dynatrace reported anomalous
+                         # 0%→430% ramp across the 419-day panel. LinearDetrend fitted
+                         # a +0.216%/day slope (146% trend at panel end) — physically
+                         # impossible for a 0-100% metric. The abs() transform masks
+                         # negatives but cannot fix the monotonic growth. Memory remains
+                         # as an intermediate node (graph context for CPU/disk targets).
+                         # Re-promote to target once Dynatrace data quality is confirmed.
     resource: memory
     transform: abs
     unit: percent
     aliases: [meter_vm_memory_used]
-    note: >
-      B5 — memory_influencers_last_10m.csv contains -941.98 for a percent metric.
-      transform=abs is applied as an explicit interim decision (approved for POC).
-      `validate` reports the descriptor unit and the observed range so the real
-      cause stays visible rather than being silently masked.
 
   - key: host_mem_available
     selector: builtin:host.mem.avail.bytes
@@ -336,7 +337,10 @@ metrics:
     agg: avg
     role: target
     resource: memory
-    transform: none
+    transform: log1p    # changed from none — heap grows monotonically (bytes);
+                        # log1p makes the series approximately stationary so the
+                        # RobustScaler IQR stays valid across the forecast horizon.
+                        # Inverse: exp(pred) - 1 at inference time.
     unit: byte
     aliases: [instance_jvm_memory_heap]
     note: >

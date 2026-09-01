@@ -1,0 +1,32 @@
+{
+  "center": {
+    "host_availability": 1.8189894035458565e-12,
+    "host_cpu_iowait": 0.9792333108095104,
+    "host_cpu_usage": -0.8777876297543319,
+    "host_net_rx_bytes": 0.4256355698578833,
+    "host_net_rx_dropped": 0.0,
+    "host_net_rx_errors": 0.0,
+    "host_net_rx_packets": 0.32557903712202485,
+    "host_net_tx_bytes": 0.563287193579832,
+    "host_net_tx_dropped": 0.0,
+    "host_net_tx_errors": 0.0,
+    "host_net_tx_packets": 0.40028285038438227,
+    "host_sessions_new": -0.0031929125105220613,
+    "host_sessions_reset": 0.022274116384852216
+  },
+  "scale": {
+    "host_availability": 4.409301610494689e-13,
+    "host_cpu_iowait": 16.10675090103653,
+    "host_cpu_usage": 10.107937793717536,
+    "host_net_rx_bytes": 4.037357981915285,
+    "host_net_rx_dropped": 1.0,
+    "host_net_rx_errors": 1.0,
+    "host_net_rx_packets": 3.8552375849020586,
+    "host_net_tx_bytes": 4.521630922629191,
+    "host_net_tx_dropped": 1.0,
+    "host_net_tx_errors": 1.0,
+    "host_net_tx_packets": 3.9107473481468817,
+    "host_sessions_new": 0.40868917857027626,
+    "host_sessions_reset": 0.34811304266725107
+  }
+}

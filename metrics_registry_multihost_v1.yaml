@@ -1,0 +1,358 @@
+# Canonical metric registry for shared multi-host model.
+# Hosts : HYDUPINTAPP16 (10.50.98.26)
+#         JPRUPIWEBCRP02 (10.78.33.83)
+# Target : CPU Usage %  |  All others: intermediate/driver nodes
+#
+# In multi-host mode every metric is replicated as two nodes:
+#   host_cpu_usage__HYDUPINTAPP16   and   host_cpu_usage__JPRUPIWEBCRP02
+# The STGNN learns cross-host correlations through the shared graph.
+#
+# Files used (all 29 xlsx from hostmetricdata/ that have data for BOTH hosts):
+#   CPU usage % +2, CPU idle +2, CPU I/O wait +2, CPU system +2, CPU user +2,
+#   Disk available %, Disk avg queue length +3, Disk read bytes/s +3,
+#   Disk read ops/s +3, Disk read time, Disk used, Disk write bytes/s +3,
+#   Disk write time, Host availability, Inodes total, Memory available % +2,
+#   Memory available +2, NIC bytes received, NIC bytes sent on host,
+#   NIC packets received, NIC packets sent, NIC received packet errors,
+#   NIC sent packet errors, Session reset received +1,
+#   Session timeout received +2, Swap used +2, dt.process.network.sessions.new
+#
+# Excluded (JVM/GC/Process files that do NOT contain either host):
+#   Garbage collection suspension time +2, Garbage collection time +2,
+#   JVM average threads +2, JVM heap memory max bytes +3,
+#   JVM runtime free/total memory +2, Process availability +2, Process memory +3,
+#   jvm memory pool used (1), jvm runtime free memory (3), jvm runtime total (4)
+
+metrics:
+
+  # ── TARGET ──────────────────────────────────────────────────────────────────
+  - key: host_cpu_usage
+    selector: builtin:host.cpu.usage
+    entity_type: HOST
+    split_by: ""
+    agg: avg
+    role: target
+    resource: cpu
+    transform: none
+    unit: percent
+    # Values stored as 0-1 ratio (max ~0.096) -> ingest will x100
+    aliases: ["CPU usage % +2"]
+
+  # ── CPU DRIVERS ─────────────────────────────────────────────────────────────
+  - key: host_cpu_idle
+    selector: builtin:host.cpu.idle
+    entity_type: HOST
+    split_by: ""
+    agg: avg
+    role: intermediate
+    resource: cpu
+    transform: none
+    unit: percent
+    # 0-1 ratio (min ~0.904) -> x100
+    aliases: ["CPU idle +2"]
+
+  - key: host_cpu_iowait
+    selector: builtin:host.cpu.iowait
+    entity_type: HOST
+    split_by: ""
+    agg: avg
+    role: intermediate
+    resource: cpu
+    transform: none
+    unit: percent
+    aliases: ["CPU I_O wait +2"]
+
+  - key: host_cpu_system
+    selector: builtin:host.cpu.system
+    entity_type: HOST
+    split_by: ""
+    agg: avg
+    role: intermediate
+    resource: cpu
+    transform: none
+    unit: percent
+    aliases: ["CPU system +2"]
+
+  - key: host_cpu_user
+    selector: builtin:host.cpu.user
+    entity_type: HOST
+    split_by: ""
+    agg: avg
+    role: intermediate
+    resource: cpu
+    transform: none
+    unit: percent
+    aliases: ["CPU user +2"]
+
+  # ── DISK ────────────────────────────────────────────────────────────────────
+  - key: host_disk_avail_pct
+    selector: builtin:host.disk.avail.percent
+    entity_type: HOST
+    split_by: ""
+    agg: avg
+    role: intermediate
+    resource: disk
+    transform: none
+    unit: percent
+    # 0-1 ratio -> x100
+    aliases: ["Disk available %"]
+
+  - key: host_disk_queue
+    selector: builtin:host.disk.queueLength
+    entity_type: HOST
+    split_by: ""
+    agg: avg
+    role: intermediate
+    resource: disk
+    transform: none
+    unit: count
+    # Values: 0.002, "< 0.001" (parse_val strips < prefix)
+    aliases: ["Disk average queue length +3"]
+
+  - key: host_disk_read_bytes_sec
+    selector: builtin:host.disk.bytesRead.perSecond
+    entity_type: HOST
+    split_by: ""
+    agg: avg
+    role: intermediate
+    resource: disk
+    transform: log1p
+    unit: byte
+    # Values: "3.05kiB", "587B" -> bytes via parse_val
+    aliases: ["Disk read bytes per second +3"]
+
+  - key: host_disk_read_ops_sec
+    selector: builtin:host.disk.readOps.perSecond
+    entity_type: HOST
+    split_by: ""
+    agg: avg
+    role: intermediate
+    resource: disk
+    transform: log1p
+    unit: count
+    # 0-1 ratio -> x100 (unit=percent triggers scaling)
+    # Actually stored as raw ops/s (0.086) — keep as count
+    aliases: ["Disk read operations per second +3"]
+
+  - key: host_disk_read_time
+    selector: builtin:host.disk.readTime
+    entity_type: HOST
+    split_by: ""
+    agg: avg
+    role: intermediate
+    resource: disk
+    transform: log1p
+    unit: ms
+    # Values: "2.18ms", "974Œºs" (mis-encoded µs) -> normalised to ms
+    # Use base "Disk read time" file (without +3 suffix; both are identical for H1)
+    aliases: ["Disk read time"]
+
+  - key: host_disk_used
+    selector: builtin:host.disk.used
+    entity_type: HOST
+    split_by: ""
+    agg: avg
+    role: intermediate
+    resource: disk
+    transform: log1p
+    unit: byte
+    # Values: "10.5GiB", "65GiB" -> bytes
+    aliases: ["Disk used"]
+
+  - key: host_disk_write_bytes_sec
+    selector: builtin:host.disk.bytesWritten.perSecond
+    entity_type: HOST
+    split_by: ""
+    agg: avg
+    role: intermediate
+    resource: disk
+    transform: log1p
+    unit: byte
+    # Values: "23.2kiB", "13.6kiB" -> bytes/s
+    aliases: ["Disk write bytes per second +3"]
+
+  - key: host_disk_write_time
+    selector: builtin:host.disk.writeTime
+    entity_type: HOST
+    split_by: ""
+    agg: avg
+    role: intermediate
+    resource: disk
+    transform: log1p
+    unit: ms
+    # Values: "1.65ms", "633Œºs" -> normalised to ms
+    aliases: ["Disk write time"]
+
+  # ── MEMORY ──────────────────────────────────────────────────────────────────
+  - key: host_mem_avail_pct
+    selector: builtin:host.mem.available.percent
+    entity_type: HOST
+    split_by: ""
+    agg: avg
+    role: intermediate
+    resource: memory
+    transform: none
+    unit: percent
+    # 0-1 ratio (0.67 - 0.89) -> x100
+    aliases: ["Memory available % +2"]
+
+  - key: host_mem_available
+    selector: builtin:host.mem.available
+    entity_type: HOST
+    split_by: ""
+    agg: avg
+    role: intermediate
+    resource: memory
+    transform: log1p
+    unit: byte
+    # Values: "23GiB", "22.2GiB" -> bytes
+    # Use base file (without (1) suffix — identical content)
+    aliases: ["Memory available +2"]
+
+  - key: host_mem_swap_used
+    selector: builtin:host.mem.swapUsed
+    entity_type: HOST
+    split_by: ""
+    agg: avg
+    role: intermediate
+    resource: memory
+    transform: log1p
+    unit: byte
+    # Values: "355MiB", "977MiB" -> bytes
+    aliases: ["Swap used +2"]
+
+  # ── FILESYSTEM ──────────────────────────────────────────────────────────────
+  - key: host_inodes_total
+    selector: builtin:host.disk.inodesTotal
+    entity_type: HOST
+    split_by: ""
+    agg: avg
+    role: intermediate
+    resource: disk
+    transform: none
+    unit: count
+    # Values: "69.4M" -> 69,400,000 (parse_val handles M suffix)
+    aliases: ["Inodes total"]
+
+  # ── NETWORK ─────────────────────────────────────────────────────────────────
+  - key: host_net_rx_bytes
+    selector: builtin:host.net.nic.bytesRx
+    entity_type: HOST
+    split_by: ""
+    agg: sum
+    role: intermediate
+    resource: network
+    transform: log1p
+    unit: byte
+    # Values: "22.3kiB", "8.18kiB" -> bytes
+    aliases: ["NIC bytes received"]
+
+  - key: host_net_tx_bytes
+    selector: builtin:host.net.nic.bytesTx
+    entity_type: HOST
+    split_by: ""
+    agg: sum
+    role: intermediate
+    resource: network
+    transform: log1p
+    unit: byte
+    # Values: "83.8kiB", "19.8kiB" -> bytes
+    aliases: ["NIC bytes sent on host"]
+
+  - key: host_net_rx_packets
+    selector: builtin:host.net.nic.packetsRx
+    entity_type: HOST
+    split_by: ""
+    agg: sum
+    role: intermediate
+    resource: network
+    transform: log1p
+    unit: count
+    # Values: 99.7, 39.9 (plain numbers)
+    aliases: ["NIC packets received"]
+
+  - key: host_net_tx_packets
+    selector: builtin:host.net.nic.packetsTx
+    entity_type: HOST
+    split_by: ""
+    agg: sum
+    role: intermediate
+    resource: network
+    transform: log1p
+    unit: count
+    aliases: ["NIC packets sent"]
+
+  - key: host_net_rx_errors
+    selector: builtin:host.net.nic.errorsRx
+    entity_type: HOST
+    split_by: ""
+    agg: sum
+    role: intermediate
+    resource: network
+    transform: log1p
+    unit: count
+    # Values: all 0 for both hosts (constant — kept as graph node)
+    aliases: ["NIC received packet errors"]
+
+  - key: host_net_tx_errors
+    selector: builtin:host.net.nic.errorsTx
+    entity_type: HOST
+    split_by: ""
+    agg: sum
+    role: intermediate
+    resource: network
+    transform: log1p
+    unit: count
+    # Values: all 0 for both hosts
+    aliases: ["NIC sent packet errors"]
+
+  # ── HOST AVAILABILITY ───────────────────────────────────────────────────────
+  - key: host_availability
+    selector: builtin:host.availability
+    entity_type: HOST
+    split_by: ""
+    agg: avg
+    role: intermediate
+    resource: system
+    transform: none
+    unit: count
+    # Values: "1.44k" -> 1440.0 (uptime seconds)
+    aliases: ["Host availability"]
+
+  # ── SESSION METRICS ─────────────────────────────────────────────────────────
+  - key: host_sessions_new
+    selector: builtin:host.sessions.new
+    entity_type: HOST
+    split_by: ""
+    agg: sum
+    role: intermediate
+    resource: service
+    transform: log1p
+    unit: count
+    # All 0 for both hosts — file: dt.process.network.sessions.new.xlsx
+    # (sheet name says "NIC sent packets dropped" but actual data is sessions.new)
+    aliases: ["dt.process.network.sessions.new"]
+
+  - key: host_sessions_reset
+    selector: builtin:host.sessions.reset
+    entity_type: HOST
+    split_by: ""
+    agg: sum
+    role: intermediate
+    resource: service
+    transform: log1p
+    unit: count
+    # Values: 0.027, 0.052 (ratio units)
+    aliases: ["Session reset received +1"]
+
+  - key: host_sessions_timeout
+    selector: builtin:host.sessions.timeout
+    entity_type: HOST
+    split_by: ""
+    agg: sum
+    role: intermediate
+    resource: service
+    transform: log1p
+    unit: count
+    # Values: mostly 0, max 0.033
+    aliases: ["Session timeout received +2"]

@@ -1,0 +1,872 @@
+{
+  "agreement_with_prior": {
+    "learned_edges": 123,
+    "prior_edges": 111,
+    "overlap": 70,
+    "precision_vs_prior": 0.5691056910569106,
+    "recall_vs_prior": 0.6306306306306306
+  },
+  "edges": [
+    {
+      "source": "host_sessions_timeout",
+      "target": "host_cpu_usage",
+      "weight": 0.9999999403953552,
+      "prior_weight": 0.0,
+      "in_prior": false
+    },
+    {
+      "source": "host_availability",
+      "target": "host_sessions_timeout",
+      "weight": 0.6163783073425293,
+      "prior_weight": 0.0,
+      "in_prior": false
+    },
+    {
+      "source": "host_mem_swap_used",
+      "target": "host_disk_write_time",
+      "weight": 0.5738751292228699,
+      "prior_weight": 0.6083017587661743,
+      "in_prior": true
+    },
+    {
+      "source": "host_disk_read_time",
+      "target": "host_disk_read_bytes",
+      "weight": 0.5722761750221252,
+      "prior_weight": 0.5441707968711853,
+      "in_prior": true
+    },
+    {
+      "source": "host_net_rx_bytes",
+      "target": "host_cpu_usage",
+      "weight": 0.5456258654594421,
+      "prior_weight": 0.09463123232126236,
+      "in_prior": true
+    },
+    {
+      "source": "host_net_tx_packets",
+      "target": "host_cpu_usage",
+      "weight": 0.43982917070388794,
+      "prior_weight": 0.15985223650932312,
+      "in_prior": true
+    },
+    {
+      "source": "host_mem_swap_used",
+      "target": "host_net_rx_bytes",
+      "weight": 0.39193403720855713,
+      "prior_weight": 0.3916981816291809,
+      "in_prior": true
+    },
+    {
+      "source": "host_disk_queue",
+      "target": "host_net_rx_bytes",
+      "weight": 0.33969008922576904,
+      "prior_weight": 0.0,
+      "in_prior": false
+    },
+    {
+      "source": "host_availability",
+      "target": "host_cpu_iowait",
+      "weight": 0.3228333294391632,
+      "prior_weight": 0.0,
+      "in_prior": false
+    },
+    {
+      "source": "host_cpu_iowait",
+      "target": "host_net_rx_bytes",
+      "weight": 0.30355459451675415,
+      "prior_weight": 0.28939491510391235,
+      "in_prior": true
+    },
+    {
+      "source": "host_disk_write_time",
+      "target": "host_sessions_timeout",
+      "weight": 0.30259570479393005,
+      "prior_weight": 0.0,
+      "in_prior": false
+    },
+    {
+      "source": "host_cpu_usage_lagged",
+      "target": "host_disk_queue",
+      "weight": 0.29509082436561584,
+      "prior_weight": 0.16261126101016998,
+      "in_prior": true
+    },
+    {
+      "source": "host_disk_read_time",
+      "target": "host_net_rx_bytes",
+      "weight": 0.29266664385795593,
+      "prior_weight": 0.0,
+      "in_prior": false
+    },
+    {
+      "source": "host_cpu_iowait",
+      "target": "host_disk_queue",
+      "weight": 0.28773051500320435,
+      "prior_weight": 0.28629618883132935,
+      "in_prior": true
+    },
+    {
+      "source": "host_cpu_system",
+      "target": "host_sessions_timeout",
+      "weight": 0.2845948338508606,
+      "prior_weight": 0.0,
+      "in_prior": false
+    },
+    {
+      "source": "host_disk_read_bytes",
+      "target": "host_cpu_usage_lagged",
+      "weight": 0.28330329060554504,
+      "prior_weight": 0.0,
+      "in_prior": false
+    },
+    {
+      "source": "host_cpu_system",
+      "target": "host_disk_read_time",
+      "weight": 0.2794332206249237,
+      "prior_weight": 0.0,
+      "in_prior": false
+    },
+    {
+      "source": "host_disk_write_time",
+      "target": "host_cpu_system",
+      "weight": 0.2689651548862457,
+      "prior_weight": 0.22978806495666504,
+      "in_prior": true
+    },
+    {
+      "source": "host_disk_write_time",
+      "target": "host_cpu_iowait",
+      "weight": 0.2504894733428955,
+      "prior_weight": 0.21666677296161652,
+      "in_prior": true
+    },
+    {
+      "source": "host_sessions_new",
+      "target": "host_cpu_usage",
+      "weight": 0.24166464805603027,
+      "prior_weight": 0.08197344094514847,
+      "in_prior": true
+    },
+    {
+      "source": "host_cpu_system",
+      "target": "host_cpu_iowait",
+      "weight": 0.23776961863040924,
+      "prior_weight": 0.14027446508407593,
+      "in_prior": true
+    },
+    {
+      "source": "host_disk_queue",
+      "target": "host_sessions_timeout",
+      "weight": 0.23696942627429962,
+      "prior_weight": 0.0,
+      "in_prior": false
+    },
+    {
+      "source": "host_cpu_iowait",
+      "target": "host_cpu_usage",
+      "weight": 0.22089718282222748,
+      "prior_weight": 0.0,
+      "in_prior": false
+    },
+    {
+      "source": "host_cpu_usage",
+      "target": "host_cpu_usage_lagged",
+      "weight": 0.19484418630599976,
+      "prior_weight": 0.17133277654647827,
+      "in_prior": true
+    },
+    {
+      "source": "host_net_rx_packets",
+      "target": "host_sessions_timeout",
+      "weight": 0.18487568199634552,
+      "prior_weight": 0.0,
+      "in_prior": false
+    },
+    {
+      "source": "host_disk_read_bytes",
+      "target": "host_cpu_iowait",
+      "weight": 0.18395638465881348,
+      "prior_weight": 0.17125461995601654,
+      "in_prior": true
+    },
+    {
+      "source": "host_cpu_usage",
+      "target": "host_net_rx_packets",
+      "weight": 0.1781972199678421,
+      "prior_weight": 0.16290323436260223,
+      "in_prior": true
+    },
+    {
+      "source": "host_disk_read_bytes",
+      "target": "host_net_tx_bytes",
+      "weight": 0.17737969756126404,
+      "prior_weight": 0.17288555204868317,
+      "in_prior": true
+    },
+    {
+      "source": "host_cpu_usage_lagged",
+      "target": "host_net_rx_packets",
+      "weight": 0.1742216944694519,
+      "prior_weight": 0.16453157365322113,
+      "in_prior": true
+    },
+    {
+      "source": "host_net_tx_packets",
+      "target": "host_cpu_system",
+      "weight": 0.1736917495727539,
+      "prior_weight": 0.1659834086894989,
+      "in_prior": true
+    },
+    {
+      "source": "host_cpu_usage",
+      "target": "host_disk_queue",
+      "weight": 0.16689532995224,
+      "prior_weight": 0.16083760559558868,
+      "in_prior": true
+    },
+    {
+      "source": "host_cpu_usage_lagged",
+      "target": "host_net_tx_packets",
+      "weight": 0.1664837896823883,
+      "prior_weight": 0.16357967257499695,
+      "in_prior": true
+    },
+    {
+      "source": "host_net_tx_bytes",
+      "target": "host_net_tx_packets",
+      "weight": 0.16209711134433746,
+      "prior_weight": 0.15641269087791443,
+      "in_prior": true
+    },
+    {
+      "source": "host_cpu_usage_lagged",
+      "target": "host_disk_write_time",
+      "weight": 0.16045303642749786,
+      "prior_weight": 0.13883092999458313,
+      "in_prior": true
+    },
+    {
+      "source": "host_net_tx_packets",
+      "target": "host_cpu_iowait",
+      "weight": 0.15793517231941223,
+      "prior_weight": 0.16013839840888977,
+      "in_prior": true
+    },
+    {
+      "source": "host_net_tx_packets",
+      "target": "host_disk_write_time",
+      "weight": 0.1565447896718979,
+      "prior_weight": 0.14678460359573364,
+      "in_prior": true
+    },
+    {
+      "source": "host_disk_queue",
+      "target": "host_net_tx_packets",
+      "weight": 0.15435385704040527,
+      "prior_weight": 0.0,
+      "in_prior": false
+    },
+    {
+      "source": "host_net_tx_bytes",
+      "target": "host_cpu_iowait",
+      "weight": 0.15224169194698334,
+      "prior_weight": 0.1520531177520752,
+      "in_prior": true
+    },
+    {
+      "source": "host_net_tx_bytes",
+      "target": "host_cpu_system",
+      "weight": 0.15034519135951996,
+      "prior_weight": 0.14963071048259735,
+      "in_prior": true
+    },
+    {
+      "source": "host_net_rx_packets",
+      "target": "host_cpu_system",
+      "weight": 0.1498241275548935,
+      "prior_weight": 0.14304006099700928,
+      "in_prior": true
+    },
+    {
+      "source": "host_net_rx_packets",
+      "target": "host_disk_queue",
+      "weight": 0.14977991580963135,
+      "prior_weight": 0.14072301983833313,
+      "in_prior": true
+    },
+    {
+      "source": "host_net_tx_bytes",
+      "target": "host_disk_queue",
+      "weight": 0.14953581988811493,
+      "prior_weight": 0.1490921974182129,
+      "in_prior": true
+    },
+    {
+      "source": "host_disk_read_bytes",
+      "target": "host_net_tx_packets",
+      "weight": 0.14821873605251312,
+      "prior_weight": 0.12942887842655182,
+      "in_prior": true
+    },
+    {
+      "source": "host_cpu_system",
+      "target": "host_disk_queue",
+      "weight": 0.1433844268321991,
+      "prior_weight": 0.14087040722370148,
+      "in_prior": true
+    },
+    {
+      "source": "host_cpu_usage",
+      "target": "host_disk_write_time",
+      "weight": 0.14303043484687805,
+      "prior_weight": 0.1383325159549713,
+      "in_prior": true
+    },
+    {
+      "source": "host_net_rx_packets",
+      "target": "host_cpu_iowait",
+      "weight": 0.14041094481945038,
+      "prior_weight": 0.13776080310344696,
+      "in_prior": true
+    },
+    {
+      "source": "host_net_tx_bytes",
+      "target": "host_sessions_timeout",
+      "weight": 0.13614951074123383,
+      "prior_weight": 0.0,
+      "in_prior": false
+    },
+    {
+      "source": "host_sessions_reset",
+      "target": "host_cpu_iowait",
+      "weight": 0.13507841527462006,
+      "prior_weight": 0.08867719769477844,
+      "in_prior": true
+    },
+    {
+      "source": "host_net_rx_packets",
+      "target": "host_disk_write_time",
+      "weight": 0.13403818011283875,
+      "prior_weight": 0.12582537531852722,
+      "in_prior": true
+    },
+    {
+      "source": "host_disk_queue",
+      "target": "host_disk_read_bytes",
+      "weight": 0.13093069195747375,
+      "prior_weight": 0.12015003710985184,
+      "in_prior": true
+    },
+    {
+      "source": "host_disk_write_time",
+      "target": "host_disk_read_bytes",
+      "weight": 0.12976887822151184,
+      "prior_weight": 0.1224452555179596,
+      "in_prior": true
+    },
+    {
+      "source": "host_disk_read_bytes",
+      "target": "host_cpu_system",
+      "weight": 0.12139623612165451,
+      "prior_weight": 0.11877492070198059,
+      "in_prior": true
+    },
+    {
+      "source": "host_sessions_reset",
+      "target": "host_net_rx_bytes",
+      "weight": 0.1145562008023262,
+      "prior_weight": 0.09476809948682785,
+      "in_prior": true
+    },
+    {
+      "source": "host_sessions_reset",
+      "target": "host_cpu_usage",
+      "weight": 0.11171836405992508,
+      "prior_weight": 0.08994016796350479,
+      "in_prior": true
+    },
+    {
+      "source": "host_sessions_new",
+      "target": "host_disk_queue",
+      "weight": 0.10603038966655731,
+      "prior_weight": 0.08515480905771255,
+      "in_prior": true
+    },
+    {
+      "source": "host_net_rx_bytes",
+      "target": "host_net_tx_packets",
+      "weight": 0.10517524927854538,
+      "prior_weight": 0.09947754442691803,
+      "in_prior": true
+    },
+    {
+      "source": "host_sessions_reset",
+      "target": "host_net_rx_packets",
+      "weight": 0.10255731642246246,
+      "prior_weight": 0.09352103620767593,
+      "in_prior": true
+    },
+    {
+      "source": "host_net_tx_bytes",
+      "target": "host_net_rx_bytes",
+      "weight": 0.10030142217874527,
+      "prior_weight": 0.0,
+      "in_prior": false
+    },
+    {
+      "source": "host_disk_read_time",
+      "target": "host_sessions_timeout",
+      "weight": 0.1001635268330574,
+      "prior_weight": 0.0,
+      "in_prior": false
+    },
+    {
+      "source": "host_net_rx_bytes",
+      "target": "host_cpu_system",
+      "weight": 0.09994316846132278,
+      "prior_weight": 0.09869235754013062,
+      "in_prior": true
+    },
+    {
+      "source": "host_sessions_reset",
+      "target": "host_cpu_usage_lagged",
+      "weight": 0.09966281801462173,
+      "prior_weight": 0.08785605430603027,
+      "in_prior": true
+    },
+    {
+      "source": "host_sessions_reset",
+      "target": "host_net_tx_packets",
+      "weight": 0.09709297120571136,
+      "prior_weight": 0.09319768846035004,
+      "in_prior": true
+    },
+    {
+      "source": "host_sessions_reset",
+      "target": "host_cpu_system",
+      "weight": 0.0957304909825325,
+      "prior_weight": 0.09352174401283264,
+      "in_prior": true
+    },
+    {
+      "source": "host_sessions_new",
+      "target": "host_net_tx_packets",
+      "weight": 0.09550401568412781,
+      "prior_weight": 0.08528389781713486,
+      "in_prior": true
+    },
+    {
+      "source": "host_sessions_reset",
+      "target": "host_net_tx_bytes",
+      "weight": 0.09536442905664444,
+      "prior_weight": 0.0873575434088707,
+      "in_prior": true
+    },
+    {
+      "source": "host_cpu_iowait",
+      "target": "host_disk_read_time",
+      "weight": 0.09478937089443207,
+      "prior_weight": 0.09503228217363358,
+      "in_prior": true
+    },
+    {
+      "source": "host_net_rx_packets",
+      "target": "host_net_rx_bytes",
+      "weight": 0.09440862387418747,
+      "prior_weight": 0.0,
+      "in_prior": false
+    },
+    {
+      "source": "host_sessions_reset",
+      "target": "host_disk_write_time",
+      "weight": 0.09425320476293564,
+      "prior_weight": 0.08734951913356781,
+      "in_prior": true
+    },
+    {
+      "source": "host_sessions_new",
+      "target": "host_sessions_reset",
+      "weight": 0.0937722846865654,
+      "prior_weight": 0.08848987519741058,
+      "in_prior": true
+    },
+    {
+      "source": "host_sessions_new",
+      "target": "host_cpu_iowait",
+      "weight": 0.09219281375408173,
+      "prior_weight": 0.08068616688251495,
+      "in_prior": true
+    },
+    {
+      "source": "host_cpu_usage_lagged",
+      "target": "host_sessions_timeout",
+      "weight": 0.09117808192968369,
+      "prior_weight": 0.0,
+      "in_prior": false
+    },
+    {
+      "source": "host_net_rx_bytes",
+      "target": "host_cpu_usage_lagged",
+      "weight": 0.09106525033712387,
+      "prior_weight": 0.09237639605998993,
+      "in_prior": true
+    },
+    {
+      "source": "host_cpu_iowait",
+      "target": "host_mem_swap_used",
+      "weight": 0.0905713364481926,
+      "prior_weight": 0.08546862006187439,
+      "in_prior": true
+    },
+    {
+      "source": "host_sessions_new",
+      "target": "host_net_rx_packets",
+      "weight": 0.09036058187484741,
+      "prior_weight": 0.08560575544834137,
+      "in_prior": true
+    },
+    {
+      "source": "host_cpu_usage",
+      "target": "host_net_tx_bytes",
+      "weight": 0.08966966718435287,
+      "prior_weight": 0.0,
+      "in_prior": false
+    },
+    {
+      "source": "host_sessions_new",
+      "target": "host_cpu_system",
+      "weight": 0.08804651349782944,
+      "prior_weight": 0.08513329178094864,
+      "in_prior": true
+    },
+    {
+      "source": "host_disk_queue",
+      "target": "host_disk_read_time",
+      "weight": 0.08742300420999527,
+      "prior_weight": 0.058229852467775345,
+      "in_prior": true
+    },
+    {
+      "source": "host_net_rx_bytes",
+      "target": "host_disk_write_time",
+      "weight": 0.08552692830562592,
+      "prior_weight": 0.08705288171768188,
+      "in_prior": true
+    },
+    {
+      "source": "host_net_rx_packets",
+      "target": "host_disk_read_bytes",
+      "weight": 0.08262865990400314,
+      "prior_weight": 0.0,
+      "in_prior": false
+    },
+    {
+      "source": "host_sessions_new",
+      "target": "host_disk_write_time",
+      "weight": 0.08165109902620316,
+      "prior_weight": 0.07816115021705627,
+      "in_prior": true
+    },
+    {
+      "source": "host_sessions_new",
+      "target": "host_cpu_usage_lagged",
+      "weight": 0.0800042673945427,
+      "prior_weight": 0.08012303709983826,
+      "in_prior": true
+    },
+    {
+      "source": "host_cpu_usage",
+      "target": "host_availability",
+      "weight": 0.07718896865844727,
+      "prior_weight": 0.0,
+      "in_prior": false
+    },
+    {
+      "source": "host_cpu_usage",
+      "target": "host_disk_read_time",
+      "weight": 0.0635685920715332,
+      "prior_weight": 0.0,
+      "in_prior": false
+    },
+    {
+      "source": "host_net_tx_bytes",
+      "target": "host_mem_swap_used",
+      "weight": 0.05697289854288101,
+      "prior_weight": 0.046524778008461,
+      "in_prior": true
+    },
+    {
+      "source": "host_disk_read_bytes",
+      "target": "host_sessions_new",
+      "weight": 0.05439319834113121,
+      "prior_weight": 0.0,
+      "in_prior": false
+    },
+    {
+      "source": "host_sessions_reset",
+      "target": "host_disk_read_bytes",
+      "weight": 0.053985677659511566,
+      "prior_weight": 0.04354070499539375,
+      "in_prior": true
+    },
+    {
+      "source": "host_net_tx_bytes",
+      "target": "host_disk_read_time",
+      "weight": 0.05372007563710213,
+      "prior_weight": 0.051354337483644485,
+      "in_prior": true
+    },
+    {
+      "source": "host_cpu_usage",
+      "target": "host_mem_swap_used",
+      "weight": 0.04945977032184601,
+      "prior_weight": 0.04643142223358154,
+      "in_prior": true
+    },
+    {
+      "source": "host_cpu_usage_lagged",
+      "target": "host_mem_swap_used",
+      "weight": 0.04767213389277458,
+      "prior_weight": 0.04738638922572136,
+      "in_prior": true
+    },
+    {
+      "source": "host_net_rx_bytes",
+      "target": "host_disk_read_bytes",
+      "weight": 0.04754219949245453,
+      "prior_weight": 0.047536320984363556,
+      "in_prior": true
+    },
+    {
+      "source": "host_net_tx_packets",
+      "target": "host_mem_swap_used",
+      "weight": 0.047292329370975494,
+      "prior_weight": 0.04731396958231926,
+      "in_prior": true
+    },
+    {
+      "source": "host_net_rx_packets",
+      "target": "host_mem_swap_used",
+      "weight": 0.04485321417450905,
+      "prior_weight": 0.03998434916138649,
+      "in_prior": true
+    },
+    {
+      "source": "host_cpu_usage_lagged",
+      "target": "host_cpu_system",
+      "weight": 0.04470295459032059,
+      "prior_weight": 0.0,
+      "in_prior": false
+    },
+    {
+      "source": "host_cpu_system",
+      "target": "host_mem_swap_used",
+      "weight": 0.041538089513778687,
+      "prior_weight": 0.03951584920287132,
+      "in_prior": true
+    },
+    {
+      "source": "host_disk_queue",
+      "target": "host_availability",
+      "weight": 0.041521087288856506,
+      "prior_weight": 0.0,
+      "in_prior": false
+    },
+    {
+      "source": "host_disk_write_time",
+      "target": "host_availability",
+      "weight": 0.0401039645075798,
+      "prior_weight": 0.0,
+      "in_prior": false
+    },
+    {
+      "source": "host_net_tx_bytes",
+      "target": "host_availability",
+      "weight": 0.03819788992404938,
+      "prior_weight": 0.0,
+      "in_prior": false
+    },
+    {
+      "source": "host_mem_swap_used",
+      "target": "host_sessions_timeout",
+      "weight": 0.034190718084573746,
+      "prior_weight": 0.0,
+      "in_prior": false
+    },
+    {
+      "source": "host_cpu_usage",
+      "target": "host_disk_read_bytes",
+      "weight": 0.03295314311981201,
+      "prior_weight": 0.0,
+      "in_prior": false
+    },
+    {
+      "source": "host_sessions_new",
+      "target": "host_sessions_timeout",
+      "weight": 0.030773473903536797,
+      "prior_weight": 0.0,
+      "in_prior": false
+    },
+    {
+      "source": "host_availability",
+      "target": "host_net_tx_packets",
+      "weight": 0.0278445016592741,
+      "prior_weight": 0.0,
+      "in_prior": false
+    },
+    {
+      "source": "host_net_rx_bytes",
+      "target": "host_sessions_timeout",
+      "weight": 0.025121236220002174,
+      "prior_weight": 0.0,
+      "in_prior": false
+    },
+    {
+      "source": "host_net_tx_packets",
+      "target": "host_sessions_timeout",
+      "weight": 0.024706758558750153,
+      "prior_weight": 0.0,
+      "in_prior": false
+    },
+    {
+      "source": "host_disk_read_bytes",
+      "target": "host_sessions_timeout",
+      "weight": 0.02114298939704895,
+      "prior_weight": 0.0,
+      "in_prior": false
+    },
+    {
+      "source": "host_cpu_usage_lagged",
+      "target": "host_availability",
+      "weight": 0.01407049410045147,
+      "prior_weight": 0.0,
+      "in_prior": false
+    },
+    {
+      "source": "host_disk_read_time",
+      "target": "host_net_tx_packets",
+      "weight": 0.013785431161522865,
+      "prior_weight": 0.0,
+      "in_prior": false
+    },
+    {
+      "source": "host_availability",
+      "target": "host_net_rx_bytes",
+      "weight": 0.013618850149214268,
+      "prior_weight": 0.0,
+      "in_prior": false
+    },
+    {
+      "source": "host_net_rx_packets",
+      "target": "host_disk_read_time",
+      "weight": 0.013469506055116653,
+      "prior_weight": 0.0,
+      "in_prior": false
+    },
+    {
+      "source": "host_availability",
+      "target": "host_mem_swap_used",
+      "weight": 0.01346564944833517,
+      "prior_weight": 0.0,
+      "in_prior": false
+    },
+    {
+      "source": "host_cpu_system",
+      "target": "host_availability",
+      "weight": 0.0132798682898283,
+      "prior_weight": 0.0,
+      "in_prior": false
+    },
+    {
+      "source": "host_disk_read_time",
+      "target": "host_disk_write_time",
+      "weight": 0.012770494446158409,
+      "prior_weight": 0.0,
+      "in_prior": false
+    },
+    {
+      "source": "host_disk_read_bytes",
+      "target": "host_availability",
+      "weight": 0.009510276839137077,
+      "prior_weight": 0.0,
+      "in_prior": false
+    },
+    {
+      "source": "host_disk_queue",
+      "target": "host_mem_swap_used",
+      "weight": 0.009111673571169376,
+      "prior_weight": 0.0,
+      "in_prior": false
+    },
+    {
+      "source": "host_disk_read_time",
+      "target": "host_mem_swap_used",
+      "weight": 0.008337645791471004,
+      "prior_weight": 0.0,
+      "in_prior": false
+    },
+    {
+      "source": "host_disk_write_time",
+      "target": "host_disk_queue",
+      "weight": 0.008076678030192852,
+      "prior_weight": 0.0,
+      "in_prior": false
+    },
+    {
+      "source": "host_availability",
+      "target": "host_disk_read_time",
+      "weight": 0.005859390366822481,
+      "prior_weight": 0.0,
+      "in_prior": false
+    },
+    {
+      "source": "host_net_rx_packets",
+      "target": "host_net_tx_packets",
+      "weight": 0.005711089354008436,
+      "prior_weight": 0.0,
+      "in_prior": false
+    },
+    {
+      "source": "host_cpu_usage_lagged",
+      "target": "host_disk_read_time",
+      "weight": 0.004576097708195448,
+      "prior_weight": 0.0,
+      "in_prior": false
+    },
+    {
+      "source": "host_cpu_usage",
+      "target": "host_cpu_system",
+      "weight": 0.004192608408629894,
+      "prior_weight": 0.0,
+      "in_prior": false
+    },
+    {
+      "source": "host_cpu_iowait",
+      "target": "host_sessions_timeout",
+      "weight": 0.00245700147934258,
+      "prior_weight": 0.0,
+      "in_prior": false
+    },
+    {
+      "source": "host_cpu_usage_lagged",
+      "target": "host_net_tx_bytes",
+      "weight": 0.0015508943470194936,
+      "prior_weight": 0.0,
+      "in_prior": false
+    },
+    {
+      "source": "host_disk_read_bytes",
+      "target": "host_mem_swap_used",
+      "weight": 0.0006992024718783796,
+      "prior_weight": 0.0,
+      "in_prior": false
+    },
+    {
+      "source": "host_net_tx_bytes",
+      "target": "host_disk_write_time",
+      "weight": 0.0004384572384878993,
+      "prior_weight": 0.0,
+      "in_prior": false
+    }
+  ]
+}

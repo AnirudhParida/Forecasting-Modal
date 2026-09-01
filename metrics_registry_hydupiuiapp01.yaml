@@ -1,0 +1,145 @@
+# Canonical metric registry for hydupiuiapp01 host.
+# CPU Usage % is the target; other metrics are intermediates/drivers.
+metrics:
+  - key: host_cpu_usage
+    selector: builtin:host.cpu.usage
+    entity_type: HOST
+    split_by: ""
+    agg: avg
+    role: target
+    resource: cpu
+    transform: none
+    unit: percent
+    aliases: ["CPU Usage %"]
+
+  - key: host_cpu_iowait
+    selector: builtin:host.cpu.iowait
+    entity_type: HOST
+    split_by: ""
+    agg: avg
+    role: intermediate
+    resource: cpu
+    transform: none
+    unit: percent
+    aliases: ["CPU I_O wait "]
+
+  - key: host_availability
+    selector: builtin:host.availability
+    entity_type: HOST
+    split_by: ""
+    agg: avg
+    role: intermediate
+    resource: cpu
+    transform: none
+    unit: percent
+    aliases: ["Host availability"]
+
+  - key: host_net_rx_bytes
+    selector: builtin:host.net.nic.bytesRx
+    entity_type: HOST
+    split_by: ""
+    agg: sum
+    role: intermediate
+    resource: network
+    transform: log1p
+    unit: byte
+    aliases: ["NIC bytes received"]
+
+  - key: host_net_tx_bytes
+    selector: builtin:host.net.nic.bytesTx
+    entity_type: HOST
+    split_by: ""
+    agg: sum
+    role: intermediate
+    resource: network
+    transform: log1p
+    unit: byte
+    aliases: ["NIC bytes sent on host"]
+
+  - key: host_net_rx_packets
+    selector: builtin:host.net.nic.packetsRx
+    entity_type: HOST
+    split_by: ""
+    agg: sum
+    role: intermediate
+    resource: network
+    transform: log1p
+    unit: count
+    aliases: ["NIC packets received"]
+
+  - key: host_net_tx_packets
+    selector: builtin:host.net.nic.packetsTx
+    entity_type: HOST
+    split_by: ""
+    agg: sum
+    role: intermediate
+    resource: network
+    transform: log1p
+    unit: count
+    aliases: ["NIC packets sent"]
+
+  - key: host_net_rx_errors
+    selector: builtin:host.net.nic.errorsRx
+    entity_type: HOST
+    split_by: ""
+    agg: sum
+    role: intermediate
+    resource: network
+    transform: log1p
+    unit: count
+    aliases: ["NIC received packet errors"]
+
+  - key: host_net_rx_dropped
+    selector: builtin:host.net.nic.droppedRx
+    entity_type: HOST
+    split_by: ""
+    agg: sum
+    role: intermediate
+    resource: network
+    transform: log1p
+    unit: count
+    aliases: ["NIC received packets dropped"]
+
+  - key: host_net_tx_errors
+    selector: builtin:host.net.nic.errorsTx
+    entity_type: HOST
+    split_by: ""
+    agg: sum
+    role: intermediate
+    resource: network
+    transform: log1p
+    unit: count
+    aliases: ["NIC sent packet errors"]
+
+  - key: host_net_tx_dropped
+    selector: builtin:host.net.nic.droppedTx
+    entity_type: HOST
+    split_by: ""
+    agg: sum
+    role: intermediate
+    resource: network
+    transform: log1p
+    unit: count
+    aliases: ["NIC sent packets dropped"]
+
+  - key: host_sessions_new
+    selector: builtin:host.sessions.new
+    entity_type: HOST
+    split_by: ""
+    agg: sum
+    role: intermediate
+    resource: service
+    transform: log1p
+    unit: count
+    aliases: ["New session received"]
+
+  - key: host_sessions_reset
+    selector: builtin:host.sessions.reset
+    entity_type: HOST
+    split_by: ""
+    agg: sum
+    role: intermediate
+    resource: service
+    transform: log1p
+    unit: count
+    aliases: ["Session reset received"]

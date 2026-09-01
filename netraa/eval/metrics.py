@@ -64,15 +64,25 @@ def interval_coverage(
     y_pred_q: np.ndarray,
     mask: np.ndarray,
     quantiles: list[float],
-    lower: float = 0.1,
-    upper: float = 0.9,
+    lower: float | None = None,
+    upper: float | None = None,
 ) -> float:
     """Fraction of actuals inside the predicted interval.
 
     A well-calibrated P10-P90 band covers ~80%. Far below means the intervals
     are too tight to plan capacity against; far above means they are too wide
     to be useful.
+
+    When `lower`/`upper` are not supplied (or not present in `quantiles`),
+    the function automatically uses the outermost quantile pair — e.g. P05/P95
+    if quantiles=[0.05, 0.5, 0.95]. This avoids the silent NaN that occurred
+    when quantiles were widened from [0.1,0.5,0.9] to [0.05,0.5,0.95].
     """
+    qs = sorted(quantiles)
+    if lower is None or lower not in quantiles:
+        lower = qs[0]
+    if upper is None or upper not in quantiles:
+        upper = qs[-1]
     if lower not in quantiles or upper not in quantiles:
         return float("nan")
     lo = y_pred_q[..., quantiles.index(lower)]

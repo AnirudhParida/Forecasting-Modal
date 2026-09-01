@@ -1,0 +1,290 @@
+{
+  "source_metric": "disk_write_iops|DISK-AEAFE33C63A4A3E9",
+  "source_short": "disk_write_iops[\u2026A4A3E9]",
+  "delta_pct": 20.0,
+  "interpretation": "A +20.0% change in disk_write_iops[\u2026A4A3E9] propagates the following signal changes through the dependency graph.",
+  "upstream_drivers": [
+    {
+      "metric": "disk_read_iops|DISK-06AEE4ED601B8525",
+      "short": "disk_read_iops[\u20261B8525]",
+      "weight": 0.1719,
+      "confirmed": false
+    },
+    {
+      "metric": "jvm_process_cpu|PROCESS_GROUP_INSTANCE-3264EBB02CB46816",
+      "short": "JVM CPU%[\u2026B46816]",
+      "weight": 0.1344,
+      "confirmed": false
+    },
+    {
+      "metric": "host_cpu_load1",
+      "short": "CPU Load-1m",
+      "weight": 0.1259,
+      "confirmed": false
+    },
+    {
+      "metric": "jvm_thread_live_count|PROCESS_GROUP_INSTANCE-FC97E4E3BF378F88",
+      "short": "Thread Count[\u2026378F88]",
+      "weight": 0.124,
+      "confirmed": false
+    },
+    {
+      "metric": "jvm_gc_collection_count|PROCESS_GROUP_INSTANCE-1AEF64B598C08A5B",
+      "short": "GC Count[\u2026C08A5B]",
+      "weight": 0.1048,
+      "confirmed": false
+    },
+    {
+      "metric": "jvm_thread_live_count|PROCESS_GROUP_INSTANCE-3264EBB02CB46816",
+      "short": "Thread Count[\u2026B46816]",
+      "weight": 0.1024,
+      "confirmed": false
+    },
+    {
+      "metric": "host_mem_buff_cache",
+      "short": "Buffer/Cache",
+      "weight": 0.0914,
+      "confirmed": false
+    },
+    {
+      "metric": "disk_read_latency|DISK-AEAFE33C63A4A3E9",
+      "short": "disk_read_latency[\u2026A4A3E9]",
+      "weight": 0.084,
+      "confirmed": false
+    }
+  ],
+  "downstream_impacts": [
+    {
+      "metric": "disk_write_iops|DISK-57DE2A1151778A10",
+      "short": "disk_write_iops[\u2026778A10]",
+      "total_pct": 4.7866,
+      "direct_weight": 0.2252,
+      "confirmed": true,
+      "hops": [
+        {
+          "layer": 1,
+          "value": 4.5033
+        },
+        {
+          "layer": 2,
+          "value": 0.2513
+        },
+        {
+          "layer": 3,
+          "value": 0.0321
+        }
+      ],
+      "abs_delta": 0.0
+    },
+    {
+      "metric": "jvm_memory_pool_used|PROCESS_GROUP_INSTANCE-3264EBB02CB46816",
+      "short": "Mem Pool Used[\u2026B46816]",
+      "total_pct": 3.9028,
+      "direct_weight": 0.1762,
+      "confirmed": true,
+      "hops": [
+        {
+          "layer": 1,
+          "value": 3.5242
+        },
+        {
+          "layer": 2,
+          "value": 0.2069
+        },
+        {
+          "layer": 3,
+          "value": 0.1717
+        }
+      ],
+      "abs_delta": 160661.8199
+    },
+    {
+      "metric": "host_mem_usage",
+      "short": "Memory Usage%",
+      "total_pct": 2.916,
+      "direct_weight": 0.0,
+      "confirmed": false,
+      "hops": [
+        {
+          "layer": 2,
+          "value": 2.4528
+        },
+        {
+          "layer": 3,
+          "value": 0.4632
+        }
+      ],
+      "abs_delta": 0.3051
+    },
+    {
+      "metric": "disk_busy_time|DISK-AEAFE33C63A4A3E9",
+      "short": "disk_busy_time[\u2026A4A3E9]",
+      "total_pct": 2.3665,
+      "direct_weight": 0.1012,
+      "confirmed": false,
+      "hops": [
+        {
+          "layer": 1,
+          "value": 2.0245
+        },
+        {
+          "layer": 2,
+          "value": 0.2777
+        },
+        {
+          "layer": 3,
+          "value": 0.0642
+        }
+      ],
+      "abs_delta": 0.0086
+    },
+    {
+      "metric": "jvm_memory_heap_used|PROCESS_GROUP_INSTANCE-1AEF64B598C08A5B",
+      "short": "Heap Used[\u2026C08A5B]",
+      "total_pct": 2.2512,
+      "direct_weight": 0.1118,
+      "confirmed": false,
+      "hops": [
+        {
+          "layer": 1,
+          "value": 2.2362
+        },
+        {
+          "layer": 3,
+          "value": 0.0151
+        }
+      ],
+      "abs_delta": 20408792.3096
+    },
+    {
+      "metric": "host_mem_total",
+      "short": "Memory Total",
+      "total_pct": 2.2472,
+      "direct_weight": 0.095,
+      "confirmed": false,
+      "hops": [
+        {
+          "layer": 1,
+          "value": 1.9004
+        },
+        {
+          "layer": 2,
+          "value": 0.2916
+        },
+        {
+          "layer": 3,
+          "value": 0.0552
+        }
+      ],
+      "abs_delta": 23397629.3177
+    },
+    {
+      "metric": "disk_busy_time|DISK-57DE2A1151778A10",
+      "short": "disk_busy_time[\u2026778A10]",
+      "total_pct": 2.1276,
+      "direct_weight": 0.1049,
+      "confirmed": false,
+      "hops": [
+        {
+          "layer": 1,
+          "value": 2.0971
+        },
+        {
+          "layer": 3,
+          "value": 0.0305
+        }
+      ],
+      "abs_delta": 0.0
+    },
+    {
+      "metric": "disk_queue_length|DISK-57DE2A1151778A10",
+      "short": "disk_queue_length[\u2026778A10]",
+      "total_pct": 2.1169,
+      "direct_weight": 0.0991,
+      "confirmed": true,
+      "hops": [
+        {
+          "layer": 1,
+          "value": 1.9813
+        },
+        {
+          "layer": 3,
+          "value": 0.1355
+        }
+      ],
+      "abs_delta": 0.0
+    },
+    {
+      "metric": "disk_busy_time|DISK-AD574AD979302D79",
+      "short": "disk_busy_time[\u2026302D79]",
+      "total_pct": 2.0288,
+      "direct_weight": 0.0866,
+      "confirmed": false,
+      "hops": [
+        {
+          "layer": 1,
+          "value": 1.7329
+        },
+        {
+          "layer": 2,
+          "value": 0.237
+        },
+        {
+          "layer": 3,
+          "value": 0.0588
+        }
+      ],
+      "abs_delta": 0.026
+    },
+    {
+      "metric": "disk_read_latency|DISK-AD574AD979302D79",
+      "short": "disk_read_latency[\u2026302D79]",
+      "total_pct": 0.7199,
+      "direct_weight": 0.0,
+      "confirmed": false,
+      "hops": [
+        {
+          "layer": 2,
+          "value": 0.6647
+        },
+        {
+          "layer": 3,
+          "value": 0.0552
+        }
+      ],
+      "abs_delta": 0.0029
+    },
+    {
+      "metric": "disk_write_throughput|DISK-57DE2A1151778A10",
+      "short": "disk_write_throughput[\u2026778A10]",
+      "total_pct": 0.579,
+      "direct_weight": 0.0,
+      "confirmed": false,
+      "hops": [
+        {
+          "layer": 3,
+          "value": 0.579
+        }
+      ],
+      "abs_delta": 0.0
+    },
+    {
+      "metric": "disk_read_iops|DISK-57DE2A1151778A10",
+      "short": "disk_read_iops[\u2026778A10]",
+      "total_pct": 0.506,
+      "direct_weight": 0.0,
+      "confirmed": false,
+      "hops": [
+        {
+          "layer": 2,
+          "value": 0.4181
+        },
+        {
+          "layer": 3,
+          "value": 0.0879
+        }
+      ],
+      "abs_delta": null
+    }
+  ]
+}

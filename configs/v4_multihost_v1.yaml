@@ -1,0 +1,76 @@
+# Configuration for shared multi-host model.
+# Hosts   : HYDUPINTAPP16 (10.50.98.26)
+#            JPRUPIWEBCRP02 (10.78.33.83)
+# Target  : CPU Usage % (per host)
+# Strategy: One ST-GNN trained on both hosts simultaneously.
+#            Multi-host ingestion creates 2 nodes per metric:
+#              host_cpu_usage__HYDUPINTAPP16
+#              host_cpu_usage__JPRUPIWEBCRP02
+#            Total graph nodes = 27 metrics x 2 hosts = 54 nodes
+#            The model learns cross-host correlations + per-host dynamics.
+
+base_url: ""
+registry: metrics_registry_multihost_v1.yaml
+data_dir: data_multihost_v1
+artifacts_dir: artifacts_multihost_v1
+
+scope:
+  host_id: "multihost_v1"
+  service_id: ""
+
+grids:
+  fine:
+    resolution: 1m
+    pandas_freq: 1min
+    lookback_days: 7
+    purpose: dependency_map
+
+  coarse:
+    resolution: 1d
+    pandas_freq: 1D
+    lookback_days: 400
+    purpose: forecast
+
+# Coverage: all 27 metrics have 366 daily rows for both hosts -> good coverage
+# No sparse metrics in this dataset unlike hydupiuiapp01/hydupiapp001
+min_coverage: 0.60
+min_nonzero_fraction: 0.0
+min_tail_coverage: 0.50
+min_observed_steps: 60
+
+season_steps:
+  coarse: 7
+  fine: 1440
+
+forecast:
+  grid: coarse
+  input_steps: 90
+  horizons: [7, 30, 60, 90]
+  quantiles: [0.05, 0.5, 0.95]
+
+graph:
+  grid: coarse
+  max_lag_steps: 14
+  xcorr_threshold: 0.20
+  granger_alpha: 0.05
+  mi_threshold: 0.05
+  top_k: 12
+  min_overlap: 60
+
+model:
+  # 54 nodes (27 metrics x 2 hosts) -> use a larger model than single-host configs
+  hidden: 64
+  blocks: 3
+  kernel_size: 3
+  dropout: 0.3
+  node_embed_dim: 24
+  top_k: 12
+  graph_prior_weight: 0.5
+  graph_sparsity_weight: 0.05
+  lr: 3.0e-4
+  weight_decay: 0.005
+  epochs: 250
+  batch_size: 16
+  patience: 25
+  input_noise: 0.1
+  seed: 42

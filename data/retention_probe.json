@@ -7,7 +7,7 @@
       "observed_spacing_s": 60.0,
       "requested_spacing_s": 60,
       "downgraded": false,
-      "earliest": "2026-08-04T06:22:00+00:00",
+      "earliest": "2026-08-23T16:50:00+00:00",
       "error": ""
     },
     {
@@ -17,7 +17,7 @@
       "observed_spacing_s": 60.0,
       "requested_spacing_s": 60,
       "downgraded": false,
-      "earliest": "2026-07-29T06:22:00+00:00",
+      "earliest": "2026-08-17T16:50:00+00:00",
       "error": ""
     },
     {
@@ -87,7 +87,7 @@
       "observed_spacing_s": 300.0,
       "requested_spacing_s": 300,
       "downgraded": false,
-      "earliest": "2026-08-04T06:25:00+00:00",
+      "earliest": "2026-08-23T16:50:00+00:00",
       "error": ""
     },
     {
@@ -97,7 +97,7 @@
       "observed_spacing_s": 300.0,
       "requested_spacing_s": 300,
       "downgraded": false,
-      "earliest": "2026-07-29T06:25:00+00:00",
+      "earliest": "2026-08-17T16:50:00+00:00",
       "error": ""
     },
     {
@@ -107,7 +107,7 @@
       "observed_spacing_s": 300.0,
       "requested_spacing_s": 300,
       "downgraded": false,
-      "earliest": "2026-07-22T06:25:00+00:00",
+      "earliest": "2026-08-10T16:50:00+00:00",
       "error": ""
     },
     {
@@ -117,7 +117,7 @@
       "observed_spacing_s": 3600.0,
       "requested_spacing_s": 300,
       "downgraded": true,
-      "earliest": "2026-07-06T07:00:00+00:00",
+      "earliest": "2026-07-25T17:00:00+00:00",
       "error": ""
     },
     {
@@ -167,7 +167,7 @@
       "observed_spacing_s": 3600.0,
       "requested_spacing_s": 3600,
       "downgraded": false,
-      "earliest": "2026-08-04T07:00:00+00:00",
+      "earliest": "2026-08-23T17:00:00+00:00",
       "error": ""
     },
     {
@@ -177,7 +177,7 @@
       "observed_spacing_s": 3600.0,
       "requested_spacing_s": 3600,
       "downgraded": false,
-      "earliest": "2026-07-29T07:00:00+00:00",
+      "earliest": "2026-08-17T17:00:00+00:00",
       "error": ""
     },
     {
@@ -187,7 +187,7 @@
       "observed_spacing_s": 3600.0,
       "requested_spacing_s": 3600,
       "downgraded": false,
-      "earliest": "2026-07-22T07:00:00+00:00",
+      "earliest": "2026-08-10T17:00:00+00:00",
       "error": ""
     },
     {
@@ -197,7 +197,7 @@
       "observed_spacing_s": 3600.0,
       "requested_spacing_s": 3600,
       "downgraded": false,
-      "earliest": "2026-07-06T07:00:00+00:00",
+      "earliest": "2026-07-25T17:00:00+00:00",
       "error": ""
     },
     {
@@ -207,7 +207,7 @@
       "observed_spacing_s": 3600.0,
       "requested_spacing_s": 3600,
       "downgraded": false,
-      "earliest": "2026-05-07T07:00:00+00:00",
+      "earliest": "2026-05-26T17:00:00+00:00",
       "error": ""
     },
     {
@@ -217,7 +217,7 @@
       "observed_spacing_s": 3600.0,
       "requested_spacing_s": 3600,
       "downgraded": false,
-      "earliest": "2026-02-06T07:00:00+00:00",
+      "earliest": "2026-02-25T17:00:00+00:00",
       "error": ""
     },
     {
@@ -227,7 +227,7 @@
       "observed_spacing_s": 3600.0,
       "requested_spacing_s": 3600,
       "downgraded": false,
-      "earliest": "2025-08-05T07:00:00+00:00",
+      "earliest": "2025-08-24T17:00:00+00:00",
       "error": ""
     },
     {
@@ -237,7 +237,7 @@
       "observed_spacing_s": 86400.0,
       "requested_spacing_s": 3600,
       "downgraded": true,
-      "earliest": "2025-07-02T00:00:00+00:00",
+      "earliest": "2025-07-21T00:00:00+00:00",
       "error": ""
     },
     {
@@ -247,7 +247,7 @@
       "observed_spacing_s": 86400.0,
       "requested_spacing_s": 86400,
       "downgraded": false,
-      "earliest": "2026-08-05T00:00:00+00:00",
+      "earliest": "2026-08-24T00:00:00+00:00",
       "error": ""
     },
     {
@@ -257,7 +257,7 @@
       "observed_spacing_s": 86400.0,
       "requested_spacing_s": 86400,
       "downgraded": false,
-      "earliest": "2026-07-30T00:00:00+00:00",
+      "earliest": "2026-08-18T00:00:00+00:00",
       "error": ""
     },
     {
@@ -267,7 +267,7 @@
       "observed_spacing_s": 86400.0,
       "requested_spacing_s": 86400,
       "downgraded": false,
-      "earliest": "2026-07-23T00:00:00+00:00",
+      "earliest": "2026-08-11T00:00:00+00:00",
       "error": ""
     },
     {
@@ -277,7 +277,7 @@
       "observed_spacing_s": 86400.0,
       "requested_spacing_s": 86400,
       "downgraded": false,
-      "earliest": "2026-07-07T00:00:00+00:00",
+      "earliest": "2026-07-26T00:00:00+00:00",
       "error": ""
     },
     {
@@ -287,7 +287,7 @@
       "observed_spacing_s": 86400.0,
       "requested_spacing_s": 86400,
       "downgraded": false,
-      "earliest": "2026-05-08T00:00:00+00:00",
+      "earliest": "2026-05-27T00:00:00+00:00",
       "error": ""
     },
     {
@@ -297,7 +297,7 @@
       "observed_spacing_s": 86400.0,
       "requested_spacing_s": 86400,
       "downgraded": false,
-      "earliest": "2026-02-07T00:00:00+00:00",
+      "earliest": "2026-02-26T00:00:00+00:00",
       "error": ""
     },
     {
@@ -307,7 +307,7 @@
       "observed_spacing_s": 86400.0,
       "requested_spacing_s": 86400,
       "downgraded": false,
-      "earliest": "2025-08-06T00:00:00+00:00",
+      "earliest": "2025-08-25T00:00:00+00:00",
       "error": ""
     },
     {
@@ -317,7 +317,7 @@
       "observed_spacing_s": 86400.0,
       "requested_spacing_s": 86400,
       "downgraded": false,
-      "earliest": "2025-07-02T00:00:00+00:00",
+      "earliest": "2025-07-21T00:00:00+00:00",
       "error": ""
     }
   ],

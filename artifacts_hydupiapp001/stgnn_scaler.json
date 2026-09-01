@@ -1,0 +1,40 @@
+{
+  "center": {
+    "host_availability": 0.09633880202909495,
+    "host_cpu_iowait": 1.8285606677790796,
+    "host_cpu_system": -0.277729570461107,
+    "host_cpu_usage": -0.6786844737220061,
+    "host_cpu_usage_lagged": -0.35115369659227813,
+    "host_disk_queue": -0.00026957943378712323,
+    "host_disk_read_bytes": -0.1695938146908409,
+    "host_disk_read_time": -0.19650811369196775,
+    "host_disk_write_time": -0.06094306648078063,
+    "host_mem_swap_used": 0.3545776590743692,
+    "host_net_rx_bytes": 0.47298780014953756,
+    "host_net_rx_packets": 0.5680408319822678,
+    "host_net_tx_bytes": 0.9663052700653783,
+    "host_net_tx_packets": 0.6744598338053303,
+    "host_sessions_new": 0.02604965796354275,
+    "host_sessions_reset": 0.017660934285482266,
+    "host_sessions_timeout": 0.0
+  },
+  "scale": {
+    "host_availability": 0.07181551921803475,
+    "host_cpu_iowait": 24.38194059956314,
+    "host_cpu_system": 2.279304719733581,
+    "host_cpu_usage": 12.385670336942386,
+    "host_cpu_usage_lagged": 9.055115901049605,
+    "host_disk_queue": 0.03410287958831741,
+    "host_disk_read_bytes": 3.6648144804228715,
+    "host_disk_read_time": 0.43520649285186586,
+    "host_disk_write_time": 0.16242174302351087,
+    "host_mem_swap_used": 0.6208471983821653,
+    "host_net_rx_bytes": 3.8055845886713175,
+    "host_net_rx_packets": 3.4279693574925965,
+    "host_net_tx_bytes": 4.1859571921608225,
+    "host_net_tx_packets": 3.581307486242749,
+    "host_sessions_new": 0.5176414780302124,
+    "host_sessions_reset": 0.35477927225000394,
+    "host_sessions_timeout": 1.0
+  }
+}

@@ -1,0 +1,280 @@
+{
+  "host_cpu_usage|10_50_98_26": {
+    "host": "HYDUPINTAPP16 (10.50.98.26)",
+    "target_node": "host_cpu_usage|10_50_98_26",
+    "start_date": "2026-08-05",
+    "end_date": "2026-08-20",
+    "mae": 1.4403,
+    "rmse": 2.4107,
+    "coverage_pct": 87.5,
+    "daily_comparison": [
+      {
+        "date": "2026-08-05",
+        "actual": 1.76,
+        "forecast_p50": 1.37,
+        "forecast_p5": -0.45,
+        "forecast_p95": 5.62,
+        "abs_error": 0.39
+      },
+      {
+        "date": "2026-08-06",
+        "actual": 2.24,
+        "forecast_p50": 1.37,
+        "forecast_p5": -0.45,
+        "forecast_p95": 5.62,
+        "abs_error": 0.87
+      },
+      {
+        "date": "2026-08-07",
+        "actual": 2.27,
+        "forecast_p50": 1.37,
+        "forecast_p5": -0.45,
+        "forecast_p95": 5.62,
+        "abs_error": 0.9
+      },
+      {
+        "date": "2026-08-08",
+        "actual": 6.68,
+        "forecast_p50": 1.37,
+        "forecast_p5": -0.45,
+        "forecast_p95": 5.62,
+        "abs_error": 5.31
+      },
+      {
+        "date": "2026-08-09",
+        "actual": 2.47,
+        "forecast_p50": 1.37,
+        "forecast_p5": -0.45,
+        "forecast_p95": 5.62,
+        "abs_error": 1.1
+      },
+      {
+        "date": "2026-08-10",
+        "actual": 2.34,
+        "forecast_p50": 1.37,
+        "forecast_p5": -0.45,
+        "forecast_p95": 5.62,
+        "abs_error": 0.97
+      },
+      {
+        "date": "2026-08-11",
+        "actual": 1.7,
+        "forecast_p50": 1.37,
+        "forecast_p5": -0.45,
+        "forecast_p95": 5.62,
+        "abs_error": 0.33
+      },
+      {
+        "date": "2026-08-12",
+        "actual": 2.28,
+        "forecast_p50": 1.46,
+        "forecast_p5": -0.42,
+        "forecast_p95": 5.64,
+        "abs_error": 0.82
+      },
+      {
+        "date": "2026-08-13",
+        "actual": 2.21,
+        "forecast_p50": 1.55,
+        "forecast_p5": -0.39,
+        "forecast_p95": 5.66,
+        "abs_error": 0.66
+      },
+      {
+        "date": "2026-08-14",
+        "actual": 2.15,
+        "forecast_p50": 1.64,
+        "forecast_p5": -0.36,
+        "forecast_p95": 5.68,
+        "abs_error": 0.51
+      },
+      {
+        "date": "2026-08-15",
+        "actual": 9.19,
+        "forecast_p50": 1.74,
+        "forecast_p5": -0.33,
+        "forecast_p95": 5.69,
+        "abs_error": 7.46
+      },
+      {
+        "date": "2026-08-16",
+        "actual": 1.97,
+        "forecast_p50": 1.83,
+        "forecast_p5": -0.3,
+        "forecast_p95": 5.71,
+        "abs_error": 0.14
+      },
+      {
+        "date": "2026-08-17",
+        "actual": 1.44,
+        "forecast_p50": 1.92,
+        "forecast_p5": -0.28,
+        "forecast_p95": 5.73,
+        "abs_error": 0.48
+      },
+      {
+        "date": "2026-08-18",
+        "actual": 1.46,
+        "forecast_p50": 2.01,
+        "forecast_p5": -0.25,
+        "forecast_p95": 5.75,
+        "abs_error": 0.55
+      },
+      {
+        "date": "2026-08-19",
+        "actual": 0.82,
+        "forecast_p50": 2.11,
+        "forecast_p5": -0.22,
+        "forecast_p95": 5.77,
+        "abs_error": 1.29
+      },
+      {
+        "date": "2026-08-20",
+        "actual": 0.96,
+        "forecast_p50": 2.2,
+        "forecast_p5": -0.19,
+        "forecast_p95": 5.79,
+        "abs_error": 1.24
+      }
+    ]
+  },
+  "host_cpu_usage|10_78_33_83": {
+    "host": "JPRUPIWEBCRP02 (10.78.33.83)",
+    "target_node": "host_cpu_usage|10_78_33_83",
+    "start_date": "2026-08-05",
+    "end_date": "2026-08-20",
+    "mae": 4.7623,
+    "rmse": 4.9223,
+    "coverage_pct": 93.75,
+    "daily_comparison": [
+      {
+        "date": "2026-08-05",
+        "actual": 4.01,
+        "forecast_p50": -0.5,
+        "forecast_p5": -3.14,
+        "forecast_p95": 7.37,
+        "abs_error": 4.51
+      },
+      {
+        "date": "2026-08-06",
+        "actual": 3.88,
+        "forecast_p50": -0.5,
+        "forecast_p5": -3.14,
+        "forecast_p95": 7.37,
+        "abs_error": 4.38
+      },
+      {
+        "date": "2026-08-07",
+        "actual": 4.17,
+        "forecast_p50": -0.5,
+        "forecast_p5": -3.14,
+        "forecast_p95": 7.37,
+        "abs_error": 4.67
+      },
+      {
+        "date": "2026-08-08",
+        "actual": 7.03,
+        "forecast_p50": -0.5,
+        "forecast_p5": -3.14,
+        "forecast_p95": 7.37,
+        "abs_error": 7.53
+      },
+      {
+        "date": "2026-08-09",
+        "actual": 4.46,
+        "forecast_p50": -0.5,
+        "forecast_p5": -3.14,
+        "forecast_p95": 7.37,
+        "abs_error": 4.96
+      },
+      {
+        "date": "2026-08-10",
+        "actual": 4.14,
+        "forecast_p50": -0.5,
+        "forecast_p5": -3.14,
+        "forecast_p95": 7.37,
+        "abs_error": 4.64
+      },
+      {
+        "date": "2026-08-11",
+        "actual": 4.16,
+        "forecast_p50": -0.5,
+        "forecast_p5": -3.14,
+        "forecast_p95": 7.37,
+        "abs_error": 4.66
+      },
+      {
+        "date": "2026-08-12",
+        "actual": 4.19,
+        "forecast_p50": -0.36,
+        "forecast_p5": -3.1,
+        "forecast_p95": 7.39,
+        "abs_error": 4.55
+      },
+      {
+        "date": "2026-08-13",
+        "actual": 4.85,
+        "forecast_p50": -0.22,
+        "forecast_p5": -3.05,
+        "forecast_p95": 7.41,
+        "abs_error": 5.07
+      },
+      {
+        "date": "2026-08-14",
+        "actual": 4.33,
+        "forecast_p50": -0.08,
+        "forecast_p5": -3.01,
+        "forecast_p95": 7.42,
+        "abs_error": 4.41
+      },
+      {
+        "date": "2026-08-15",
+        "actual": 7.97,
+        "forecast_p50": 0.06,
+        "forecast_p5": -2.96,
+        "forecast_p95": 7.44,
+        "abs_error": 7.91
+      },
+      {
+        "date": "2026-08-16",
+        "actual": 4.5,
+        "forecast_p50": 0.2,
+        "forecast_p5": -2.92,
+        "forecast_p95": 7.45,
+        "abs_error": 4.3
+      },
+      {
+        "date": "2026-08-17",
+        "actual": 4.61,
+        "forecast_p50": 0.34,
+        "forecast_p5": -2.87,
+        "forecast_p95": 7.47,
+        "abs_error": 4.27
+      },
+      {
+        "date": "2026-08-18",
+        "actual": 4.77,
+        "forecast_p50": 0.48,
+        "forecast_p5": -2.82,
+        "forecast_p95": 7.49,
+        "abs_error": 4.29
+      },
+      {
+        "date": "2026-08-19",
+        "actual": 3.59,
+        "forecast_p50": 0.62,
+        "forecast_p5": -2.78,
+        "forecast_p95": 7.5,
+        "abs_error": 2.97
+      },
+      {
+        "date": "2026-08-20",
+        "actual": 3.84,
+        "forecast_p50": 0.76,
+        "forecast_p5": -2.73,
+        "forecast_p95": 7.52,
+        "abs_error": 3.08
+      }
+    ]
+  }
+}

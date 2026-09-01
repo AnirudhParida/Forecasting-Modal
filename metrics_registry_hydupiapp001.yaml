@@ -1,0 +1,210 @@
+# Canonical metric registry for hydupiapp001 (10.51.1.103).
+# Target: CPU Usage %  |  All others: intermediate/driver nodes
+# Data source: /home/anirudh.parida@apmosys.mahape/Documents/upimetricdata/
+metrics:
+
+  # ── TARGET ──────────────────────────────────────────────────────────────────
+  - key: host_cpu_usage
+    selector: builtin:host.cpu.usage
+    entity_type: HOST
+    split_by: ""
+    agg: avg
+    role: target
+    resource: cpu
+    transform: none
+    unit: percent
+    # Values in file stored as 0-1 ratio (max=0.333) -> ingest will x100
+    aliases: ["CPU Usage %"]
+
+  # ── CPU DRIVERS ─────────────────────────────────────────────────────────────
+  - key: host_cpu_iowait
+    selector: builtin:host.cpu.iowait
+    entity_type: HOST
+    split_by: ""
+    agg: avg
+    role: intermediate
+    resource: cpu
+    transform: none
+    unit: percent
+    # Values stored as "0.01%" strings -> parse_val strips %
+    aliases: ["CPU I_O wait "]
+
+  - key: host_cpu_system
+    selector: builtin:host.cpu.system
+    entity_type: HOST
+    split_by: ""
+    agg: avg
+    role: intermediate
+    resource: cpu
+    transform: none
+    unit: percent
+    # Values stored as "0.57%" strings -> parse_val strips %
+    aliases: ["CPU system "]
+
+  - key: host_cpu_usage_lagged
+    selector: builtin:host.cpu.usage.lagged
+    entity_type: HOST
+    split_by: ""
+    agg: avg
+    role: intermediate
+    resource: cpu
+    transform: none
+    unit: percent
+    # User.xlsx: "CPU usage % +7" sheet -- a +7-day shifted CPU signal
+    # Values stored as 0-1 ratio (max=0.272) -> ingest will x100
+    aliases: ["User"]
+
+  # ── DISK ────────────────────────────────────────────────────────────────────
+  - key: host_disk_queue
+    selector: builtin:host.disk.queueLength
+    entity_type: HOST
+    split_by: ""
+    agg: avg
+    role: intermediate
+    resource: disk
+    transform: none
+    unit: count
+    aliases: ["Disk average queue length "]
+
+  - key: host_disk_read_bytes
+    selector: builtin:host.disk.bytesRead
+    entity_type: HOST
+    split_by: ""
+    agg: avg
+    role: intermediate
+    resource: disk
+    transform: log1p
+    unit: byte
+    # Values stored with unit suffixes: "73.6B", "3.09MB", "233kB"
+    aliases: ["Disk bytes read"]
+
+  - key: host_disk_read_time
+    selector: builtin:host.disk.readTime
+    entity_type: HOST
+    split_by: ""
+    agg: avg
+    role: intermediate
+    resource: disk
+    transform: log1p
+    unit: ms
+    # Values stored with unit suffixes: "928us", "1.8ms" -> all normalised to ms
+    aliases: ["Disk read time "]
+
+  - key: host_disk_write_time
+    selector: builtin:host.disk.writeTime
+    entity_type: HOST
+    split_by: ""
+    agg: avg
+    role: intermediate
+    resource: disk
+    transform: log1p
+    unit: ms
+    # Values stored with unit suffixes: "4.89ms", "3.16ms"
+    aliases: ["Disk write time "]
+
+  # ── MEMORY ──────────────────────────────────────────────────────────────────
+  - key: host_mem_swap_used
+    selector: builtin:host.mem.swapUsed
+    entity_type: HOST
+    split_by: ""
+    agg: avg
+    role: intermediate
+    resource: memory
+    transform: log1p
+    unit: byte
+    # Values stored with unit suffix: "1.09GB", "1.04GB"
+    aliases: ["Memory Swap Used"]
+
+  # ── NETWORK ─────────────────────────────────────────────────────────────────
+  - key: host_net_rx_bytes
+    selector: builtin:host.net.nic.bytesRx
+    entity_type: HOST
+    split_by: ""
+    agg: sum
+    role: intermediate
+    resource: network
+    transform: log1p
+    unit: byte
+    # Values: "5.81kiB", "13.9kiB"
+    aliases: ["NIC bytes received"]
+
+  - key: host_net_tx_bytes
+    selector: builtin:host.net.nic.bytesTx
+    entity_type: HOST
+    split_by: ""
+    agg: sum
+    role: intermediate
+    resource: network
+    transform: log1p
+    unit: byte
+    # Values: "4.86kiB", "202kiB"
+    aliases: ["NIC bytes sent on host"]
+
+  - key: host_net_rx_packets
+    selector: builtin:host.net.nic.packetsRx
+    entity_type: HOST
+    split_by: ""
+    agg: sum
+    role: intermediate
+    resource: network
+    transform: log1p
+    unit: count
+    aliases: ["NIC packets received"]
+
+  - key: host_net_tx_packets
+    selector: builtin:host.net.nic.packetsTx
+    entity_type: HOST
+    split_by: ""
+    agg: sum
+    role: intermediate
+    resource: network
+    transform: log1p
+    unit: count
+    aliases: ["NIC packets sent"]
+
+  # ── HOST AVAILABILITY ───────────────────────────────────────────────────────
+  - key: host_availability
+    selector: builtin:host.availability
+    entity_type: HOST
+    split_by: ""
+    agg: avg
+    role: intermediate
+    resource: system
+    transform: none
+    unit: count
+    # Values: "4.32k" -> parse_val gives 4320.0
+    aliases: ["Host availability"]
+
+  # ── SESSION METRICS ─────────────────────────────────────────────────────────
+  - key: host_sessions_new
+    selector: builtin:host.sessions.new
+    entity_type: HOST
+    split_by: ""
+    agg: sum
+    role: intermediate
+    resource: service
+    transform: log1p
+    unit: count
+    aliases: ["New session received"]
+
+  - key: host_sessions_reset
+    selector: builtin:host.sessions.reset
+    entity_type: HOST
+    split_by: ""
+    agg: sum
+    role: intermediate
+    resource: service
+    transform: log1p
+    unit: count
+    aliases: ["Session reset received"]
+
+  - key: host_sessions_timeout
+    selector: builtin:host.sessions.timeout
+    entity_type: HOST
+    split_by: ""
+    agg: sum
+    role: intermediate
+    resource: service
+    transform: log1p
+    unit: count
+    aliases: ["Session timeout received"]

@@ -144,6 +144,34 @@ def cmd_backfill(args, cfg) -> int:
     return 0
 
 
+# ------------------------------------------------------------------ ingest-upi
+def cmd_ingest_upi(args, cfg) -> int:
+    from .ingest.upi_csv_ingest import ingest_upi_directory
+    from pathlib import Path
+
+    registry = _registry(cfg)
+    data_dir = Path(args.data_dir)
+    raw_dir = cfg.raw_dir
+    grid = args.grid
+
+    # Support comma-separated hosts for multi-host shared model
+    hosts_raw = args.host
+    hosts = [h.strip() for h in hosts_raw.split(",") if h.strip()]
+    host_arg = hosts if len(hosts) > 1 else hosts[0]
+
+    print(f"Ingesting UPI CSV/XLSX metrics from {data_dir}")
+    if isinstance(host_arg, list):
+        print(f"  Hosts ({len(host_arg)}): {', '.join(host_arg)}")
+        print(f"  Mode: MULTI-HOST (each host gets its own node_id: metric__HOSTNAME)")
+    else:
+        print(f"  Host: {host_arg}")
+        print(f"  Mode: SINGLE-HOST")
+
+    written = ingest_upi_directory(data_dir, registry, raw_dir, host_arg, grid)
+    print(f"Ingestion complete: {written:,} rows written to store at {raw_dir}")
+    return 0
+
+
 # -------------------------------------------------------------------- status
 def cmd_status(args, cfg) -> int:
     from .ingest.store import coverage
@@ -176,6 +204,7 @@ def _build_panel(cfg, grid_name: str, long_df=None):
         min_coverage=cfg.raw.get("min_coverage", 0.20),
         min_tail_coverage=cfg.raw.get("min_tail_coverage", 0.60),
         min_observed_steps=cfg.raw.get("min_observed_steps", 90),
+        min_nonzero_fraction=cfg.raw.get("min_nonzero_fraction", 0.0),
         long_df=long_df,
     )
 
@@ -419,6 +448,15 @@ def build_parser() -> argparse.ArgumentParser:
     ch.add_argument("--grid", default=None,
                     help="grid to visualise (default: forecast.grid from config)")
 
+    ing = sub.add_parser("ingest-upi", help="ingest local UPI CSV/XLSX metrics")
+    ing.add_argument("--data-dir", required=True, help="directory path containing the metrics files")
+    ing.add_argument(
+        "--host", required=True,
+        help="host identifier(s) to filter columns. Single host: '10.51.1.103'. "
+             "Multi-host shared model: '10.50.98.26,10.78.33.83' (comma-separated)."
+    )
+    ing.add_argument("--grid", default="coarse", choices=["fine", "coarse"])
+
     return p
 
 
@@ -427,6 +465,7 @@ COMMANDS = {
     "topology":  cmd_topology,
     "validate":  cmd_validate,
     "backfill":  cmd_backfill,
+    "ingest-upi": cmd_ingest_upi,
     "status":    cmd_status,
     "panel":     cmd_panel,
     "graph":     cmd_graph,

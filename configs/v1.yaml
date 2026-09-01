@@ -36,7 +36,8 @@ grids:
 
 # Drop a node from the panel if fewer than this fraction of its buckets were
 # ever observed. Dropped nodes are logged by name, never removed silently.
-min_coverage: 0.40   # raised from 0.20; drops nodes with >60% gaps on the coarse grid
+min_coverage: 0.50   # raised from 0.40; drops standby disks (41% coverage) and other low-quality nodes
+min_nonzero_fraction: 0.05 # drop metrics where more than 95% of values are zero (e.g. idle write IOPS/throughput)
 
 # A node below min_coverage is still kept when it is short-history rather than
 # gappy: coverage since its first observation >= min_tail_coverage, with at
@@ -54,38 +55,37 @@ season_steps:
 
 forecast:
   grid: coarse
-  input_steps: 56        # was 90 — 8 weeks of context. With only ~400 daily
-                         # steps, every input day traded away buys extra
-                         # training windows (221 -> 255) and reduces overlap
-                         # between them; the TCN's receptive field needs far
-                         # less than 90 anyway.
+  input_steps: 90        # increased from 56 — full seasonal cycle (90 days) gives the model
+                         # enough context to see weekly + monthly patterns at once.
+                         # Tradeoff: ~20 fewer training windows, offset by richer context.
   horizons: [7, 30, 60, 90]
-  quantiles: [0.1, 0.5, 0.9]
+  quantiles: [0.05, 0.5, 0.95]
 
 graph:
   grid: coarse          # lags discovered on the daily grid (used as forecaster prior)
-  max_lag_steps: 14     # 14 x 1d = 2 weeks of lag search
-  xcorr_threshold: 0.30
+  max_lag_steps: 21     # increased from 14 — 21 x 1d = 3 weeks; captures slower memory/JVM lags
+  xcorr_threshold: 0.20 # lowered from 0.30 — richer prior; improves neural graph initialization
   granger_alpha: 0.05
   mi_threshold: 0.05
-  top_k: 8               # max incoming edges retained per node
+  top_k: 12              # increased from 8 — more prior edges per node for the neural graph to learn from
   min_overlap: 60        # min overlapping non-null samples to score a pair
 
 model:
-  hidden: 32            # back from 64 — the 400-step backtest peaked at val
-                        # epoch 3-6 then overfitted monotonically; the capacity
-                        # increase solved a problem the data does not have
-  blocks: 2             # back from 3, same evidence
+  hidden: 32            # stepped back from 48 — with ~230 windows and 9 targets,
+                        # 48/3 overfits immediately (best_epoch=3). 32/2 peaked at
+                        # epoch 14 in Run 1 which is the right capacity for this data.
+  blocks: 2             # stepped back from 3, same evidence
   kernel_size: 3
   dropout: 0.3          # was 0.2 — tiny, heavily overlapping window set
   node_embed_dim: 16
+  top_k: 12             # max incoming edges kept per node in the STGNN learned adjacency
   graph_prior_weight: 0.5    # was 0.1 — stronger prior pull → higher precision vs statistical map
-  graph_sparsity_weight: 0.01
+  graph_sparsity_weight: 0.05
   lr: 5.0e-4
-  weight_decay: 0.001   # was 1e-4 — see dropout note
+  weight_decay: 0.005   # was 1e-4 — see dropout note
   epochs: 200
   batch_size: 16
-  patience: 15          # was 40 — best val arrives by epoch ~6; 40 stale epochs
-                        # after the peak is pure wasted compute
+  patience: 20          # increased from 15 — compensates for fewer windows from longer input_steps;
+                        # allows the model more time to converge on the richer context
   input_noise: 0.1      # gaussian jitter on the value channel during training
   seed: 42

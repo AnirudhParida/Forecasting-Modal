@@ -118,6 +118,7 @@ def build_panel(
     long_df: pd.DataFrame | None = None,
     min_tail_coverage: float = 0.60,
     min_observed_steps: int = 90,
+    min_nonzero_fraction: float = 0.0,
 ) -> Panel:
     """Build a panel for `grid`.
 
@@ -186,14 +187,22 @@ def build_panel(
 
     keep, rescued = [], []
     for nid in resampled.columns:
-        if coverage[nid] >= min_coverage:
-            keep.append(nid)
-        elif (
-            tail_coverage[nid] >= min_tail_coverage
-            and observed_steps[nid] >= min_observed_steps
-        ):
-            keep.append(nid)
-            rescued.append(nid)
+        is_active = True
+        if min_nonzero_fraction > 0.0:
+            col = resampled[nid].dropna()
+            nonzero_frac = (col.abs() > 1e-9).mean() if len(col) > 0 else 0.0
+            if nonzero_frac < min_nonzero_fraction:
+                is_active = False
+
+        if is_active:
+            if coverage[nid] >= min_coverage:
+                keep.append(nid)
+            elif (
+                tail_coverage[nid] >= min_tail_coverage
+                and observed_steps[nid] >= min_observed_steps
+            ):
+                keep.append(nid)
+                rescued.append(nid)
 
     dropped = sorted(set(resampled.columns) - set(keep))
     if rescued:

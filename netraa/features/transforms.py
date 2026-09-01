@@ -104,6 +104,125 @@ class RobustScaler:
         return cls(center=d["center"], scale=d["scale"])
 
 
+# --------------------------------------------------------------- trend removal
+@dataclass
+class LinearDetrend:
+    """Per-column linear trend removal, fitted on the training slice only.
+
+    Fitting is restricted to the training portion to prevent future information
+    from leaking into the scaler's center/scale. For stationary metrics the
+    fitted slope is near-zero (safe no-op). For monotonically growing metrics
+    (JVM heap bytes, memory usage during a long ramp-up) the subtracted trend
+    makes the residuals stationary, which dramatically improves both the
+    RobustScaler's IQR estimate and the model's ability to extrapolate.
+
+    Usage
+    -----
+        detrend = LinearDetrend.fit(df, train_end=280)
+        df_flat  = detrend.transform(df)
+        scaler   = RobustScaler.fit(df_flat.iloc[:280])
+        ...
+        # At inference — add trend back to model output
+        actuals  = detrend.inverse_transform_array(pred_arr, cols, t_start, horizons)
+    """
+
+    slopes: dict[str, float]      # units-per-timestep, per column
+    intercepts: dict[str, float]  # value at t=0, per column (training mean line)
+
+    @classmethod
+    def fit(cls, df: pd.DataFrame, train_end: int) -> "LinearDetrend":
+        """Fit linear slope on the first `train_end` rows per column."""
+        slopes, intercepts = {}, {}
+        t_all = np.arange(len(df), dtype=float)
+
+        for col in df.columns:
+            train_series = df[col].iloc[:train_end]
+            valid_mask   = train_series.notna().values
+            n_valid      = int(valid_mask.sum())
+
+            if n_valid < 10:
+                # Not enough data to fit a meaningful trend — no-op
+                slopes[col], intercepts[col] = 0.0, 0.0
+                continue
+
+            t_valid = t_all[:train_end][valid_mask]
+            y_valid = train_series.values[valid_mask]
+
+            # OLS: slope and intercept
+            slope, intercept = np.polyfit(t_valid, y_valid, 1)
+
+            # Sanity guard: if the slope × full panel length is more than 3× the
+            # observed training range, the trend is almost certainly an anomaly
+            # (e.g. a memory metric that Dynatrace reported as 0%→430% due to a
+            # bad agent baseline). A genuine long-term trend should be proportionate
+            # to the historical spread — an extreme slope would corrupt the scaler
+            # center/IQR and produce physically impossible extrapolations at inference.
+            train_range = float(y_valid.max() - y_valid.min()) if len(y_valid) > 1 else 0.0
+            extrapolated_swing = abs(slope) * len(df)
+            if train_range > 1e-9 and extrapolated_swing > 3.0 * train_range:
+                # Anomalous slope — fall back to a zero slope at the training mean
+                slope     = 0.0
+                intercept = float(np.median(y_valid))
+
+            slopes[col]     = float(slope)
+            intercepts[col] = float(intercept)
+
+        return cls(slopes=slopes, intercepts=intercepts)
+
+    def transform(self, df: pd.DataFrame) -> pd.DataFrame:
+        """Subtract fitted linear trend from every column."""
+        out = df.copy()
+        t   = np.arange(len(df), dtype=float)
+
+        for col in out.columns:
+            s = self.slopes.get(col, 0.0)
+            b = self.intercepts.get(col, 0.0)
+            if abs(s) > 1e-12 or abs(b) > 1e-12:
+                out[col] = out[col] - (s * t + b)
+        return out
+
+    def inverse_transform_array(
+        self,
+        arr: np.ndarray,
+        columns: list[str],
+        panel_end_step: int,
+        horizons: list[int],
+    ) -> np.ndarray:
+        """Re-add the trend to a forecast array.
+
+        Parameters
+        ----------
+        arr             : (..., N_cols, H) predicted values (de-trended + scaled)
+        columns         : list of column names matching N_cols axis
+        panel_end_step  : the absolute time-step index at which the panel ends
+                          (i.e. the last input day; t=0 is the panel start)
+        horizons        : list of horizon offsets (e.g. [7, 30, 60, 90])
+        """
+        result = arr.copy()
+        h_arr  = np.array(horizons, dtype=float)
+        for i, col in enumerate(columns):
+            s = self.slopes.get(col, 0.0)
+            b = self.intercepts.get(col, 0.0)
+            if abs(s) < 1e-12 and abs(b) < 1e-12:
+                continue
+            # t for each horizon: panel_end_step + h
+            t_forecast = panel_end_step + h_arr           # shape (H,)
+            trend_vals = s * t_forecast + b               # shape (H,)
+            result[..., i, :] += trend_vals
+        return result
+
+    def save(self, path: Path) -> None:
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text(
+            json.dumps({"slopes": self.slopes, "intercepts": self.intercepts}, indent=2)
+        )
+
+    @classmethod
+    def load(cls, path: Path) -> "LinearDetrend":
+        d = json.loads(Path(path).read_text())
+        return cls(slopes=d["slopes"], intercepts=d["intercepts"])
+
+
 # ---------------------------------------------------------------- calendar
 def calendar_features(index: pd.DatetimeIndex, freq_seconds: int) -> np.ndarray:
     """Cyclical time encodings, shaped (T, C).

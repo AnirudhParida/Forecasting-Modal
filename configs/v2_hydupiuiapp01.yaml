@@ -1,0 +1,67 @@
+# Configuration for hydupiuiapp01 forecasting model.
+# Using offline CSV/XLSX metrics.
+# Scoped purely to HOST.
+
+base_url: ""
+registry: metrics_registry_hydupiuiapp01.yaml
+data_dir: data_hydupiuiapp01
+artifacts_dir: artifacts_hydupiuiapp01
+
+scope:
+  host_id: "hydupiuiapp01"
+  service_id: ""
+
+grids:
+  fine:
+    resolution: 1m
+    pandas_freq: 1min
+    lookback_days: 7
+    purpose: dependency_map
+
+  coarse:
+    resolution: 1d
+    pandas_freq: 1D
+    lookback_days: 400
+    purpose: forecast
+
+# Relaxed coverage criteria for daily metrics (especially Host availability which has 122/366 points)
+min_coverage: 0.30
+min_nonzero_fraction: 0.0
+min_tail_coverage: 0.30
+min_observed_steps: 30
+
+season_steps:
+  coarse: 7
+  fine: 1440
+
+forecast:
+  grid: coarse
+  input_steps: 90
+  horizons: [7, 30, 60, 90]
+  quantiles: [0.05, 0.5, 0.95]
+
+graph:
+  grid: coarse
+  max_lag_steps: 14
+  xcorr_threshold: 0.20
+  granger_alpha: 0.05
+  mi_threshold: 0.05
+  top_k: 8
+  min_overlap: 30
+
+model:
+  hidden: 32
+  blocks: 2
+  kernel_size: 3
+  dropout: 0.3
+  node_embed_dim: 16
+  top_k: 8
+  graph_prior_weight: 0.5
+  graph_sparsity_weight: 0.05
+  lr: 5.0e-4
+  weight_decay: 0.005
+  epochs: 200
+  batch_size: 16
+  patience: 20
+  input_noise: 0.1
+  seed: 42

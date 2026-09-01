@@ -1,0 +1,76 @@
+# Configuration for hydupiapp001 (10.51.1.103) forecasting model.
+# Uses offline CSV/XLSX metrics from upimetricdata directory.
+# Scoped purely to HOST. Target: CPU Usage %.
+# This host has richer data than hydupiuiapp01:
+#   - Additional disk metrics (queue, read bytes, read time, write time)
+#   - Memory swap
+#   - CPU system + lagged CPU (+7d user signal)
+#   - Session metrics (new/reset/timeout)
+# Total feature nodes: 16 (1 target + 15 intermediate)
+
+base_url: ""
+registry: metrics_registry_hydupiapp001.yaml
+data_dir: data_hydupiapp001
+artifacts_dir: artifacts_hydupiapp001
+
+scope:
+  host_id: "hydupiapp001"
+  service_id: ""
+
+grids:
+  fine:
+    resolution: 1m
+    pandas_freq: 1min
+    lookback_days: 7
+    purpose: dependency_map
+
+  coarse:
+    resolution: 1d
+    pandas_freq: 1D
+    lookback_days: 400
+    purpose: forecast
+
+# Coverage thresholds:
+# - Most metrics (CPU, NIC, sessions, memory, disk bytes) have 366 daily rows -> good coverage
+# - Host availability + disk queue/read/write time have only 122 rows (~33% of 366)
+# - Relaxed to 0.30 to accept all available metrics
+min_coverage: 0.30
+min_nonzero_fraction: 0.0
+min_tail_coverage: 0.30
+min_observed_steps: 30
+
+season_steps:
+  coarse: 7
+  fine: 1440
+
+forecast:
+  grid: coarse
+  input_steps: 90
+  horizons: [7, 30, 60, 90]
+  quantiles: [0.05, 0.5, 0.95]
+
+graph:
+  grid: coarse
+  max_lag_steps: 14
+  xcorr_threshold: 0.20
+  granger_alpha: 0.05
+  mi_threshold: 0.05
+  top_k: 10
+  min_overlap: 30
+
+model:
+  hidden: 48
+  blocks: 3
+  kernel_size: 3
+  dropout: 0.3
+  node_embed_dim: 16
+  top_k: 10
+  graph_prior_weight: 0.5
+  graph_sparsity_weight: 0.05
+  lr: 5.0e-4
+  weight_decay: 0.005
+  epochs: 200
+  batch_size: 16
+  patience: 20
+  input_noise: 0.1
+  seed: 42

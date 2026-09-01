@@ -15,6 +15,7 @@ import pandas as pd
 
 from ..features.panel import Panel
 from ..features.transforms import (
+    LinearDetrend,
     RobustScaler,
     apply_node_transforms,
     calendar_features,
@@ -34,6 +35,7 @@ class Dataset:
     target_ids: list[str]
     target_idx: list[int]
     scaler: RobustScaler
+    detrend: LinearDetrend          # linear trend removed before scaling; needed at inference
     horizons: list[int]
     input_steps: int
     index: pd.DatetimeIndex
@@ -97,8 +99,13 @@ def prepare(
 
     # Last timestep any training window can see or predict.
     train_end = int(tr[-1] + input_steps + max_h) if len(tr) else input_steps
-    scaler = RobustScaler.fit(panel.values.iloc[:train_end])
-    scaled = scaler.transform(panel.values)
+    # Fit and apply trend removal *before* the scaler so the scaler's
+    # center/IQR describes the stationary residuals, not the raw trending series.
+    detrend = LinearDetrend.fit(panel.values, train_end)
+    detrended_values = detrend.transform(panel.values)
+
+    scaler = RobustScaler.fit(detrended_values.iloc[:train_end])
+    scaled = scaler.transform(detrended_values)
 
     values = scaled.to_numpy(dtype="float32")
     mask = panel.mask.to_numpy(dtype="float32")
@@ -118,6 +125,7 @@ def prepare(
         target_ids=target_ids,
         target_idx=target_idx,
         scaler=scaler,
+        detrend=detrend,
         horizons=horizons,
         input_steps=input_steps,
         index=panel.values.index,

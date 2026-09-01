@@ -1,0 +1,37 @@
+{
+  "tag": "stgnn",
+  "use_graph": true,
+  "best_epoch": 17,
+  "best_val_loss": 0.20693690329790115,
+  "node_ids": [
+    "host_availability",
+    "host_cpu_iowait",
+    "host_cpu_usage",
+    "host_net_rx_bytes",
+    "host_net_rx_dropped",
+    "host_net_rx_errors",
+    "host_net_rx_packets",
+    "host_net_tx_bytes",
+    "host_net_tx_dropped",
+    "host_net_tx_errors",
+    "host_net_tx_packets",
+    "host_sessions_new",
+    "host_sessions_reset"
+  ],
+  "target_ids": [
+    "host_cpu_usage"
+  ],
+  "horizons": [
+    7,
+    30,
+    60,
+    90
+  ],
+  "quantiles": [
+    0.05,
+    0.5,
+    0.95
+  ],
+  "input_steps": 90,
+  "n_channels": 8
+}

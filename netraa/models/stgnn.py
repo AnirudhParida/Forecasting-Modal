@@ -185,19 +185,32 @@ def masked_quantile_loss(
     target: torch.Tensor,    # (B, N_target, H)
     mask: torch.Tensor,      # (B, N_target, H)
     quantiles: list[float],
+    target_weights: torch.Tensor | None = None,  # (N_target,) per-target weight multipliers
 ) -> torch.Tensor:
     """Pinball loss, masked so gaps contribute no gradient.
 
     Filling gaps with zero and taking plain MAE would teach the model that
     unobserved means idle. The mask is the reason the panel keeps missingness
     explicit instead of imputing it away.
+
+    ``target_weights`` upweights operationally critical targets (CPU, memory)
+    so the model spends proportionally more gradient budget on them. A weight of
+    3.0 on CPU means a CPU prediction error contributes 3× more to the loss than
+    a disk prediction error of the same magnitude.  All other targets default to
+    1.0. The normalisation by ``mask.sum()`` already accounts for missing data;
+    the weights are applied *before* summation so the denominator is unaffected.
     """
     q = torch.tensor(quantiles, device=pred.device).view(1, 1, 1, -1)
     target = target.unsqueeze(-1)
     mask = mask.unsqueeze(-1)
 
     error = target - pred
-    loss = torch.maximum(q * error, (q - 1) * error) * mask
+    loss = torch.maximum(q * error, (q - 1) * error) * mask  # (B, N_target, H, Q)
+
+    if target_weights is not None:
+        # Broadcast: (N_target,) → (1, N_target, 1, 1)
+        w = target_weights.view(1, -1, 1, 1)
+        loss = loss * w
 
     denom = mask.sum() * len(quantiles)
     return loss.sum() / denom if denom > 0 else loss.sum() * 0.0
