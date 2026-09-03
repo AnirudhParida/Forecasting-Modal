@@ -90,7 +90,7 @@ metrics:
     entity_type: HOST
     split_by: ""
     agg: avg
-    role: intermediate
+    role: target
     resource: disk
     transform: none
     unit: percent
@@ -189,7 +189,7 @@ metrics:
     entity_type: HOST
     split_by: ""
     agg: avg
-    role: intermediate
+    role: target
     resource: memory
     transform: none
     unit: percent

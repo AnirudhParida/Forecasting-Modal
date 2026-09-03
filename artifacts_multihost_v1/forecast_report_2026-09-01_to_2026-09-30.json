@@ -1,0 +1,1968 @@
+{
+  "host_cpu_usage|10_50_98_26": {
+    "host": "HYDUPINTAPP16 (10.50.98.26)",
+    "target_node": "host_cpu_usage|10_50_98_26",
+    "models_evaluated": [
+      "stgnn_graph",
+      "stgnn_nograph"
+    ],
+    "metrics": {},
+    "explainability": {
+      "model_version": "ST-GNN (Graph Prior)",
+      "forecast": {
+        "p05_or_p10": 0.79,
+        "p50_median": 1.61,
+        "p95_or_p90": 4.65
+      },
+      "accuracy": {},
+      "baseline_30d_avg": 2.77,
+      "predicted_shift": -1.16,
+      "confidence_score": 90.4,
+      "risk_level": "LOW",
+      "summary": "CPU Usage (%) is predicted to average 1.61% (P50) over the forecast horizon (-1.16% vs 30d baseline avg 2.77%). Primary interdependency drivers: Disk Read Bytes/sec, Disk Read Ops/sec, Disk Write Bytes/sec.",
+      "top_contributing_drivers": [
+        {
+          "metric": "Disk Read Bytes/sec",
+          "source_node": "host_disk_read_bytes_sec|10_50_98_26",
+          "impact": "+24%",
+          "direction": "+",
+          "strength": 0.83,
+          "lag": "0m"
+        },
+        {
+          "metric": "Disk Read Ops/sec",
+          "source_node": "host_disk_read_ops_sec|10_50_98_26",
+          "impact": "+23%",
+          "direction": "+",
+          "strength": 0.801,
+          "lag": "0m"
+        },
+        {
+          "metric": "Disk Write Bytes/sec",
+          "source_node": "host_disk_write_bytes_sec|10_50_98_26",
+          "impact": "+19%",
+          "direction": "+",
+          "strength": 0.651,
+          "lag": "0m"
+        },
+        {
+          "metric": "Memory Available",
+          "source_node": "host_mem_available|10_50_98_26",
+          "impact": "-17%",
+          "direction": "-",
+          "strength": 0.581,
+          "lag": "0m"
+        },
+        {
+          "metric": "Memory Available (%)",
+          "source_node": "host_mem_avail_pct|10_50_98_26",
+          "impact": "-17%",
+          "direction": "-",
+          "strength": 0.579,
+          "lag": "0m"
+        }
+      ]
+    },
+    "daily_comparison": [
+      {
+        "date": "2026-09-01",
+        "actual": null,
+        "stgnn_graph_p50": 1.66,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 1.59,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-02",
+        "actual": null,
+        "stgnn_graph_p50": 1.66,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 1.59,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-03",
+        "actual": null,
+        "stgnn_graph_p50": 1.66,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 1.59,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-04",
+        "actual": null,
+        "stgnn_graph_p50": 1.66,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 1.59,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-05",
+        "actual": null,
+        "stgnn_graph_p50": 1.66,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 1.59,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-06",
+        "actual": null,
+        "stgnn_graph_p50": 1.66,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 1.59,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-07",
+        "actual": null,
+        "stgnn_graph_p50": 1.66,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 1.59,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-08",
+        "actual": null,
+        "stgnn_graph_p50": 1.66,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 1.62,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-09",
+        "actual": null,
+        "stgnn_graph_p50": 1.66,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 1.65,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-10",
+        "actual": null,
+        "stgnn_graph_p50": 1.66,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 1.67,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-11",
+        "actual": null,
+        "stgnn_graph_p50": 1.65,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 1.7,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-12",
+        "actual": null,
+        "stgnn_graph_p50": 1.65,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 1.72,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-13",
+        "actual": null,
+        "stgnn_graph_p50": 1.65,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 1.75,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-14",
+        "actual": null,
+        "stgnn_graph_p50": 1.65,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 1.78,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-15",
+        "actual": null,
+        "stgnn_graph_p50": 1.64,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 1.8,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-16",
+        "actual": null,
+        "stgnn_graph_p50": 1.64,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 1.83,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-17",
+        "actual": null,
+        "stgnn_graph_p50": 1.64,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 1.85,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-18",
+        "actual": null,
+        "stgnn_graph_p50": 1.64,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 1.88,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-19",
+        "actual": null,
+        "stgnn_graph_p50": 1.63,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 1.91,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-20",
+        "actual": null,
+        "stgnn_graph_p50": 1.63,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 1.93,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-21",
+        "actual": null,
+        "stgnn_graph_p50": 1.63,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 1.96,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-22",
+        "actual": null,
+        "stgnn_graph_p50": 1.63,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 1.98,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-23",
+        "actual": null,
+        "stgnn_graph_p50": 1.62,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 2.01,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-24",
+        "actual": null,
+        "stgnn_graph_p50": 1.62,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 2.04,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-25",
+        "actual": null,
+        "stgnn_graph_p50": 1.62,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 2.06,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-26",
+        "actual": null,
+        "stgnn_graph_p50": 1.62,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 2.09,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-27",
+        "actual": null,
+        "stgnn_graph_p50": 1.61,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 2.11,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-28",
+        "actual": null,
+        "stgnn_graph_p50": 1.61,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 2.14,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-29",
+        "actual": null,
+        "stgnn_graph_p50": 1.61,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 2.17,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-30",
+        "actual": null,
+        "stgnn_graph_p50": 1.61,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 2.19,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      }
+    ]
+  },
+  "host_cpu_usage|10_78_33_83": {
+    "host": "JPRUPIWEBCRP02 (10.78.33.83)",
+    "target_node": "host_cpu_usage|10_78_33_83",
+    "models_evaluated": [
+      "stgnn_graph",
+      "stgnn_nograph"
+    ],
+    "metrics": {},
+    "explainability": {
+      "model_version": "ST-GNN (Graph Prior)",
+      "forecast": {
+        "p05_or_p10": 1.72,
+        "p50_median": 2.54,
+        "p95_or_p90": 5.89
+      },
+      "accuracy": {},
+      "baseline_30d_avg": 3.99,
+      "predicted_shift": -1.46,
+      "confidence_score": 89.6,
+      "risk_level": "LOW",
+      "summary": "CPU Usage (%) is predicted to average 2.54% (P50) over the forecast horizon (-1.46% vs 30d baseline avg 3.99%). Primary interdependency drivers: Disk Read Bytes/sec, Disk Write Bytes/sec, Disk Read Ops/sec.",
+      "top_contributing_drivers": [
+        {
+          "metric": "Disk Read Bytes/sec",
+          "source_node": "host_disk_read_bytes_sec|10_78_33_83",
+          "impact": "+21%",
+          "direction": "+",
+          "strength": 0.8,
+          "lag": "0m"
+        },
+        {
+          "metric": "Disk Write Bytes/sec",
+          "source_node": "host_disk_write_bytes_sec|10_78_33_83",
+          "impact": "+20%",
+          "direction": "+",
+          "strength": 0.768,
+          "lag": "0m"
+        },
+        {
+          "metric": "Disk Read Ops/sec",
+          "source_node": "host_disk_read_ops_sec|10_78_33_83",
+          "impact": "+20%",
+          "direction": "+",
+          "strength": 0.768,
+          "lag": "0m"
+        },
+        {
+          "metric": "CPU I/O Wait",
+          "source_node": "host_cpu_iowait|10_78_33_83",
+          "impact": "+19%",
+          "direction": "+",
+          "strength": 0.726,
+          "lag": "0m"
+        },
+        {
+          "metric": "Memory Available",
+          "source_node": "host_mem_available|10_78_33_83",
+          "impact": "-18%",
+          "direction": "-",
+          "strength": 0.694,
+          "lag": "0m"
+        }
+      ]
+    },
+    "daily_comparison": [
+      {
+        "date": "2026-09-01",
+        "actual": null,
+        "stgnn_graph_p50": 1.66,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 3.69,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-02",
+        "actual": null,
+        "stgnn_graph_p50": 1.66,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 3.69,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-03",
+        "actual": null,
+        "stgnn_graph_p50": 1.66,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 3.69,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-04",
+        "actual": null,
+        "stgnn_graph_p50": 1.66,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 3.69,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-05",
+        "actual": null,
+        "stgnn_graph_p50": 1.66,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 3.69,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-06",
+        "actual": null,
+        "stgnn_graph_p50": 1.66,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 3.69,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-07",
+        "actual": null,
+        "stgnn_graph_p50": 1.66,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 3.69,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-08",
+        "actual": null,
+        "stgnn_graph_p50": 1.7,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 3.68,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-09",
+        "actual": null,
+        "stgnn_graph_p50": 1.74,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 3.67,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-10",
+        "actual": null,
+        "stgnn_graph_p50": 1.78,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 3.66,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-11",
+        "actual": null,
+        "stgnn_graph_p50": 1.82,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 3.65,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-12",
+        "actual": null,
+        "stgnn_graph_p50": 1.85,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 3.64,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-13",
+        "actual": null,
+        "stgnn_graph_p50": 1.89,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 3.63,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-14",
+        "actual": null,
+        "stgnn_graph_p50": 1.93,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 3.62,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-15",
+        "actual": null,
+        "stgnn_graph_p50": 1.97,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 3.61,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-16",
+        "actual": null,
+        "stgnn_graph_p50": 2.0,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 3.6,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-17",
+        "actual": null,
+        "stgnn_graph_p50": 2.04,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 3.59,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-18",
+        "actual": null,
+        "stgnn_graph_p50": 2.08,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 3.58,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-19",
+        "actual": null,
+        "stgnn_graph_p50": 2.12,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 3.57,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-20",
+        "actual": null,
+        "stgnn_graph_p50": 2.16,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 3.56,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-21",
+        "actual": null,
+        "stgnn_graph_p50": 2.19,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 3.55,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-22",
+        "actual": null,
+        "stgnn_graph_p50": 2.23,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 3.54,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-23",
+        "actual": null,
+        "stgnn_graph_p50": 2.27,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 3.53,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-24",
+        "actual": null,
+        "stgnn_graph_p50": 2.31,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 3.52,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-25",
+        "actual": null,
+        "stgnn_graph_p50": 2.35,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 3.51,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-26",
+        "actual": null,
+        "stgnn_graph_p50": 2.38,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 3.5,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-27",
+        "actual": null,
+        "stgnn_graph_p50": 2.42,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 3.49,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-28",
+        "actual": null,
+        "stgnn_graph_p50": 2.46,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 3.48,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-29",
+        "actual": null,
+        "stgnn_graph_p50": 2.5,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 3.47,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-30",
+        "actual": null,
+        "stgnn_graph_p50": 2.54,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 3.46,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      }
+    ]
+  },
+  "host_disk_avail_pct|10_50_98_26": {
+    "host": "HYDUPINTAPP16 (10.50.98.26)",
+    "target_node": "host_disk_avail_pct|10_50_98_26",
+    "models_evaluated": [
+      "stgnn_graph",
+      "stgnn_nograph"
+    ],
+    "metrics": {},
+    "explainability": {
+      "model_version": "ST-GNN (Graph Prior)",
+      "forecast": {
+        "p05_or_p10": 66.03,
+        "p50_median": 66.95,
+        "p95_or_p90": 71.05
+      },
+      "accuracy": {},
+      "baseline_30d_avg": 66.54,
+      "predicted_shift": 0.41,
+      "confidence_score": 87.5,
+      "risk_level": "LOW",
+      "summary": "Disk Available (%) is predicted to average 66.95% (P50) over the forecast horizon (+0.41% vs 30d baseline avg 66.54%). Primary interdependency drivers: Network RX Bytes, Session Resets.",
+      "top_contributing_drivers": [
+        {
+          "metric": "Network RX Bytes",
+          "source_node": "host_net_rx_bytes|10_50_98_26",
+          "impact": "-52%",
+          "direction": "-",
+          "strength": 0.362,
+          "lag": "14d"
+        },
+        {
+          "metric": "Session Resets",
+          "source_node": "host_sessions_reset|10_50_98_26",
+          "impact": "+48%",
+          "direction": "+",
+          "strength": 0.332,
+          "lag": "10d"
+        }
+      ]
+    },
+    "daily_comparison": [
+      {
+        "date": "2026-09-01",
+        "actual": null,
+        "stgnn_graph_p50": 66.91,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 66.05,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-02",
+        "actual": null,
+        "stgnn_graph_p50": 66.91,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 66.05,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-03",
+        "actual": null,
+        "stgnn_graph_p50": 66.91,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 66.05,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-04",
+        "actual": null,
+        "stgnn_graph_p50": 66.91,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 66.05,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-05",
+        "actual": null,
+        "stgnn_graph_p50": 66.91,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 66.05,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-06",
+        "actual": null,
+        "stgnn_graph_p50": 66.91,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 66.05,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-07",
+        "actual": null,
+        "stgnn_graph_p50": 66.91,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 66.05,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-08",
+        "actual": null,
+        "stgnn_graph_p50": 66.91,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 66.07,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-09",
+        "actual": null,
+        "stgnn_graph_p50": 66.91,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 66.09,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-10",
+        "actual": null,
+        "stgnn_graph_p50": 66.91,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 66.12,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-11",
+        "actual": null,
+        "stgnn_graph_p50": 66.91,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 66.14,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-12",
+        "actual": null,
+        "stgnn_graph_p50": 66.92,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 66.16,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-13",
+        "actual": null,
+        "stgnn_graph_p50": 66.92,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 66.19,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-14",
+        "actual": null,
+        "stgnn_graph_p50": 66.92,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 66.21,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-15",
+        "actual": null,
+        "stgnn_graph_p50": 66.92,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 66.23,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-16",
+        "actual": null,
+        "stgnn_graph_p50": 66.92,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 66.26,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-17",
+        "actual": null,
+        "stgnn_graph_p50": 66.92,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 66.28,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-18",
+        "actual": null,
+        "stgnn_graph_p50": 66.93,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 66.3,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-19",
+        "actual": null,
+        "stgnn_graph_p50": 66.93,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 66.33,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-20",
+        "actual": null,
+        "stgnn_graph_p50": 66.93,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 66.35,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-21",
+        "actual": null,
+        "stgnn_graph_p50": 66.93,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 66.37,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-22",
+        "actual": null,
+        "stgnn_graph_p50": 66.93,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 66.4,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-23",
+        "actual": null,
+        "stgnn_graph_p50": 66.93,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 66.42,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-24",
+        "actual": null,
+        "stgnn_graph_p50": 66.94,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 66.44,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-25",
+        "actual": null,
+        "stgnn_graph_p50": 66.94,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 66.47,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-26",
+        "actual": null,
+        "stgnn_graph_p50": 66.94,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 66.49,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-27",
+        "actual": null,
+        "stgnn_graph_p50": 66.94,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 66.51,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-28",
+        "actual": null,
+        "stgnn_graph_p50": 66.94,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 66.53,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-29",
+        "actual": null,
+        "stgnn_graph_p50": 66.94,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 66.56,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-30",
+        "actual": null,
+        "stgnn_graph_p50": 66.95,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 66.58,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      }
+    ]
+  },
+  "host_disk_avail_pct|10_78_33_83": {
+    "host": "JPRUPIWEBCRP02 (10.78.33.83)",
+    "target_node": "host_disk_avail_pct|10_78_33_83",
+    "models_evaluated": [
+      "stgnn_graph",
+      "stgnn_nograph"
+    ],
+    "metrics": {},
+    "explainability": {
+      "model_version": "ST-GNN (Graph Prior)",
+      "forecast": {
+        "p05_or_p10": 64.87,
+        "p50_median": 65.77,
+        "p95_or_p90": 69.78
+      },
+      "accuracy": {},
+      "baseline_30d_avg": 66.39,
+      "predicted_shift": -0.62,
+      "confidence_score": 87.7,
+      "risk_level": "LOW",
+      "summary": "Disk Available (%) is predicted to average 65.77% (P50) over the forecast horizon (-0.62% vs 30d baseline avg 66.39%). Primary interdependency drivers: Disk Used, Inodes Total, Session Resets.",
+      "top_contributing_drivers": [
+        {
+          "metric": "Disk Used",
+          "source_node": "host_disk_used|10_78_33_83",
+          "impact": "-57%",
+          "direction": "-",
+          "strength": 0.607,
+          "lag": "0m"
+        },
+        {
+          "metric": "Inodes Total",
+          "source_node": "host_inodes_total|10_78_33_83",
+          "impact": "-33%",
+          "direction": "-",
+          "strength": 0.352,
+          "lag": "7d"
+        },
+        {
+          "metric": "Session Resets",
+          "source_node": "host_sessions_reset|10_78_33_83",
+          "impact": "+9%",
+          "direction": "+",
+          "strength": 0.099,
+          "lag": "7d"
+        }
+      ]
+    },
+    "daily_comparison": [
+      {
+        "date": "2026-09-01",
+        "actual": null,
+        "stgnn_graph_p50": 65.5,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 66.07,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-02",
+        "actual": null,
+        "stgnn_graph_p50": 65.5,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 66.07,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-03",
+        "actual": null,
+        "stgnn_graph_p50": 65.5,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 66.07,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-04",
+        "actual": null,
+        "stgnn_graph_p50": 65.5,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 66.07,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-05",
+        "actual": null,
+        "stgnn_graph_p50": 65.5,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 66.07,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-06",
+        "actual": null,
+        "stgnn_graph_p50": 65.5,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 66.07,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-07",
+        "actual": null,
+        "stgnn_graph_p50": 65.5,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 66.07,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-08",
+        "actual": null,
+        "stgnn_graph_p50": 65.51,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 66.11,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-09",
+        "actual": null,
+        "stgnn_graph_p50": 65.52,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 66.15,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-10",
+        "actual": null,
+        "stgnn_graph_p50": 65.53,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 66.18,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-11",
+        "actual": null,
+        "stgnn_graph_p50": 65.55,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 66.22,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-12",
+        "actual": null,
+        "stgnn_graph_p50": 65.56,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 66.25,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-13",
+        "actual": null,
+        "stgnn_graph_p50": 65.57,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 66.29,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-14",
+        "actual": null,
+        "stgnn_graph_p50": 65.58,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 66.33,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-15",
+        "actual": null,
+        "stgnn_graph_p50": 65.59,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 66.36,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-16",
+        "actual": null,
+        "stgnn_graph_p50": 65.6,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 66.4,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-17",
+        "actual": null,
+        "stgnn_graph_p50": 65.62,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 66.44,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-18",
+        "actual": null,
+        "stgnn_graph_p50": 65.63,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 66.47,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-19",
+        "actual": null,
+        "stgnn_graph_p50": 65.64,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 66.51,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-20",
+        "actual": null,
+        "stgnn_graph_p50": 65.65,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 66.55,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-21",
+        "actual": null,
+        "stgnn_graph_p50": 65.66,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 66.58,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-22",
+        "actual": null,
+        "stgnn_graph_p50": 65.67,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 66.62,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-23",
+        "actual": null,
+        "stgnn_graph_p50": 65.69,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 66.66,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-24",
+        "actual": null,
+        "stgnn_graph_p50": 65.7,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 66.69,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-25",
+        "actual": null,
+        "stgnn_graph_p50": 65.71,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 66.73,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-26",
+        "actual": null,
+        "stgnn_graph_p50": 65.72,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 66.77,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-27",
+        "actual": null,
+        "stgnn_graph_p50": 65.73,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 66.8,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-28",
+        "actual": null,
+        "stgnn_graph_p50": 65.74,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 66.84,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-29",
+        "actual": null,
+        "stgnn_graph_p50": 65.76,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 66.88,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-30",
+        "actual": null,
+        "stgnn_graph_p50": 65.77,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 66.91,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      }
+    ]
+  },
+  "host_mem_avail_pct|10_50_98_26": {
+    "host": "HYDUPINTAPP16 (10.50.98.26)",
+    "target_node": "host_mem_avail_pct|10_50_98_26",
+    "models_evaluated": [
+      "stgnn_graph",
+      "stgnn_nograph"
+    ],
+    "metrics": {},
+    "explainability": {
+      "model_version": "ST-GNN (Graph Prior)",
+      "forecast": {
+        "p05_or_p10": 69.39,
+        "p50_median": 72.05,
+        "p95_or_p90": 84.13
+      },
+      "accuracy": {},
+      "baseline_30d_avg": 80.6,
+      "predicted_shift": -8.55,
+      "confidence_score": 63.2,
+      "risk_level": "LOW",
+      "summary": "Memory Available (%) is predicted to average 72.05% (P50) over the forecast horizon (-8.55% vs 30d baseline avg 80.60%). Primary interdependency drivers: Disk Write Bytes/sec, Session Resets, Disk Read Time.",
+      "top_contributing_drivers": [
+        {
+          "metric": "Disk Write Bytes/sec",
+          "source_node": "host_disk_write_bytes_sec|10_50_98_26",
+          "impact": "-49%",
+          "direction": "-",
+          "strength": 0.817,
+          "lag": "0m"
+        },
+        {
+          "metric": "Session Resets",
+          "source_node": "host_sessions_reset|10_50_98_26",
+          "impact": "+39%",
+          "direction": "+",
+          "strength": 0.647,
+          "lag": "0m"
+        },
+        {
+          "metric": "Disk Read Time",
+          "source_node": "host_disk_read_time|10_50_98_26",
+          "impact": "+13%",
+          "direction": "+",
+          "strength": 0.215,
+          "lag": "6d"
+        }
+      ]
+    },
+    "daily_comparison": [
+      {
+        "date": "2026-09-01",
+        "actual": null,
+        "stgnn_graph_p50": 69.84,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 78.55,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-02",
+        "actual": null,
+        "stgnn_graph_p50": 69.84,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 78.55,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-03",
+        "actual": null,
+        "stgnn_graph_p50": 69.84,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 78.55,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-04",
+        "actual": null,
+        "stgnn_graph_p50": 69.84,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 78.55,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-05",
+        "actual": null,
+        "stgnn_graph_p50": 69.84,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 78.55,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-06",
+        "actual": null,
+        "stgnn_graph_p50": 69.84,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 78.55,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-07",
+        "actual": null,
+        "stgnn_graph_p50": 69.84,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 78.55,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-08",
+        "actual": null,
+        "stgnn_graph_p50": 69.93,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 78.44,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-09",
+        "actual": null,
+        "stgnn_graph_p50": 70.03,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 78.34,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-10",
+        "actual": null,
+        "stgnn_graph_p50": 70.12,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 78.24,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-11",
+        "actual": null,
+        "stgnn_graph_p50": 70.22,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 78.13,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-12",
+        "actual": null,
+        "stgnn_graph_p50": 70.32,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 78.03,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-13",
+        "actual": null,
+        "stgnn_graph_p50": 70.41,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 77.92,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-14",
+        "actual": null,
+        "stgnn_graph_p50": 70.51,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 77.82,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-15",
+        "actual": null,
+        "stgnn_graph_p50": 70.61,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 77.71,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-16",
+        "actual": null,
+        "stgnn_graph_p50": 70.7,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 77.61,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-17",
+        "actual": null,
+        "stgnn_graph_p50": 70.8,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 77.5,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-18",
+        "actual": null,
+        "stgnn_graph_p50": 70.89,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 77.4,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-19",
+        "actual": null,
+        "stgnn_graph_p50": 70.99,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 77.29,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-20",
+        "actual": null,
+        "stgnn_graph_p50": 71.09,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 77.19,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-21",
+        "actual": null,
+        "stgnn_graph_p50": 71.18,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 77.08,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-22",
+        "actual": null,
+        "stgnn_graph_p50": 71.28,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 76.98,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-23",
+        "actual": null,
+        "stgnn_graph_p50": 71.37,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 76.87,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-24",
+        "actual": null,
+        "stgnn_graph_p50": 71.47,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 76.77,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-25",
+        "actual": null,
+        "stgnn_graph_p50": 71.57,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 76.66,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-26",
+        "actual": null,
+        "stgnn_graph_p50": 71.66,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 76.56,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-27",
+        "actual": null,
+        "stgnn_graph_p50": 71.76,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 76.46,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-28",
+        "actual": null,
+        "stgnn_graph_p50": 71.85,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 76.35,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-29",
+        "actual": null,
+        "stgnn_graph_p50": 71.95,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 76.25,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-30",
+        "actual": null,
+        "stgnn_graph_p50": 72.05,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 76.14,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      }
+    ]
+  },
+  "host_mem_avail_pct|10_78_33_83": {
+    "host": "JPRUPIWEBCRP02 (10.78.33.83)",
+    "target_node": "host_mem_avail_pct|10_78_33_83",
+    "models_evaluated": [
+      "stgnn_graph",
+      "stgnn_nograph"
+    ],
+    "metrics": {},
+    "explainability": {
+      "model_version": "ST-GNN (Graph Prior)",
+      "forecast": {
+        "p05_or_p10": 66.1,
+        "p50_median": 69.43,
+        "p95_or_p90": 81.72
+      },
+      "accuracy": {},
+      "baseline_30d_avg": 74.22,
+      "predicted_shift": -4.79,
+      "confidence_score": 60.9,
+      "risk_level": "LOW",
+      "summary": "Memory Available (%) is predicted to average 69.43% (P50) over the forecast horizon (-4.79% vs 30d baseline avg 74.22%). Primary interdependency drivers: Network TX Bytes, Network TX Packets, Network RX Packets.",
+      "top_contributing_drivers": [
+        {
+          "metric": "Network TX Bytes",
+          "source_node": "host_net_tx_bytes|10_78_33_83",
+          "impact": "-21%",
+          "direction": "-",
+          "strength": 0.948,
+          "lag": "0m"
+        },
+        {
+          "metric": "Network TX Packets",
+          "source_node": "host_net_tx_packets|10_78_33_83",
+          "impact": "-21%",
+          "direction": "-",
+          "strength": 0.946,
+          "lag": "0m"
+        },
+        {
+          "metric": "Network RX Packets",
+          "source_node": "host_net_rx_packets|10_78_33_83",
+          "impact": "-20%",
+          "direction": "-",
+          "strength": 0.919,
+          "lag": "0m"
+        },
+        {
+          "metric": "Session Resets",
+          "source_node": "host_sessions_reset|10_78_33_83",
+          "impact": "+19%",
+          "direction": "+",
+          "strength": 0.86,
+          "lag": "0m"
+        },
+        {
+          "metric": "Disk Write Bytes/sec",
+          "source_node": "host_disk_write_bytes_sec|10_78_33_83",
+          "impact": "-19%",
+          "direction": "-",
+          "strength": 0.837,
+          "lag": "0m"
+        }
+      ]
+    },
+    "daily_comparison": [
+      {
+        "date": "2026-09-01",
+        "actual": null,
+        "stgnn_graph_p50": 69.97,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 70.98,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-02",
+        "actual": null,
+        "stgnn_graph_p50": 69.97,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 70.98,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-03",
+        "actual": null,
+        "stgnn_graph_p50": 69.97,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 70.98,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-04",
+        "actual": null,
+        "stgnn_graph_p50": 69.97,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 70.98,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-05",
+        "actual": null,
+        "stgnn_graph_p50": 69.97,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 70.98,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-06",
+        "actual": null,
+        "stgnn_graph_p50": 69.97,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 70.98,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-07",
+        "actual": null,
+        "stgnn_graph_p50": 69.97,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 70.98,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-08",
+        "actual": null,
+        "stgnn_graph_p50": 69.95,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 70.96,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-09",
+        "actual": null,
+        "stgnn_graph_p50": 69.93,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 70.94,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-10",
+        "actual": null,
+        "stgnn_graph_p50": 69.9,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 70.91,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-11",
+        "actual": null,
+        "stgnn_graph_p50": 69.88,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 70.89,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-12",
+        "actual": null,
+        "stgnn_graph_p50": 69.85,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 70.87,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-13",
+        "actual": null,
+        "stgnn_graph_p50": 69.83,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 70.85,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-14",
+        "actual": null,
+        "stgnn_graph_p50": 69.81,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 70.82,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-15",
+        "actual": null,
+        "stgnn_graph_p50": 69.78,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 70.8,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-16",
+        "actual": null,
+        "stgnn_graph_p50": 69.76,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 70.78,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-17",
+        "actual": null,
+        "stgnn_graph_p50": 69.74,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 70.76,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-18",
+        "actual": null,
+        "stgnn_graph_p50": 69.71,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 70.74,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-19",
+        "actual": null,
+        "stgnn_graph_p50": 69.69,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 70.71,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-20",
+        "actual": null,
+        "stgnn_graph_p50": 69.67,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 70.69,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-21",
+        "actual": null,
+        "stgnn_graph_p50": 69.64,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 70.67,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-22",
+        "actual": null,
+        "stgnn_graph_p50": 69.62,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 70.65,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-23",
+        "actual": null,
+        "stgnn_graph_p50": 69.6,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 70.62,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-24",
+        "actual": null,
+        "stgnn_graph_p50": 69.57,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 70.6,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-25",
+        "actual": null,
+        "stgnn_graph_p50": 69.55,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 70.58,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-26",
+        "actual": null,
+        "stgnn_graph_p50": 69.53,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 70.56,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-27",
+        "actual": null,
+        "stgnn_graph_p50": 69.5,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 70.53,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-28",
+        "actual": null,
+        "stgnn_graph_p50": 69.48,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 70.51,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-29",
+        "actual": null,
+        "stgnn_graph_p50": 69.46,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 70.49,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      },
+      {
+        "date": "2026-09-30",
+        "actual": null,
+        "stgnn_graph_p50": 69.43,
+        "stgnn_graph_err": null,
+        "stgnn_nograph_p50": 70.47,
+        "stgnn_nograph_err": null,
+        "winner": "N/A"
+      }
+    ]
+  }
+}

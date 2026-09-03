@@ -114,6 +114,7 @@ class STGNN(nn.Module):
         top_k: int = 8,
         use_graph: bool = True,
         adj_prior: np.ndarray | None = None,
+        same_host_mask: np.ndarray | None = None,
     ):
         super().__init__()
         self.use_graph = use_graph
@@ -138,7 +139,11 @@ class STGNN(nn.Module):
             ]
         )
         self.adjacency = (
-            AdaptiveAdjacency(n_nodes, node_embed_dim, top_k, prior=adj_prior)
+            AdaptiveAdjacency(
+                n_nodes, node_embed_dim, top_k,
+                prior=adj_prior,
+                same_host_mask=same_host_mask,
+            )
             if use_graph
             else None
         )

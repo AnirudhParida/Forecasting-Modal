@@ -50,6 +50,17 @@ STRUCTURAL_FLOW = [
 ]
 
 
+def _host_of(node_id: str) -> str:
+    """Return the host dimension of a pipe-formatted node ID, or '' for single-host.
+
+    Examples
+    --------
+    _host_of('host_cpu_usage|10_50_98_26') -> '10_50_98_26'
+    _host_of('host_cpu_usage')             -> ''
+    """
+    return node_id.split("|", 1)[1] if "|" in node_id else ""
+
+
 @dataclass
 class Edge:
     source: str
@@ -244,13 +255,21 @@ def _granger_p(
 
 # ------------------------------------------------------------------ structural
 def structural_pairs(panel: Panel) -> set[tuple[str, str]]:
-    """Edges implied by topology rather than by the data."""
+    """Edges implied by topology rather than by the data.
+
+    Cross-host pairs are always excluded: structural flow (disk→cpu, etc.)
+    only makes sense within the same physical host.
+    """
     nodes = panel.nodes.set_index("node_id")
     pairs: set[tuple[str, str]] = set()
 
     for src in nodes.index:
         for dst in nodes.index:
             if src == dst:
+                continue
+            # ── host isolation: skip cross-host structural edges ──────────────
+            h_src, h_dst = _host_of(src), _host_of(dst)
+            if h_src and h_dst and h_src != h_dst:
                 continue
             r_src = nodes.loc[src, "resource"]
             r_dst = nodes.loc[dst, "resource"]
@@ -315,6 +334,10 @@ def discover(
                 continue
             r = best_corr[i, j]
             src, dst = node_ids[i], node_ids[j]
+            # ── host isolation: skip cross-host statistical edges ─────────────
+            h_src, h_dst = _host_of(src), _host_of(dst)
+            if h_src and h_dst and h_src != h_dst:
+                continue
             is_structural = (src, dst) in structural
 
             if abs(r) < xcorr_threshold and not is_structural:

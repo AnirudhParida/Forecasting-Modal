@@ -284,7 +284,7 @@ def cmd_backtest(args, cfg) -> int:
         print("prior: none found — run `netraa graph` first for the (a)->(b) link\n")
 
     season = cfg.raw.get("season_steps", {}).get(grid, 7)
-    result, trained = bt.run(
+    result, trained_models = bt.run(
         ds,
         cfg.model,
         cfg.forecast.quantiles,
@@ -296,8 +296,12 @@ def cmd_backtest(args, cfg) -> int:
     print(result.format())
     out = cfg.artifacts_dir / f"backtest_{grid}.json"
     result.save(out)
-    if trained is not None:
-        save_artifacts(trained, ds, cfg.artifacts_dir, cfg.forecast.quantiles)
+    for name, tr in trained_models.items():
+        if name == "stgnn_graph":
+            save_artifacts(tr, ds, cfg.artifacts_dir, cfg.forecast.quantiles, tag="stgnn")
+            save_artifacts(tr, ds, cfg.artifacts_dir, cfg.forecast.quantiles, tag="stgnn_graph")
+        else:
+            save_artifacts(tr, ds, cfg.artifacts_dir, cfg.forecast.quantiles, tag=name)
     print(f"\nsaved -> {out}")
     return 0
 

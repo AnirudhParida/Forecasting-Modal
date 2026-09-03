@@ -31,6 +31,7 @@ class AdaptiveAdjacency(nn.Module):
         top_k: int = 8,
         alpha: float = 3.0,
         prior: np.ndarray | None = None,
+        same_host_mask: np.ndarray | None = None,
     ):
         super().__init__()
         self.n_nodes = n_nodes
@@ -45,14 +46,36 @@ class AdaptiveAdjacency(nn.Module):
         else:
             self.register_buffer("prior", torch.zeros(n_nodes, n_nodes))
 
+        # Host-isolation mask: 1 where src and dst share the same host, 0 otherwise.
+        # Registered as a non-trainable buffer so it moves with the model to any device
+        # and is saved/loaded with the state_dict.
+        if same_host_mask is not None:
+            self.register_buffer(
+                "same_host_mask",
+                torch.tensor(same_host_mask, dtype=torch.float32),
+            )
+        else:
+            # Default: all edges allowed (single-host or unconstrained mode)
+            self.register_buffer(
+                "same_host_mask",
+                torch.ones(n_nodes, n_nodes, dtype=torch.float32),
+            )
+
     def dense(self) -> torch.Tensor:
         """Unsparsified adjacency in [0, 1)."""
         m = self.e1 @ self.e2.t() - self.e2 @ self.e1.t()
         return F.relu(torch.tanh(self.alpha * m))
 
     def forward(self) -> torch.Tensor:
-        """Sparsified, row-normalised adjacency. A[i, j] = influence of i on j."""
+        """Sparsified, row-normalised adjacency. A[i, j] = influence of i on j.
+
+        The same_host_mask is applied before sparsification so that cross-host
+        entries are zeroed and can never receive top-k selection or gradient.
+        """
         adj = self.dense()
+
+        # ── host isolation: zero out all cross-host entries ──────────────────
+        adj = adj * self.same_host_mask
 
         # Keep the top_k strongest outgoing edges per node. Gradients still flow
         # to the retained entries; dropped ones simply receive none this step.

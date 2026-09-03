@@ -72,6 +72,33 @@ def train(
     torch.manual_seed(cfg.seed)
     np.random.seed(cfg.seed)
 
+    # ── Host-isolation mask ───────────────────────────────────────────────────
+    # Build an N×N boolean mask where mask[i, j] = 1 only when node i and
+    # node j belong to the same host.  For single-host models all entries are 1
+    # (no restriction). The mask is registered as a non-trainable buffer inside
+    # AdaptiveAdjacency and permanently zeroes cross-host entries before the
+    # top-k sparsification step, so gradients can never promote cross-host edges.
+    node_ids = ds.node_ids
+    N = len(node_ids)
+    def _host_of(nid: str) -> str:
+        return nid.split("|", 1)[1] if "|" in nid else ""
+    hosts = [_host_of(nid) for nid in node_ids]
+    same_host_mask: np.ndarray | None = None
+    if any(h != "" for h in hosts):            # multi-host panel
+        mask_arr = np.zeros((N, N), dtype="float32")
+        for ii in range(N):
+            for jj in range(N):
+                if hosts[ii] == hosts[jj]:
+                    mask_arr[ii, jj] = 1.0
+        same_host_mask = mask_arr
+        n_cross = int((mask_arr == 0).sum()) - N   # exclude diagonal
+        log.info(
+            "host-isolation mask: %d same-host entries kept, "
+            "%d cross-host entries permanently zeroed",
+            int(mask_arr.sum()) - N,
+            n_cross,
+        )
+
     model = STGNN(
         n_nodes=len(ds.node_ids),
         n_targets=len(ds.target_ids),
@@ -85,9 +112,10 @@ def train(
         kernel_size=cfg.kernel_size,
         dropout=cfg.dropout,
         node_embed_dim=cfg.node_embed_dim,
-        top_k=cfg.top_k,             # was hardcoded to 8; now reads from config
+        top_k=cfg.top_k,
         use_graph=use_graph,
         adj_prior=adj_prior if use_graph else None,
+        same_host_mask=same_host_mask if use_graph else None,
     ).to(device)
 
     # All targets weighted equally. CPU/Memory weights (1.5× previously) caused

@@ -1,0 +1,1746 @@
+{
+  "host_cpu_usage|10_50_98_26": {
+    "host": "HYDUPINTAPP16 (10.50.98.26)",
+    "target_node": "host_cpu_usage|10_50_98_26",
+    "models_evaluated": [
+      "stgnn_graph"
+    ],
+    "metrics": {
+      "stgnn_graph": {
+        "mae": 1.4604,
+        "rmse": 2.4387,
+        "coverage_pct": 82.14
+      }
+    },
+    "explainability": {
+      "model_version": "ST-GNN (Graph Prior)",
+      "forecast": {
+        "p05_or_p10": 0.82,
+        "p50_median": 1.67,
+        "p95_or_p90": 4.67
+      },
+      "accuracy": {
+        "forecast_accuracy_pct": 98.54,
+        "mae": 1.4604,
+        "coverage_pct": 82.14
+      },
+      "baseline_30d_avg": 4.44,
+      "predicted_shift": -2.77,
+      "confidence_score": 90.4,
+      "risk_level": "LOW",
+      "summary": "CPU Usage (%) is predicted to average 1.67% (P50) over the forecast horizon (-2.77% vs 30d baseline avg 4.44%). Primary interdependency drivers: Disk Read Bytes/sec, Disk Read Ops/sec, Disk Write Bytes/sec.",
+      "top_contributing_drivers": [
+        {
+          "metric": "Disk Read Bytes/sec",
+          "source_node": "host_disk_read_bytes_sec|10_50_98_26",
+          "impact": "+24%",
+          "direction": "+",
+          "strength": 0.83,
+          "lag": "0m"
+        },
+        {
+          "metric": "Disk Read Ops/sec",
+          "source_node": "host_disk_read_ops_sec|10_50_98_26",
+          "impact": "+23%",
+          "direction": "+",
+          "strength": 0.801,
+          "lag": "0m"
+        },
+        {
+          "metric": "Disk Write Bytes/sec",
+          "source_node": "host_disk_write_bytes_sec|10_50_98_26",
+          "impact": "+19%",
+          "direction": "+",
+          "strength": 0.651,
+          "lag": "0m"
+        },
+        {
+          "metric": "Memory Available",
+          "source_node": "host_mem_available|10_50_98_26",
+          "impact": "-17%",
+          "direction": "-",
+          "strength": 0.581,
+          "lag": "0m"
+        },
+        {
+          "metric": "Memory Available (%)",
+          "source_node": "host_mem_avail_pct|10_50_98_26",
+          "impact": "-17%",
+          "direction": "-",
+          "strength": 0.579,
+          "lag": "0m"
+        }
+      ]
+    },
+    "daily_comparison": [
+      {
+        "date": "2026-08-01",
+        "actual": 8.52,
+        "forecast_p50": 1.72,
+        "forecast_p10": 0.6,
+        "forecast_p90": 4.5,
+        "abs_error": 6.8
+      },
+      {
+        "date": "2026-08-02",
+        "actual": 3.61,
+        "forecast_p50": 1.72,
+        "forecast_p10": 0.6,
+        "forecast_p90": 4.5,
+        "abs_error": 1.89
+      },
+      {
+        "date": "2026-08-03",
+        "actual": 3.95,
+        "forecast_p50": 1.72,
+        "forecast_p10": 0.6,
+        "forecast_p90": 4.5,
+        "abs_error": 2.23
+      },
+      {
+        "date": "2026-08-04",
+        "actual": 3.46,
+        "forecast_p50": 1.72,
+        "forecast_p10": 0.6,
+        "forecast_p90": 4.5,
+        "abs_error": 1.74
+      },
+      {
+        "date": "2026-08-05",
+        "actual": 1.76,
+        "forecast_p50": 1.72,
+        "forecast_p10": 0.6,
+        "forecast_p90": 4.5,
+        "abs_error": 0.04
+      },
+      {
+        "date": "2026-08-06",
+        "actual": 2.24,
+        "forecast_p50": 1.72,
+        "forecast_p10": 0.6,
+        "forecast_p90": 4.5,
+        "abs_error": 0.52
+      },
+      {
+        "date": "2026-08-07",
+        "actual": 2.27,
+        "forecast_p50": 1.72,
+        "forecast_p10": 0.6,
+        "forecast_p90": 4.5,
+        "abs_error": 0.55
+      },
+      {
+        "date": "2026-08-08",
+        "actual": 6.68,
+        "forecast_p50": 1.72,
+        "forecast_p10": 0.61,
+        "forecast_p90": 4.51,
+        "abs_error": 4.96
+      },
+      {
+        "date": "2026-08-09",
+        "actual": 2.47,
+        "forecast_p50": 1.72,
+        "forecast_p10": 0.62,
+        "forecast_p90": 4.52,
+        "abs_error": 0.75
+      },
+      {
+        "date": "2026-08-10",
+        "actual": 2.34,
+        "forecast_p50": 1.72,
+        "forecast_p10": 0.63,
+        "forecast_p90": 4.53,
+        "abs_error": 0.62
+      },
+      {
+        "date": "2026-08-11",
+        "actual": 1.7,
+        "forecast_p50": 1.71,
+        "forecast_p10": 0.64,
+        "forecast_p90": 4.54,
+        "abs_error": 0.01
+      },
+      {
+        "date": "2026-08-12",
+        "actual": 2.28,
+        "forecast_p50": 1.71,
+        "forecast_p10": 0.65,
+        "forecast_p90": 4.54,
+        "abs_error": 0.57
+      },
+      {
+        "date": "2026-08-13",
+        "actual": 2.21,
+        "forecast_p50": 1.71,
+        "forecast_p10": 0.66,
+        "forecast_p90": 4.55,
+        "abs_error": 0.5
+      },
+      {
+        "date": "2026-08-14",
+        "actual": 2.15,
+        "forecast_p50": 1.71,
+        "forecast_p10": 0.67,
+        "forecast_p90": 4.56,
+        "abs_error": 0.44
+      },
+      {
+        "date": "2026-08-15",
+        "actual": 9.19,
+        "forecast_p50": 1.7,
+        "forecast_p10": 0.68,
+        "forecast_p90": 4.57,
+        "abs_error": 7.49
+      },
+      {
+        "date": "2026-08-16",
+        "actual": 1.97,
+        "forecast_p50": 1.7,
+        "forecast_p10": 0.69,
+        "forecast_p90": 4.58,
+        "abs_error": 0.27
+      },
+      {
+        "date": "2026-08-17",
+        "actual": 1.44,
+        "forecast_p50": 1.7,
+        "forecast_p10": 0.7,
+        "forecast_p90": 4.58,
+        "abs_error": 0.26
+      },
+      {
+        "date": "2026-08-18",
+        "actual": 1.46,
+        "forecast_p50": 1.7,
+        "forecast_p10": 0.71,
+        "forecast_p90": 4.59,
+        "abs_error": 0.24
+      },
+      {
+        "date": "2026-08-19",
+        "actual": 0.82,
+        "forecast_p50": 1.69,
+        "forecast_p10": 0.72,
+        "forecast_p90": 4.6,
+        "abs_error": 0.87
+      },
+      {
+        "date": "2026-08-20",
+        "actual": 0.96,
+        "forecast_p50": 1.69,
+        "forecast_p10": 0.73,
+        "forecast_p90": 4.61,
+        "abs_error": 0.73
+      },
+      {
+        "date": "2026-08-21",
+        "actual": 1.22,
+        "forecast_p50": 1.69,
+        "forecast_p10": 0.75,
+        "forecast_p90": 4.62,
+        "abs_error": 0.47
+      },
+      {
+        "date": "2026-08-22",
+        "actual": 6.25,
+        "forecast_p50": 1.69,
+        "forecast_p10": 0.76,
+        "forecast_p90": 4.62,
+        "abs_error": 4.56
+      },
+      {
+        "date": "2026-08-23",
+        "actual": 0.94,
+        "forecast_p50": 1.68,
+        "forecast_p10": 0.77,
+        "forecast_p90": 4.63,
+        "abs_error": 0.74
+      },
+      {
+        "date": "2026-08-24",
+        "actual": 0.92,
+        "forecast_p50": 1.68,
+        "forecast_p10": 0.78,
+        "forecast_p90": 4.64,
+        "abs_error": 0.76
+      },
+      {
+        "date": "2026-08-25",
+        "actual": 1.1,
+        "forecast_p50": 1.68,
+        "forecast_p10": 0.79,
+        "forecast_p90": 4.65,
+        "abs_error": 0.58
+      },
+      {
+        "date": "2026-08-26",
+        "actual": 1.1,
+        "forecast_p50": 1.68,
+        "forecast_p10": 0.8,
+        "forecast_p90": 4.66,
+        "abs_error": 0.58
+      },
+      {
+        "date": "2026-08-27",
+        "actual": 0.83,
+        "forecast_p50": 1.67,
+        "forecast_p10": 0.81,
+        "forecast_p90": 4.66,
+        "abs_error": 0.84
+      },
+      {
+        "date": "2026-08-28",
+        "actual": 0.78,
+        "forecast_p50": 1.67,
+        "forecast_p10": 0.82,
+        "forecast_p90": 4.67,
+        "abs_error": 0.89
+      }
+    ]
+  },
+  "host_cpu_usage|10_78_33_83": {
+    "host": "JPRUPIWEBCRP02 (10.78.33.83)",
+    "target_node": "host_cpu_usage|10_78_33_83",
+    "models_evaluated": [
+      "stgnn_graph"
+    ],
+    "metrics": {
+      "stgnn_graph": {
+        "mae": 2.4839,
+        "rmse": 2.8421,
+        "coverage_pct": 85.71
+      }
+    },
+    "explainability": {
+      "model_version": "ST-GNN (Graph Prior)",
+      "forecast": {
+        "p05_or_p10": 1.2,
+        "p50_median": 2.09,
+        "p95_or_p90": 5.87
+      },
+      "accuracy": {
+        "forecast_accuracy_pct": 97.52,
+        "mae": 2.4839,
+        "coverage_pct": 85.71
+      },
+      "baseline_30d_avg": 2.74,
+      "predicted_shift": -0.65,
+      "confidence_score": 88.3,
+      "risk_level": "LOW",
+      "summary": "CPU Usage (%) is predicted to average 2.09% (P50) over the forecast horizon (-0.65% vs 30d baseline avg 2.74%). Primary interdependency drivers: Disk Read Bytes/sec, Disk Write Bytes/sec, Disk Read Ops/sec.",
+      "top_contributing_drivers": [
+        {
+          "metric": "Disk Read Bytes/sec",
+          "source_node": "host_disk_read_bytes_sec|10_78_33_83",
+          "impact": "+21%",
+          "direction": "+",
+          "strength": 0.8,
+          "lag": "0m"
+        },
+        {
+          "metric": "Disk Write Bytes/sec",
+          "source_node": "host_disk_write_bytes_sec|10_78_33_83",
+          "impact": "+20%",
+          "direction": "+",
+          "strength": 0.768,
+          "lag": "0m"
+        },
+        {
+          "metric": "Disk Read Ops/sec",
+          "source_node": "host_disk_read_ops_sec|10_78_33_83",
+          "impact": "+20%",
+          "direction": "+",
+          "strength": 0.768,
+          "lag": "0m"
+        },
+        {
+          "metric": "CPU I/O Wait",
+          "source_node": "host_cpu_iowait|10_78_33_83",
+          "impact": "+19%",
+          "direction": "+",
+          "strength": 0.726,
+          "lag": "0m"
+        },
+        {
+          "metric": "Memory Available",
+          "source_node": "host_mem_available|10_78_33_83",
+          "impact": "-18%",
+          "direction": "-",
+          "strength": 0.694,
+          "lag": "0m"
+        }
+      ]
+    },
+    "daily_comparison": [
+      {
+        "date": "2026-08-01",
+        "actual": 5.26,
+        "forecast_p50": 1.52,
+        "forecast_p10": 0.47,
+        "forecast_p90": 5.14,
+        "abs_error": 3.74
+      },
+      {
+        "date": "2026-08-02",
+        "actual": 1.77,
+        "forecast_p50": 1.52,
+        "forecast_p10": 0.47,
+        "forecast_p90": 5.14,
+        "abs_error": 0.25
+      },
+      {
+        "date": "2026-08-03",
+        "actual": 1.78,
+        "forecast_p50": 1.52,
+        "forecast_p10": 0.47,
+        "forecast_p90": 5.14,
+        "abs_error": 0.26
+      },
+      {
+        "date": "2026-08-04",
+        "actual": 2.08,
+        "forecast_p50": 1.52,
+        "forecast_p10": 0.47,
+        "forecast_p90": 5.14,
+        "abs_error": 0.56
+      },
+      {
+        "date": "2026-08-05",
+        "actual": 4.01,
+        "forecast_p50": 1.52,
+        "forecast_p10": 0.47,
+        "forecast_p90": 5.14,
+        "abs_error": 2.49
+      },
+      {
+        "date": "2026-08-06",
+        "actual": 3.88,
+        "forecast_p50": 1.52,
+        "forecast_p10": 0.47,
+        "forecast_p90": 5.14,
+        "abs_error": 2.36
+      },
+      {
+        "date": "2026-08-07",
+        "actual": 4.17,
+        "forecast_p50": 1.52,
+        "forecast_p10": 0.47,
+        "forecast_p90": 5.14,
+        "abs_error": 2.65
+      },
+      {
+        "date": "2026-08-08",
+        "actual": 7.03,
+        "forecast_p50": 1.54,
+        "forecast_p10": 0.5,
+        "forecast_p90": 5.17,
+        "abs_error": 5.49
+      },
+      {
+        "date": "2026-08-09",
+        "actual": 4.46,
+        "forecast_p50": 1.57,
+        "forecast_p10": 0.54,
+        "forecast_p90": 5.21,
+        "abs_error": 2.89
+      },
+      {
+        "date": "2026-08-10",
+        "actual": 4.14,
+        "forecast_p50": 1.6,
+        "forecast_p10": 0.57,
+        "forecast_p90": 5.24,
+        "abs_error": 2.54
+      },
+      {
+        "date": "2026-08-11",
+        "actual": 4.16,
+        "forecast_p50": 1.63,
+        "forecast_p10": 0.61,
+        "forecast_p90": 5.28,
+        "abs_error": 2.53
+      },
+      {
+        "date": "2026-08-12",
+        "actual": 4.19,
+        "forecast_p50": 1.65,
+        "forecast_p10": 0.64,
+        "forecast_p90": 5.31,
+        "abs_error": 2.54
+      },
+      {
+        "date": "2026-08-13",
+        "actual": 4.85,
+        "forecast_p50": 1.68,
+        "forecast_p10": 0.68,
+        "forecast_p90": 5.35,
+        "abs_error": 3.17
+      },
+      {
+        "date": "2026-08-14",
+        "actual": 4.33,
+        "forecast_p50": 1.71,
+        "forecast_p10": 0.71,
+        "forecast_p90": 5.38,
+        "abs_error": 2.62
+      },
+      {
+        "date": "2026-08-15",
+        "actual": 7.97,
+        "forecast_p50": 1.74,
+        "forecast_p10": 0.75,
+        "forecast_p90": 5.42,
+        "abs_error": 6.23
+      },
+      {
+        "date": "2026-08-16",
+        "actual": 4.5,
+        "forecast_p50": 1.76,
+        "forecast_p10": 0.78,
+        "forecast_p90": 5.45,
+        "abs_error": 2.74
+      },
+      {
+        "date": "2026-08-17",
+        "actual": 4.61,
+        "forecast_p50": 1.79,
+        "forecast_p10": 0.82,
+        "forecast_p90": 5.49,
+        "abs_error": 2.82
+      },
+      {
+        "date": "2026-08-18",
+        "actual": 4.77,
+        "forecast_p50": 1.82,
+        "forecast_p10": 0.85,
+        "forecast_p90": 5.52,
+        "abs_error": 2.95
+      },
+      {
+        "date": "2026-08-19",
+        "actual": 3.59,
+        "forecast_p50": 1.84,
+        "forecast_p10": 0.89,
+        "forecast_p90": 5.56,
+        "abs_error": 1.75
+      },
+      {
+        "date": "2026-08-20",
+        "actual": 3.84,
+        "forecast_p50": 1.87,
+        "forecast_p10": 0.92,
+        "forecast_p90": 5.59,
+        "abs_error": 1.97
+      },
+      {
+        "date": "2026-08-21",
+        "actual": 3.63,
+        "forecast_p50": 1.9,
+        "forecast_p10": 0.96,
+        "forecast_p90": 5.63,
+        "abs_error": 1.73
+      },
+      {
+        "date": "2026-08-22",
+        "actual": 7.27,
+        "forecast_p50": 1.93,
+        "forecast_p10": 0.99,
+        "forecast_p90": 5.66,
+        "abs_error": 5.34
+      },
+      {
+        "date": "2026-08-23",
+        "actual": 3.32,
+        "forecast_p50": 1.95,
+        "forecast_p10": 1.03,
+        "forecast_p90": 5.7,
+        "abs_error": 1.37
+      },
+      {
+        "date": "2026-08-24",
+        "actual": 3.94,
+        "forecast_p50": 1.98,
+        "forecast_p10": 1.06,
+        "forecast_p90": 5.73,
+        "abs_error": 1.96
+      },
+      {
+        "date": "2026-08-25",
+        "actual": 3.65,
+        "forecast_p50": 2.01,
+        "forecast_p10": 1.1,
+        "forecast_p90": 5.77,
+        "abs_error": 1.64
+      },
+      {
+        "date": "2026-08-26",
+        "actual": 3.52,
+        "forecast_p50": 2.04,
+        "forecast_p10": 1.13,
+        "forecast_p90": 5.8,
+        "abs_error": 1.48
+      },
+      {
+        "date": "2026-08-27",
+        "actual": 3.51,
+        "forecast_p50": 2.06,
+        "forecast_p10": 1.17,
+        "forecast_p90": 5.84,
+        "abs_error": 1.45
+      },
+      {
+        "date": "2026-08-28",
+        "actual": 4.1,
+        "forecast_p50": 2.09,
+        "forecast_p10": 1.2,
+        "forecast_p90": 5.87,
+        "abs_error": 2.01
+      }
+    ]
+  },
+  "host_disk_avail_pct|10_50_98_26": {
+    "host": "HYDUPINTAPP16 (10.50.98.26)",
+    "target_node": "host_disk_avail_pct|10_50_98_26",
+    "models_evaluated": [
+      "stgnn_graph"
+    ],
+    "metrics": {
+      "stgnn_graph": {
+        "mae": 0.8723,
+        "rmse": 1.0593,
+        "coverage_pct": 75.0
+      }
+    },
+    "explainability": {
+      "model_version": "ST-GNN (Graph Prior)",
+      "forecast": {
+        "p05_or_p10": 66.25,
+        "p50_median": 67.29,
+        "p95_or_p90": 71.56
+      },
+      "accuracy": {
+        "forecast_accuracy_pct": 99.13,
+        "mae": 0.8723,
+        "coverage_pct": 75.0
+      },
+      "baseline_30d_avg": 68.09,
+      "predicted_shift": -0.79,
+      "confidence_score": 86.7,
+      "risk_level": "LOW",
+      "summary": "Disk Available (%) is predicted to average 67.29% (P50) over the forecast horizon (-0.79% vs 30d baseline avg 68.09%). Primary interdependency drivers: Network RX Bytes, Session Resets.",
+      "top_contributing_drivers": [
+        {
+          "metric": "Network RX Bytes",
+          "source_node": "host_net_rx_bytes|10_50_98_26",
+          "impact": "-52%",
+          "direction": "-",
+          "strength": 0.362,
+          "lag": "14d"
+        },
+        {
+          "metric": "Session Resets",
+          "source_node": "host_sessions_reset|10_50_98_26",
+          "impact": "+48%",
+          "direction": "+",
+          "strength": 0.332,
+          "lag": "10d"
+        }
+      ]
+    },
+    "daily_comparison": [
+      {
+        "date": "2026-08-01",
+        "actual": 66.4,
+        "forecast_p50": 67.4,
+        "forecast_p10": 66.04,
+        "forecast_p90": 71.41,
+        "abs_error": 1.0
+      },
+      {
+        "date": "2026-08-02",
+        "actual": 66.3,
+        "forecast_p50": 67.4,
+        "forecast_p10": 66.04,
+        "forecast_p90": 71.41,
+        "abs_error": 1.1
+      },
+      {
+        "date": "2026-08-03",
+        "actual": 66.09,
+        "forecast_p50": 67.4,
+        "forecast_p10": 66.04,
+        "forecast_p90": 71.41,
+        "abs_error": 1.31
+      },
+      {
+        "date": "2026-08-04",
+        "actual": 66.48,
+        "forecast_p50": 67.4,
+        "forecast_p10": 66.04,
+        "forecast_p90": 71.41,
+        "abs_error": 0.92
+      },
+      {
+        "date": "2026-08-05",
+        "actual": 66.81,
+        "forecast_p50": 67.4,
+        "forecast_p10": 66.04,
+        "forecast_p90": 71.41,
+        "abs_error": 0.59
+      },
+      {
+        "date": "2026-08-06",
+        "actual": 66.9,
+        "forecast_p50": 67.4,
+        "forecast_p10": 66.04,
+        "forecast_p90": 71.41,
+        "abs_error": 0.5
+      },
+      {
+        "date": "2026-08-07",
+        "actual": 66.89,
+        "forecast_p50": 67.4,
+        "forecast_p10": 66.04,
+        "forecast_p90": 71.41,
+        "abs_error": 0.51
+      },
+      {
+        "date": "2026-08-08",
+        "actual": 66.89,
+        "forecast_p50": 67.4,
+        "forecast_p10": 66.05,
+        "forecast_p90": 71.42,
+        "abs_error": 0.51
+      },
+      {
+        "date": "2026-08-09",
+        "actual": 66.96,
+        "forecast_p50": 67.39,
+        "forecast_p10": 66.06,
+        "forecast_p90": 71.43,
+        "abs_error": 0.43
+      },
+      {
+        "date": "2026-08-10",
+        "actual": 66.96,
+        "forecast_p50": 67.39,
+        "forecast_p10": 66.07,
+        "forecast_p90": 71.43,
+        "abs_error": 0.43
+      },
+      {
+        "date": "2026-08-11",
+        "actual": 66.97,
+        "forecast_p50": 67.38,
+        "forecast_p10": 66.08,
+        "forecast_p90": 71.44,
+        "abs_error": 0.41
+      },
+      {
+        "date": "2026-08-12",
+        "actual": 66.97,
+        "forecast_p50": 67.38,
+        "forecast_p10": 66.09,
+        "forecast_p90": 71.45,
+        "abs_error": 0.41
+      },
+      {
+        "date": "2026-08-13",
+        "actual": 66.97,
+        "forecast_p50": 67.37,
+        "forecast_p10": 66.1,
+        "forecast_p90": 71.45,
+        "abs_error": 0.4
+      },
+      {
+        "date": "2026-08-14",
+        "actual": 66.97,
+        "forecast_p50": 67.37,
+        "forecast_p10": 66.11,
+        "forecast_p90": 71.46,
+        "abs_error": 0.4
+      },
+      {
+        "date": "2026-08-15",
+        "actual": 66.97,
+        "forecast_p50": 67.36,
+        "forecast_p10": 66.12,
+        "forecast_p90": 71.47,
+        "abs_error": 0.39
+      },
+      {
+        "date": "2026-08-16",
+        "actual": 67.02,
+        "forecast_p50": 67.36,
+        "forecast_p10": 66.13,
+        "forecast_p90": 71.48,
+        "abs_error": 0.34
+      },
+      {
+        "date": "2026-08-17",
+        "actual": 67.01,
+        "forecast_p50": 67.35,
+        "forecast_p10": 66.14,
+        "forecast_p90": 71.48,
+        "abs_error": 0.34
+      },
+      {
+        "date": "2026-08-18",
+        "actual": 67.01,
+        "forecast_p50": 67.34,
+        "forecast_p10": 66.15,
+        "forecast_p90": 71.49,
+        "abs_error": 0.33
+      },
+      {
+        "date": "2026-08-19",
+        "actual": 67.01,
+        "forecast_p50": 67.34,
+        "forecast_p10": 66.16,
+        "forecast_p90": 71.5,
+        "abs_error": 0.33
+      },
+      {
+        "date": "2026-08-20",
+        "actual": 67.01,
+        "forecast_p50": 67.33,
+        "forecast_p10": 66.17,
+        "forecast_p90": 71.5,
+        "abs_error": 0.32
+      },
+      {
+        "date": "2026-08-21",
+        "actual": 66.67,
+        "forecast_p50": 67.33,
+        "forecast_p10": 66.18,
+        "forecast_p90": 71.51,
+        "abs_error": 0.66
+      },
+      {
+        "date": "2026-08-22",
+        "actual": 65.47,
+        "forecast_p50": 67.32,
+        "forecast_p10": 66.19,
+        "forecast_p90": 71.52,
+        "abs_error": 1.85
+      },
+      {
+        "date": "2026-08-23",
+        "actual": 65.5,
+        "forecast_p50": 67.32,
+        "forecast_p10": 66.2,
+        "forecast_p90": 71.52,
+        "abs_error": 1.82
+      },
+      {
+        "date": "2026-08-24",
+        "actual": 65.49,
+        "forecast_p50": 67.31,
+        "forecast_p10": 66.21,
+        "forecast_p90": 71.53,
+        "abs_error": 1.82
+      },
+      {
+        "date": "2026-08-25",
+        "actual": 65.49,
+        "forecast_p50": 67.31,
+        "forecast_p10": 66.22,
+        "forecast_p90": 71.54,
+        "abs_error": 1.82
+      },
+      {
+        "date": "2026-08-26",
+        "actual": 65.48,
+        "forecast_p50": 67.3,
+        "forecast_p10": 66.23,
+        "forecast_p90": 71.55,
+        "abs_error": 1.82
+      },
+      {
+        "date": "2026-08-27",
+        "actual": 65.47,
+        "forecast_p50": 67.3,
+        "forecast_p10": 66.24,
+        "forecast_p90": 71.55,
+        "abs_error": 1.83
+      },
+      {
+        "date": "2026-08-28",
+        "actual": 65.47,
+        "forecast_p50": 67.29,
+        "forecast_p10": 66.25,
+        "forecast_p90": 71.56,
+        "abs_error": 1.82
+      }
+    ]
+  },
+  "host_disk_avail_pct|10_78_33_83": {
+    "host": "JPRUPIWEBCRP02 (10.78.33.83)",
+    "target_node": "host_disk_avail_pct|10_78_33_83",
+    "models_evaluated": [
+      "stgnn_graph"
+    ],
+    "metrics": {
+      "stgnn_graph": {
+        "mae": 1.1258,
+        "rmse": 1.4176,
+        "coverage_pct": 92.86
+      }
+    },
+    "explainability": {
+      "model_version": "ST-GNN (Graph Prior)",
+      "forecast": {
+        "p05_or_p10": 64.66,
+        "p50_median": 65.64,
+        "p95_or_p90": 69.85
+      },
+      "accuracy": {
+        "forecast_accuracy_pct": 98.87,
+        "mae": 1.1258,
+        "coverage_pct": 92.86
+      },
+      "baseline_30d_avg": 68.11,
+      "predicted_shift": -2.46,
+      "confidence_score": 87.0,
+      "risk_level": "LOW",
+      "summary": "Disk Available (%) is predicted to average 65.64% (P50) over the forecast horizon (-2.46% vs 30d baseline avg 68.11%). Primary interdependency drivers: Disk Used, Inodes Total, Session Resets.",
+      "top_contributing_drivers": [
+        {
+          "metric": "Disk Used",
+          "source_node": "host_disk_used|10_78_33_83",
+          "impact": "-57%",
+          "direction": "-",
+          "strength": 0.607,
+          "lag": "0m"
+        },
+        {
+          "metric": "Inodes Total",
+          "source_node": "host_inodes_total|10_78_33_83",
+          "impact": "-33%",
+          "direction": "-",
+          "strength": 0.352,
+          "lag": "7d"
+        },
+        {
+          "metric": "Session Resets",
+          "source_node": "host_sessions_reset|10_78_33_83",
+          "impact": "+9%",
+          "direction": "+",
+          "strength": 0.099,
+          "lag": "7d"
+        }
+      ]
+    },
+    "daily_comparison": [
+      {
+        "date": "2026-08-01",
+        "actual": 67.97,
+        "forecast_p50": 65.5,
+        "forecast_p10": 64.17,
+        "forecast_p90": 69.42,
+        "abs_error": 2.47
+      },
+      {
+        "date": "2026-08-02",
+        "actual": 68.04,
+        "forecast_p50": 65.5,
+        "forecast_p10": 64.17,
+        "forecast_p90": 69.42,
+        "abs_error": 2.54
+      },
+      {
+        "date": "2026-08-03",
+        "actual": 68.03,
+        "forecast_p50": 65.5,
+        "forecast_p10": 64.17,
+        "forecast_p90": 69.42,
+        "abs_error": 2.53
+      },
+      {
+        "date": "2026-08-04",
+        "actual": 68.02,
+        "forecast_p50": 65.5,
+        "forecast_p10": 64.17,
+        "forecast_p90": 69.42,
+        "abs_error": 2.52
+      },
+      {
+        "date": "2026-08-05",
+        "actual": 67.88,
+        "forecast_p50": 65.5,
+        "forecast_p10": 64.17,
+        "forecast_p90": 69.42,
+        "abs_error": 2.38
+      },
+      {
+        "date": "2026-08-06",
+        "actual": 67.66,
+        "forecast_p50": 65.5,
+        "forecast_p10": 64.17,
+        "forecast_p90": 69.42,
+        "abs_error": 2.16
+      },
+      {
+        "date": "2026-08-07",
+        "actual": 67.43,
+        "forecast_p50": 65.5,
+        "forecast_p10": 64.17,
+        "forecast_p90": 69.42,
+        "abs_error": 1.93
+      },
+      {
+        "date": "2026-08-08",
+        "actual": 67.21,
+        "forecast_p50": 65.51,
+        "forecast_p10": 64.19,
+        "forecast_p90": 69.44,
+        "abs_error": 1.7
+      },
+      {
+        "date": "2026-08-09",
+        "actual": 67.13,
+        "forecast_p50": 65.51,
+        "forecast_p10": 64.22,
+        "forecast_p90": 69.46,
+        "abs_error": 1.62
+      },
+      {
+        "date": "2026-08-10",
+        "actual": 66.92,
+        "forecast_p50": 65.52,
+        "forecast_p10": 64.24,
+        "forecast_p90": 69.48,
+        "abs_error": 1.4
+      },
+      {
+        "date": "2026-08-11",
+        "actual": 66.69,
+        "forecast_p50": 65.53,
+        "forecast_p10": 64.26,
+        "forecast_p90": 69.5,
+        "abs_error": 1.16
+      },
+      {
+        "date": "2026-08-12",
+        "actual": 66.44,
+        "forecast_p50": 65.53,
+        "forecast_p10": 64.29,
+        "forecast_p90": 69.52,
+        "abs_error": 0.91
+      },
+      {
+        "date": "2026-08-13",
+        "actual": 66.21,
+        "forecast_p50": 65.54,
+        "forecast_p10": 64.31,
+        "forecast_p90": 69.54,
+        "abs_error": 0.67
+      },
+      {
+        "date": "2026-08-14",
+        "actual": 65.96,
+        "forecast_p50": 65.55,
+        "forecast_p10": 64.33,
+        "forecast_p90": 69.57,
+        "abs_error": 0.41
+      },
+      {
+        "date": "2026-08-15",
+        "actual": 65.8,
+        "forecast_p50": 65.56,
+        "forecast_p10": 64.36,
+        "forecast_p90": 69.59,
+        "abs_error": 0.24
+      },
+      {
+        "date": "2026-08-16",
+        "actual": 65.8,
+        "forecast_p50": 65.56,
+        "forecast_p10": 64.38,
+        "forecast_p90": 69.61,
+        "abs_error": 0.24
+      },
+      {
+        "date": "2026-08-17",
+        "actual": 65.7,
+        "forecast_p50": 65.57,
+        "forecast_p10": 64.4,
+        "forecast_p90": 69.63,
+        "abs_error": 0.13
+      },
+      {
+        "date": "2026-08-18",
+        "actual": 65.6,
+        "forecast_p50": 65.58,
+        "forecast_p10": 64.43,
+        "forecast_p90": 69.65,
+        "abs_error": 0.02
+      },
+      {
+        "date": "2026-08-19",
+        "actual": 65.5,
+        "forecast_p50": 65.58,
+        "forecast_p10": 64.45,
+        "forecast_p90": 69.67,
+        "abs_error": 0.08
+      },
+      {
+        "date": "2026-08-20",
+        "actual": 65.42,
+        "forecast_p50": 65.59,
+        "forecast_p10": 64.47,
+        "forecast_p90": 69.69,
+        "abs_error": 0.17
+      },
+      {
+        "date": "2026-08-21",
+        "actual": 65.31,
+        "forecast_p50": 65.6,
+        "forecast_p10": 64.5,
+        "forecast_p90": 69.71,
+        "abs_error": 0.29
+      },
+      {
+        "date": "2026-08-22",
+        "actual": 65.21,
+        "forecast_p50": 65.6,
+        "forecast_p10": 64.52,
+        "forecast_p90": 69.73,
+        "abs_error": 0.39
+      },
+      {
+        "date": "2026-08-23",
+        "actual": 65.21,
+        "forecast_p50": 65.61,
+        "forecast_p10": 64.54,
+        "forecast_p90": 69.75,
+        "abs_error": 0.4
+      },
+      {
+        "date": "2026-08-24",
+        "actual": 65.12,
+        "forecast_p50": 65.62,
+        "forecast_p10": 64.57,
+        "forecast_p90": 69.77,
+        "abs_error": 0.5
+      },
+      {
+        "date": "2026-08-25",
+        "actual": 64.9,
+        "forecast_p50": 65.62,
+        "forecast_p10": 64.59,
+        "forecast_p90": 69.79,
+        "abs_error": 0.72
+      },
+      {
+        "date": "2026-08-26",
+        "actual": 64.62,
+        "forecast_p50": 65.63,
+        "forecast_p10": 64.62,
+        "forecast_p90": 69.81,
+        "abs_error": 1.01
+      },
+      {
+        "date": "2026-08-27",
+        "actual": 64.29,
+        "forecast_p50": 65.64,
+        "forecast_p10": 64.64,
+        "forecast_p90": 69.83,
+        "abs_error": 1.35
+      },
+      {
+        "date": "2026-08-28",
+        "actual": 64.07,
+        "forecast_p50": 65.64,
+        "forecast_p10": 64.66,
+        "forecast_p90": 69.85,
+        "abs_error": 1.57
+      }
+    ]
+  },
+  "host_mem_avail_pct|10_50_98_26": {
+    "host": "HYDUPINTAPP16 (10.50.98.26)",
+    "target_node": "host_mem_avail_pct|10_50_98_26",
+    "models_evaluated": [
+      "stgnn_graph"
+    ],
+    "metrics": {
+      "stgnn_graph": {
+        "mae": 11.1462,
+        "rmse": 11.6927,
+        "coverage_pct": 64.29
+      }
+    },
+    "explainability": {
+      "model_version": "ST-GNN (Graph Prior)",
+      "forecast": {
+        "p05_or_p10": 68.18,
+        "p50_median": 71.22,
+        "p95_or_p90": 84.03
+      },
+      "accuracy": {
+        "forecast_accuracy_pct": 88.85,
+        "mae": 11.1462,
+        "coverage_pct": 64.29
+      },
+      "baseline_30d_avg": 72.48,
+      "predicted_shift": -1.26,
+      "confidence_score": 60.4,
+      "risk_level": "LOW",
+      "summary": "Memory Available (%) is predicted to average 71.22% (P50) over the forecast horizon (-1.26% vs 30d baseline avg 72.48%). Primary interdependency drivers: Disk Write Bytes/sec, Session Resets, Disk Read Time.",
+      "top_contributing_drivers": [
+        {
+          "metric": "Disk Write Bytes/sec",
+          "source_node": "host_disk_write_bytes_sec|10_50_98_26",
+          "impact": "-49%",
+          "direction": "-",
+          "strength": 0.817,
+          "lag": "0m"
+        },
+        {
+          "metric": "Session Resets",
+          "source_node": "host_sessions_reset|10_50_98_26",
+          "impact": "+39%",
+          "direction": "+",
+          "strength": 0.647,
+          "lag": "0m"
+        },
+        {
+          "metric": "Disk Read Time",
+          "source_node": "host_disk_read_time|10_50_98_26",
+          "impact": "+13%",
+          "direction": "+",
+          "strength": 0.215,
+          "lag": "6d"
+        }
+      ]
+    },
+    "daily_comparison": [
+      {
+        "date": "2026-08-01",
+        "actual": 72.28,
+        "forecast_p50": 69.83,
+        "forecast_p10": 66.09,
+        "forecast_p90": 82.0,
+        "abs_error": 2.45
+      },
+      {
+        "date": "2026-08-02",
+        "actual": 73.43,
+        "forecast_p50": 69.83,
+        "forecast_p10": 66.09,
+        "forecast_p90": 82.0,
+        "abs_error": 3.6
+      },
+      {
+        "date": "2026-08-03",
+        "actual": 73.46,
+        "forecast_p50": 69.83,
+        "forecast_p10": 66.09,
+        "forecast_p90": 82.0,
+        "abs_error": 3.63
+      },
+      {
+        "date": "2026-08-04",
+        "actual": 74.56,
+        "forecast_p50": 69.83,
+        "forecast_p10": 66.09,
+        "forecast_p90": 82.0,
+        "abs_error": 4.73
+      },
+      {
+        "date": "2026-08-05",
+        "actual": 81.42,
+        "forecast_p50": 69.83,
+        "forecast_p10": 66.09,
+        "forecast_p90": 82.0,
+        "abs_error": 11.59
+      },
+      {
+        "date": "2026-08-06",
+        "actual": 81.28,
+        "forecast_p50": 69.83,
+        "forecast_p10": 66.09,
+        "forecast_p90": 82.0,
+        "abs_error": 11.45
+      },
+      {
+        "date": "2026-08-07",
+        "actual": 81.13,
+        "forecast_p50": 69.83,
+        "forecast_p10": 66.09,
+        "forecast_p90": 82.0,
+        "abs_error": 11.3
+      },
+      {
+        "date": "2026-08-08",
+        "actual": 80.85,
+        "forecast_p50": 69.9,
+        "forecast_p10": 66.19,
+        "forecast_p90": 82.1,
+        "abs_error": 10.95
+      },
+      {
+        "date": "2026-08-09",
+        "actual": 80.75,
+        "forecast_p50": 69.96,
+        "forecast_p10": 66.29,
+        "forecast_p90": 82.2,
+        "abs_error": 10.79
+      },
+      {
+        "date": "2026-08-10",
+        "actual": 80.79,
+        "forecast_p50": 70.03,
+        "forecast_p10": 66.39,
+        "forecast_p90": 82.29,
+        "abs_error": 10.76
+      },
+      {
+        "date": "2026-08-11",
+        "actual": 81.11,
+        "forecast_p50": 70.09,
+        "forecast_p10": 66.49,
+        "forecast_p90": 82.39,
+        "abs_error": 11.02
+      },
+      {
+        "date": "2026-08-12",
+        "actual": 80.52,
+        "forecast_p50": 70.16,
+        "forecast_p10": 66.59,
+        "forecast_p90": 82.49,
+        "abs_error": 10.36
+      },
+      {
+        "date": "2026-08-13",
+        "actual": 80.9,
+        "forecast_p50": 70.23,
+        "forecast_p10": 66.69,
+        "forecast_p90": 82.58,
+        "abs_error": 10.67
+      },
+      {
+        "date": "2026-08-14",
+        "actual": 80.79,
+        "forecast_p50": 70.29,
+        "forecast_p10": 66.79,
+        "forecast_p90": 82.68,
+        "abs_error": 10.5
+      },
+      {
+        "date": "2026-08-15",
+        "actual": 81.38,
+        "forecast_p50": 70.36,
+        "forecast_p10": 66.89,
+        "forecast_p90": 82.77,
+        "abs_error": 11.02
+      },
+      {
+        "date": "2026-08-16",
+        "actual": 84.59,
+        "forecast_p50": 70.42,
+        "forecast_p10": 66.99,
+        "forecast_p90": 82.87,
+        "abs_error": 14.17
+      },
+      {
+        "date": "2026-08-17",
+        "actual": 84.45,
+        "forecast_p50": 70.49,
+        "forecast_p10": 67.09,
+        "forecast_p90": 82.97,
+        "abs_error": 13.96
+      },
+      {
+        "date": "2026-08-18",
+        "actual": 84.41,
+        "forecast_p50": 70.56,
+        "forecast_p10": 67.18,
+        "forecast_p90": 83.06,
+        "abs_error": 13.85
+      },
+      {
+        "date": "2026-08-19",
+        "actual": 84.31,
+        "forecast_p50": 70.62,
+        "forecast_p10": 67.28,
+        "forecast_p90": 83.16,
+        "abs_error": 13.69
+      },
+      {
+        "date": "2026-08-20",
+        "actual": 81.3,
+        "forecast_p50": 70.69,
+        "forecast_p10": 67.38,
+        "forecast_p90": 83.26,
+        "abs_error": 10.61
+      },
+      {
+        "date": "2026-08-21",
+        "actual": 81.3,
+        "forecast_p50": 70.75,
+        "forecast_p10": 67.48,
+        "forecast_p90": 83.35,
+        "abs_error": 10.55
+      },
+      {
+        "date": "2026-08-22",
+        "actual": 87.83,
+        "forecast_p50": 70.82,
+        "forecast_p10": 67.58,
+        "forecast_p90": 83.45,
+        "abs_error": 17.01
+      },
+      {
+        "date": "2026-08-23",
+        "actual": 86.17,
+        "forecast_p50": 70.89,
+        "forecast_p10": 67.68,
+        "forecast_p90": 83.55,
+        "abs_error": 15.28
+      },
+      {
+        "date": "2026-08-24",
+        "actual": 85.86,
+        "forecast_p50": 70.95,
+        "forecast_p10": 67.78,
+        "forecast_p90": 83.64,
+        "abs_error": 14.91
+      },
+      {
+        "date": "2026-08-25",
+        "actual": 85.35,
+        "forecast_p50": 71.02,
+        "forecast_p10": 67.88,
+        "forecast_p90": 83.74,
+        "abs_error": 14.33
+      },
+      {
+        "date": "2026-08-26",
+        "actual": 84.37,
+        "forecast_p50": 71.08,
+        "forecast_p10": 67.98,
+        "forecast_p90": 83.83,
+        "abs_error": 13.29
+      },
+      {
+        "date": "2026-08-27",
+        "actual": 83.87,
+        "forecast_p50": 71.15,
+        "forecast_p10": 68.08,
+        "forecast_p90": 83.93,
+        "abs_error": 12.72
+      },
+      {
+        "date": "2026-08-28",
+        "actual": 84.12,
+        "forecast_p50": 71.22,
+        "forecast_p10": 68.18,
+        "forecast_p90": 84.03,
+        "abs_error": 12.9
+      }
+    ]
+  },
+  "host_mem_avail_pct|10_78_33_83": {
+    "host": "JPRUPIWEBCRP02 (10.78.33.83)",
+    "target_node": "host_mem_avail_pct|10_78_33_83",
+    "models_evaluated": [
+      "stgnn_graph"
+    ],
+    "metrics": {
+      "stgnn_graph": {
+        "mae": 3.1747,
+        "rmse": 4.319,
+        "coverage_pct": 100.0
+      }
+    },
+    "explainability": {
+      "model_version": "ST-GNN (Graph Prior)",
+      "forecast": {
+        "p05_or_p10": 66.61,
+        "p50_median": 70.04,
+        "p95_or_p90": 82.12
+      },
+      "accuracy": {
+        "forecast_accuracy_pct": 96.83,
+        "mae": 3.1747,
+        "coverage_pct": 100.0
+      },
+      "baseline_30d_avg": 78.52,
+      "predicted_shift": -8.48,
+      "confidence_score": 61.2,
+      "risk_level": "LOW",
+      "summary": "Memory Available (%) is predicted to average 70.04% (P50) over the forecast horizon (-8.48% vs 30d baseline avg 78.52%). Primary interdependency drivers: Network TX Bytes, Network TX Packets, Network RX Packets.",
+      "top_contributing_drivers": [
+        {
+          "metric": "Network TX Bytes",
+          "source_node": "host_net_tx_bytes|10_78_33_83",
+          "impact": "-21%",
+          "direction": "-",
+          "strength": 0.948,
+          "lag": "0m"
+        },
+        {
+          "metric": "Network TX Packets",
+          "source_node": "host_net_tx_packets|10_78_33_83",
+          "impact": "-21%",
+          "direction": "-",
+          "strength": 0.946,
+          "lag": "0m"
+        },
+        {
+          "metric": "Network RX Packets",
+          "source_node": "host_net_rx_packets|10_78_33_83",
+          "impact": "-20%",
+          "direction": "-",
+          "strength": 0.919,
+          "lag": "0m"
+        },
+        {
+          "metric": "Session Resets",
+          "source_node": "host_sessions_reset|10_78_33_83",
+          "impact": "+19%",
+          "direction": "+",
+          "strength": 0.86,
+          "lag": "0m"
+        },
+        {
+          "metric": "Disk Write Bytes/sec",
+          "source_node": "host_disk_write_bytes_sec|10_78_33_83",
+          "impact": "-19%",
+          "direction": "-",
+          "strength": 0.837,
+          "lag": "0m"
+        }
+      ]
+    },
+    "daily_comparison": [
+      {
+        "date": "2026-08-01",
+        "actual": 80.36,
+        "forecast_p50": 70.51,
+        "forecast_p10": 65.97,
+        "forecast_p90": 81.68,
+        "abs_error": 9.85
+      },
+      {
+        "date": "2026-08-02",
+        "actual": 80.89,
+        "forecast_p50": 70.51,
+        "forecast_p10": 65.97,
+        "forecast_p90": 81.68,
+        "abs_error": 10.38
+      },
+      {
+        "date": "2026-08-03",
+        "actual": 81.01,
+        "forecast_p50": 70.51,
+        "forecast_p10": 65.97,
+        "forecast_p90": 81.68,
+        "abs_error": 10.5
+      },
+      {
+        "date": "2026-08-04",
+        "actual": 80.07,
+        "forecast_p50": 70.51,
+        "forecast_p10": 65.97,
+        "forecast_p90": 81.68,
+        "abs_error": 9.56
+      },
+      {
+        "date": "2026-08-05",
+        "actual": 71.24,
+        "forecast_p50": 70.51,
+        "forecast_p10": 65.97,
+        "forecast_p90": 81.68,
+        "abs_error": 0.73
+      },
+      {
+        "date": "2026-08-06",
+        "actual": 71.4,
+        "forecast_p50": 70.51,
+        "forecast_p10": 65.97,
+        "forecast_p90": 81.68,
+        "abs_error": 0.89
+      },
+      {
+        "date": "2026-08-07",
+        "actual": 71.63,
+        "forecast_p50": 70.51,
+        "forecast_p10": 65.97,
+        "forecast_p90": 81.68,
+        "abs_error": 1.12
+      },
+      {
+        "date": "2026-08-08",
+        "actual": 71.34,
+        "forecast_p50": 70.49,
+        "forecast_p10": 66.0,
+        "forecast_p90": 81.7,
+        "abs_error": 0.85
+      },
+      {
+        "date": "2026-08-09",
+        "actual": 72.34,
+        "forecast_p50": 70.47,
+        "forecast_p10": 66.03,
+        "forecast_p90": 81.72,
+        "abs_error": 1.87
+      },
+      {
+        "date": "2026-08-10",
+        "actual": 72.47,
+        "forecast_p50": 70.44,
+        "forecast_p10": 66.06,
+        "forecast_p90": 81.74,
+        "abs_error": 2.03
+      },
+      {
+        "date": "2026-08-11",
+        "actual": 72.13,
+        "forecast_p50": 70.42,
+        "forecast_p10": 66.09,
+        "forecast_p90": 81.76,
+        "abs_error": 1.71
+      },
+      {
+        "date": "2026-08-12",
+        "actual": 71.99,
+        "forecast_p50": 70.4,
+        "forecast_p10": 66.12,
+        "forecast_p90": 81.79,
+        "abs_error": 1.59
+      },
+      {
+        "date": "2026-08-13",
+        "actual": 72.26,
+        "forecast_p50": 70.38,
+        "forecast_p10": 66.15,
+        "forecast_p90": 81.81,
+        "abs_error": 1.88
+      },
+      {
+        "date": "2026-08-14",
+        "actual": 71.94,
+        "forecast_p50": 70.35,
+        "forecast_p10": 66.18,
+        "forecast_p90": 81.83,
+        "abs_error": 1.59
+      },
+      {
+        "date": "2026-08-15",
+        "actual": 71.48,
+        "forecast_p50": 70.33,
+        "forecast_p10": 66.21,
+        "forecast_p90": 81.85,
+        "abs_error": 1.15
+      },
+      {
+        "date": "2026-08-16",
+        "actual": 71.87,
+        "forecast_p50": 70.31,
+        "forecast_p10": 66.24,
+        "forecast_p90": 81.87,
+        "abs_error": 1.56
+      },
+      {
+        "date": "2026-08-17",
+        "actual": 72.46,
+        "forecast_p50": 70.29,
+        "forecast_p10": 66.27,
+        "forecast_p90": 81.89,
+        "abs_error": 2.17
+      },
+      {
+        "date": "2026-08-18",
+        "actual": 72.48,
+        "forecast_p50": 70.26,
+        "forecast_p10": 66.3,
+        "forecast_p90": 81.91,
+        "abs_error": 2.22
+      },
+      {
+        "date": "2026-08-19",
+        "actual": 72.1,
+        "forecast_p50": 70.24,
+        "forecast_p10": 66.33,
+        "forecast_p90": 81.93,
+        "abs_error": 1.86
+      },
+      {
+        "date": "2026-08-20",
+        "actual": 72.19,
+        "forecast_p50": 70.22,
+        "forecast_p10": 66.36,
+        "forecast_p90": 81.95,
+        "abs_error": 1.97
+      },
+      {
+        "date": "2026-08-21",
+        "actual": 72.21,
+        "forecast_p50": 70.2,
+        "forecast_p10": 66.39,
+        "forecast_p90": 81.97,
+        "abs_error": 2.01
+      },
+      {
+        "date": "2026-08-22",
+        "actual": 71.85,
+        "forecast_p50": 70.17,
+        "forecast_p10": 66.42,
+        "forecast_p90": 81.99,
+        "abs_error": 1.68
+      },
+      {
+        "date": "2026-08-23",
+        "actual": 72.8,
+        "forecast_p50": 70.15,
+        "forecast_p10": 66.45,
+        "forecast_p90": 82.01,
+        "abs_error": 2.65
+      },
+      {
+        "date": "2026-08-24",
+        "actual": 74.14,
+        "forecast_p50": 70.13,
+        "forecast_p10": 66.48,
+        "forecast_p90": 82.03,
+        "abs_error": 4.01
+      },
+      {
+        "date": "2026-08-25",
+        "actual": 73.69,
+        "forecast_p50": 70.11,
+        "forecast_p10": 66.51,
+        "forecast_p90": 82.06,
+        "abs_error": 3.58
+      },
+      {
+        "date": "2026-08-26",
+        "actual": 73.31,
+        "forecast_p50": 70.08,
+        "forecast_p10": 66.54,
+        "forecast_p90": 82.08,
+        "abs_error": 3.23
+      },
+      {
+        "date": "2026-08-27",
+        "actual": 73.3,
+        "forecast_p50": 70.06,
+        "forecast_p10": 66.57,
+        "forecast_p90": 82.1,
+        "abs_error": 3.24
+      },
+      {
+        "date": "2026-08-28",
+        "actual": 73.07,
+        "forecast_p50": 70.04,
+        "forecast_p10": 66.61,
+        "forecast_p90": 82.12,
+        "abs_error": 3.03
+      }
+    ]
+  }
+}

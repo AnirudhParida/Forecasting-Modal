@@ -4,3 +4,7 @@ __pycache__/
 *.pyc
 .ipynb_checkpoints/
 dataset_export/
+tgnn/
+tgnn_data/
+artifacts_tgnn
+tgnn_multihost.yaml

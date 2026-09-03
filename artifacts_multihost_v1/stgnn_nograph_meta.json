@@ -1,8 +1,8 @@
 {
-  "tag": "stgnn",
-  "use_graph": true,
+  "tag": "stgnn_nograph",
+  "use_graph": false,
   "best_epoch": 25,
-  "best_val_loss": 0.16442277282476425,
+  "best_val_loss": 0.14786502718925476,
   "node_ids": [
     "host_availability|10_50_98_26",
     "host_availability|10_78_33_83",

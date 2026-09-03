@@ -234,7 +234,7 @@ def run(
     season: int,
     device: str = "cpu",
     run_ablation: bool = True,
-) -> tuple[BacktestResult, TrainResult]:
+) -> tuple[BacktestResult, dict[str, TrainResult]]:
     result = BacktestResult()
     test_idx = ds.test_idx
     if len(test_idx) == 0:
@@ -272,12 +272,13 @@ def run(
     if run_ablation:
         variants.append(("stgnn_nograph", False))
 
-    trained: TrainResult | None = None
+    trained_models: dict[str, TrainResult] = {}
     for name, use_graph in variants:
         log.info("training %s", name)
         tr = train(
             ds, cfg, quantiles, adj_prior=adj_prior, use_graph=use_graph, device=device
         )
+        trained_models[name] = tr
         result.training[name] = {
             "best_epoch": tr.best_epoch,
             "best_val_loss": tr.best_val_loss,
@@ -295,10 +296,8 @@ def run(
             y_true, pred[..., qi], y_mask, ds.target_ids, mase_scale=mase_scale
         )
 
-        if use_graph:
-            trained = tr
-            if tr.model.adjacency is not None:
-                result.graph_agreement = tr.model.adjacency.agreement()
+        if use_graph and tr.model.adjacency is not None:
+            result.graph_agreement = tr.model.adjacency.agreement()
 
     result.meta = {
         "n_test_windows": int(len(test_idx)),
@@ -309,4 +308,4 @@ def run(
         "horizons": ds.horizons,
         "input_steps": ds.input_steps,
     }
-    return result, trained
+    return result, trained_models
