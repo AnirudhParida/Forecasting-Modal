@@ -1,11 +1,18 @@
 """
 app/services/host_prediction_service.py
 ========================================
-Service for fetching host resource predictions (Disk, CPU, Memory)
+Service for fetching host resource predictions (CPU, Memory, Disk, Disk I/O)
 over requested date ranges (`st` and `et`) or duration using DataLoader.
 Dynamically extracts last recorded values from dataset parquet files,
 forecasted P50 values from model artifacts, percentage changes, trends,
 confidence scores, and risk levels with ZERO hardcoding.
+
+Covers 5 target metrics:
+  - CPU Utilization %       (host_cpu_usage)
+  - Memory Available %      (host_mem_avail_pct)
+  - Disk Available %        (host_disk_avail_pct)
+  - Disk Read Ops/sec       (host_disk_read_ops_sec)    [unit: ops/s]
+  - Disk Write Bytes/sec    (host_disk_write_bytes_sec) [unit: B/s]
 """
 from __future__ import annotations
 
@@ -96,7 +103,7 @@ def get_host_prediction_summary(
     as_of_date_str = DataLoader.get_as_of_date()
 
     # Helper function to build dynamic metric item
-    def build_metric_item(query: str, default_label: str) -> MetricPredictionItem:
+    def build_metric_item(query: str, default_label: str, unit: str = "%") -> MetricPredictionItem:
         node_id = DataLoader.resolve_node_id(query)
         base_name = node_id.split("|")[0]
         metric_label = METRIC_FRIENDLY_NAMES.get(base_name, default_label)
@@ -123,7 +130,7 @@ def get_host_prediction_summary(
         return MetricPredictionItem(
             metric_key=base_name,
             metric_label=metric_label,
-            unit="%",
+            unit=unit,
             current_value=current_val,
             predicted_p50=predicted_p50,
             percentage_change=pct_change,
@@ -132,10 +139,12 @@ def get_host_prediction_summary(
             risk_level=risk_level,
         )
 
-    # Dynamically build CPU Usage, Memory Usage, and Disk Usage items
-    cpu_item = build_metric_item("host_cpu_usage", "CPU Utilization (%)")
-    mem_item = build_metric_item("host_mem_usage", "Memory Utilization (%)")
-    disk_item = build_metric_item("disk_busy_time", "Disk Usage (%)")
+    # Dynamically build all 5 target metric items
+    cpu_item        = build_metric_item("host_cpu_usage",            "CPU Utilization (%)",      unit="%")
+    mem_item        = build_metric_item("host_mem_avail_pct",        "Memory Available (%)",     unit="%")
+    disk_item       = build_metric_item("host_disk_avail_pct",       "Disk Available (%)",       unit="%")
+    disk_read_item  = build_metric_item("host_disk_read_ops_sec",    "Disk Read Operations/sec", unit="ops/s")
+    disk_write_item = build_metric_item("host_disk_write_bytes_sec", "Disk Write Bytes/sec",     unit="B/s")
 
     return HostPredictionSummaryResponse(
         host_name=host_name,
@@ -148,5 +157,7 @@ def get_host_prediction_summary(
             cpu_usage=cpu_item,
             memory_usage=mem_item,
             disk_usage=disk_item,
+            disk_read_ops=disk_read_item,
+            disk_write_bytes=disk_write_item,
         ),
     )

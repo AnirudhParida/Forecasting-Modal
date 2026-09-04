@@ -1,7 +1,8 @@
 # Canonical metric registry for shared multi-host model.
 # Hosts : HYDUPINTAPP16 (10.50.98.26)
 #         JPRUPIWEBCRP02 (10.78.33.83)
-# Target : CPU Usage %  |  All others: intermediate/driver nodes
+# Targets: CPU Usage % | Disk Available % | Memory Available %
+#          Disk Read Ops/sec | Disk Write Bytes/sec
 #
 # In multi-host mode every metric is replicated as two nodes:
 #   host_cpu_usage__HYDUPINTAPP16   and   host_cpu_usage__JPRUPIWEBCRP02
@@ -126,12 +127,11 @@ metrics:
     entity_type: HOST
     split_by: ""
     agg: avg
-    role: intermediate
+    role: target
     resource: disk
     transform: log1p
     unit: count
-    # 0-1 ratio -> x100 (unit=percent triggers scaling)
-    # Actually stored as raw ops/s (0.086) — keep as count
+    # Raw ops/s (e.g. 0.086, 3.12) — stored as count, log1p applied for stationarity
     aliases: ["Disk read operations per second +3"]
 
   - key: host_disk_read_time
@@ -164,11 +164,11 @@ metrics:
     entity_type: HOST
     split_by: ""
     agg: avg
-    role: intermediate
+    role: target
     resource: disk
     transform: log1p
     unit: byte
-    # Values: "23.2kiB", "13.6kiB" -> bytes/s
+    # Values: "23.2kiB", "13.6kiB" -> bytes/s (stored in bytes after parse_val)
     aliases: ["Disk write bytes per second +3"]
 
   - key: host_disk_write_time

@@ -73,6 +73,10 @@ def _get_clean_label(node_id: str) -> tuple[str, str, str]:
         metric_name = "Disk Available (%)"
     elif key == "host_mem_avail_pct":
         metric_name = "Memory Available (%)"
+    elif key == "host_disk_read_ops_sec":
+        metric_name = "Disk Read Ops/sec"
+    elif key == "host_disk_write_bytes_sec":
+        metric_name = "Disk Write Bytes/sec"
     else:
         metric_name = key.replace("host_", "").replace("_", " ").title()
 
@@ -92,6 +96,7 @@ def _get_clean_driver_name(key: str) -> str:
         "host_disk_read_bytes_sec": "Disk Read Bytes/sec",
         "host_disk_read_ops_sec": "Disk Read Ops/sec",
         "host_disk_write_bytes_sec": "Disk Write Bytes/sec",
+        "host_disk_write_iops": "Disk Write IOPS",
         "host_disk_read_time": "Disk Read Time",
         "host_disk_write_time": "Disk Write Time",
         "host_disk_used": "Disk Used",
@@ -357,10 +362,17 @@ def _predict_single_model(
                     pred[i, h_idx, :] += trend_val
 
     # ── Fix 1: Domain Clipping ──────────────────────────────────────────────────
-    # CPU Usage % is physically bounded [0, 100]. Clip all quantiles to prevent
-    # unphysical negative values that arise from negative scaler centers combined
-    # with the model's over-estimated tail uncertainty at long horizons.
-    pred = np.clip(pred, 0.0, 100.0)
+    # Percentage-bounded targets (CPU %, Disk Avail %, Memory Avail %) are physically
+    # bounded [0, 100]. Clip only those targets; raw byte/ops metrics must NOT be clipped
+    # to 100 as their natural range can be orders of magnitude larger.
+    PCT_TARGET_KEYS = {"host_cpu_usage", "host_disk_avail_pct", "host_mem_avail_pct"}
+    for i, target in enumerate(target_ids):
+        base_key = target.split("|")[0]
+        if base_key in PCT_TARGET_KEYS:
+            pred[i] = np.clip(pred[i], 0.0, 100.0)
+        else:
+            # Non-percentage metrics: only clip at 0 (no negatives physically possible)
+            pred[i] = np.clip(pred[i], 0.0, None)
 
     # ── Fix 2: Enforce Quantile Monotonicity ────────────────────────────────────
     # After domain clipping, guarantee P05 <= P50 <= P95 ordering is preserved.

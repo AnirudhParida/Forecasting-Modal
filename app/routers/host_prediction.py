@@ -17,11 +17,13 @@ router = APIRouter(prefix="/api/v1", tags=["Host Prediction"])
 @router.get(
     "/host-prediction",
     response_model=HostPredictionSummaryResponse,
-    summary="Get Host Resource Predictions (Disk, CPU, Memory) with Confidence & Risk Level",
+    summary="Get Host Resource Predictions (CPU, Memory, Disk, Disk Read Ops, Disk Write Bytes) with Confidence & Risk Level",
     description=(
         "Retrieves last recorded dataset values (current_value), forecasted P50 values, "
-        "percentage changes, confidence scores, and risk levels for Disk, CPU, and Memory usage "
-        "over requested date range (st and et) or duration."
+        "percentage changes, confidence scores, and risk levels for 5 target metrics: "
+        "CPU Utilization (%), Memory Available (%), Disk Available (%), "
+        "Disk Read Operations/sec, and Disk Write Bytes/sec — "
+        "over the requested date range (st and et) or duration."
     ),
 )
 async def get_host_prediction(

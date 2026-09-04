@@ -3,7 +3,7 @@ tests/test_api.py
 =================
 Automated unit, integration, and EDGE CASE test suite for FastAPI endpoints:
 1. GET /api/v1/timeseries
-2. GET /api/v1/explainability
+2. GET /api/v1/explainability (with Relative Weight Contribution Normalization)
 3. GET /api/v1/host-prediction
 """
 # pyrefly: ignore [missing-import]
@@ -57,7 +57,7 @@ def test_timeseries_st_et_dynamic():
 
 
 def test_explainability_dynamic():
-    response = client.get("/api/v1/explainability?target_metric=host_cpu_usage")
+    response = client.get("/api/v1/explainability?target_metric=host_cpu_usage&top_k=5")
     assert response.status_code == 200
     data = response.json()
 
@@ -67,7 +67,13 @@ def test_explainability_dynamic():
     assert "confidence" in data
     assert "risk_level" in data
     assert "top_interdependency_drivers" in data
-    assert len(data["top_interdependency_drivers"]) > 0
+
+    drivers = data["top_interdependency_drivers"]
+    assert len(drivers) == 5
+
+    # Verify Relative Weight Contribution Normalization: Sum of absolute shares = 100.0%
+    abs_sum = round(sum(abs(d["impact_pct"]) for d in drivers), 1)
+    assert abs(abs_sum - 100.0) <= 0.5
 
 
 def test_host_prediction_summary_dynamic():
@@ -100,7 +106,6 @@ def test_timeseries_edge_case_reversed_dates():
     response = client.get(url)
     assert response.status_code == 200
     data = response.json()
-    # Response must handle bounds safely without 500 error
     assert "prediction_data" in data
     assert len(data["prediction_data"]) >= 1
 
@@ -111,7 +116,6 @@ def test_timeseries_edge_case_invalid_date_format():
     response = client.get(url)
     assert response.status_code == 200
     data = response.json()
-    # Falls back gracefully to current month defaults
     assert "actual_data" in data
     assert "prediction_data" in data
 
@@ -152,11 +156,16 @@ def test_explainability_edge_case_top_k_boundaries():
     """Edge Case: top_k boundary values (top_k=1, top_k=20)."""
     res1 = client.get("/api/v1/explainability?top_k=1")
     assert res1.status_code == 200
-    assert len(res1.json()["top_interdependency_drivers"]) == 1
+    d1 = res1.json()["top_interdependency_drivers"]
+    assert len(d1) == 1
+    assert abs(abs(d1[0]["impact_pct"]) - 100.0) <= 0.5
 
     res20 = client.get("/api/v1/explainability?top_k=20")
     assert res20.status_code == 200
-    assert len(res20.json()["top_interdependency_drivers"]) <= 20
+    d20 = res20.json()["top_interdependency_drivers"]
+    assert len(d20) <= 20
+    abs_sum = round(sum(abs(d["impact_pct"]) for d in d20), 1)
+    assert abs(abs_sum - 100.0) <= 0.5
 
 
 def test_explainability_edge_case_unknown_target_and_empty_strings():

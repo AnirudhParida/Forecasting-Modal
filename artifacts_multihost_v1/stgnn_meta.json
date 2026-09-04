@@ -1,8 +1,8 @@
 {
   "tag": "stgnn",
   "use_graph": true,
-  "best_epoch": 25,
-  "best_val_loss": 0.16442277282476425,
+  "best_epoch": 53,
+  "best_val_loss": 0.14896830916404724,
   "node_ids": [
     "host_availability|10_50_98_26",
     "host_availability|10_78_33_83",
@@ -64,6 +64,10 @@
     "host_cpu_usage|10_78_33_83",
     "host_disk_avail_pct|10_50_98_26",
     "host_disk_avail_pct|10_78_33_83",
+    "host_disk_read_ops_sec|10_50_98_26",
+    "host_disk_read_ops_sec|10_78_33_83",
+    "host_disk_write_bytes_sec|10_50_98_26",
+    "host_disk_write_bytes_sec|10_78_33_83",
     "host_mem_avail_pct|10_50_98_26",
     "host_mem_avail_pct|10_78_33_83"
   ],
