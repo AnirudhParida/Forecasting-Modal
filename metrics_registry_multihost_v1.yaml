@@ -2,7 +2,7 @@
 # Hosts : HYDUPINTAPP16 (10.50.98.26)
 #         JPRUPIWEBCRP02 (10.78.33.83)
 # Targets: CPU Usage % | Disk Available % | Memory Available %
-#          Disk Read Ops/sec | Disk Write Bytes/sec
+#          Disk Read Bytes/sec | Disk Write Bytes/sec
 #
 # In multi-host mode every metric is replicated as two nodes:
 #   host_cpu_usage__HYDUPINTAPP16   and   host_cpu_usage__JPRUPIWEBCRP02
@@ -115,7 +115,7 @@ metrics:
     entity_type: HOST
     split_by: ""
     agg: avg
-    role: intermediate
+    role: target
     resource: disk
     transform: log1p
     unit: byte
@@ -127,7 +127,7 @@ metrics:
     entity_type: HOST
     split_by: ""
     agg: avg
-    role: target
+    role: intermediate
     resource: disk
     transform: log1p
     unit: count

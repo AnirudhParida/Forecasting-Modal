@@ -42,6 +42,10 @@ async def get_explainability(
         le=20,
         description="Number of top interdependency drivers to return",
     ),
+    model: str = Query(
+        "STGNN",
+        description="Model to use (STGNN or NEURALPROPHET)",
+    ),
 ) -> ExplainabilityResponse:
     """FastAPI endpoint handler for explainability & driver interdependency analysis."""
     return get_explainability_analysis(
@@ -49,4 +53,5 @@ async def get_explainability(
         host_name=host_name,
         host_ip=host_ip,
         top_k=top_k,
+        model=model,
     )

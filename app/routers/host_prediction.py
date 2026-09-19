@@ -47,6 +47,10 @@ async def get_host_prediction(
         "10.78.33.83",
         description="Host IP address",
     ),
+    model: str = Query(
+        "STGNN",
+        description="Forecasting model to use (STGNN | NEURALPROPHET | CHRONOS | HOLT_WINTERS | TIMESFM)",
+    ),
 ) -> HostPredictionSummaryResponse:
     """FastAPI endpoint handler for host resource prediction summary."""
     return get_host_prediction_summary(
@@ -55,4 +59,5 @@ async def get_host_prediction(
         prediction_duration=prediction_duration,
         host_name=host_name,
         host_ip=host_ip,
+        model=model,
     )

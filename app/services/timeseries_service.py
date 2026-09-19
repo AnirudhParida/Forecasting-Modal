@@ -19,6 +19,20 @@ from app.models.schemas import (
     TimeseriesWindow,
 )
 from app.services.data_loader import DataLoader, METRIC_FRIENDLY_NAMES
+from app.services.np_data_loader import NPDataLoader
+from app.services.csv_data_loader import CSVDataLoader
+
+_CSV_MODELS = frozenset({"CHRONOS", "HOLT_WINTERS", "TIMESFM"})
+
+
+def _get_loader(model: str):
+    """Return the appropriate data-loader for the requested model."""
+    m = model.upper()
+    if m == "NEURALPROPHET":
+        return NPDataLoader
+    if m in _CSV_MODELS:
+        return CSVDataLoader(m)
+    return DataLoader  # STGNN (default)
 
 
 def _parse_date(date_val: Optional[str], default_date: datetime.date) -> datetime.date:
@@ -50,6 +64,7 @@ def get_timeseries_data(
     metric: str = "host_cpu_usage",
     host_name: str = "JPRUPIWEBCRP02",
     host_ip: str = "10.78.33.83",
+    model: str = "STGNN",
 ) -> TimeseriesResponse:
     """Generate timeseries response dynamically from dataset parquet and model artifacts."""
     today = datetime.now().date()
@@ -67,25 +82,28 @@ def get_timeseries_data(
     if pred_et < pred_st:
         pred_et = pred_st + timedelta(days=29)
 
-    as_of_date_str = DataLoader.get_as_of_date()
+    model_upper = model.upper()
+    Loader = _get_loader(model_upper)
+    is_stgnn = model_upper not in {"NEURALPROPHET"} | _CSV_MODELS
+    as_of_date_str = Loader.get_as_of_date(host_name) if not is_stgnn else DataLoader.get_as_of_date()
 
     # Resolve metric node ID and display label
-    node_id = DataLoader.resolve_node_id(metric)
+    node_id = metric if not is_stgnn else DataLoader.resolve_node_id(metric)
     base_name = node_id.split("|")[0]
     display_label = METRIC_FRIENDLY_NAMES.get(base_name, base_name.replace("_", " ").title())
 
-    # 1. DYNAMIC ACTUAL DATA (Past 3 months prior to prediction start date)
-    hist_st = pred_st - timedelta(days=90)
+    # 1. DYNAMIC ACTUAL DATA (All historical data from August 2025 prior to prediction start date)
+    hist_st = datetime(2025, 8, 1).date()
     hist_et = pred_st - timedelta(days=1)
 
-    hist_tuples = DataLoader.get_historical_series(node_id, hist_st, hist_et)
+    hist_tuples = Loader.get_historical_series(node_id, host_name, hist_st, hist_et) if not is_stgnn else DataLoader.get_historical_series(node_id, hist_st, hist_et)
     actual_data: List[ActualDataPoint] = [
         ActualDataPoint(timestamp=dt_s, value=val) for dt_s, val in hist_tuples
     ]
     actual_values = [pt.value for pt in actual_data]
 
     # 2. DYNAMIC PREDICTION DATA ([st, et])
-    pred_tuples = DataLoader.get_forecast_series(node_id, pred_st, pred_et)
+    pred_tuples = Loader.get_forecast_series(node_id, host_name, pred_st, pred_et) if not is_stgnn else DataLoader.get_forecast_series(node_id, pred_st, pred_et)
     prediction_data: List[PredictionDataPoint] = [
         PredictionDataPoint(timestamp=dt_s, p50=p50, p10=p10, p90=p90)
         for dt_s, p50, p10, p90 in pred_tuples
@@ -104,7 +122,7 @@ def get_timeseries_data(
     )
 
     return TimeseriesResponse(
-        metric=node_id,
+        metric=node_id if is_stgnn else metric,
         metric_label=display_label,
         host_name=host_name,
         host_ip=host_ip,

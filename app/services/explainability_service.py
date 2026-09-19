@@ -18,6 +18,7 @@ from app.models.schemas import (
     TargetMetricInfo,
 )
 from app.services.data_loader import DataLoader, METRIC_FRIENDLY_NAMES
+from app.services.np_data_loader import NPDataLoader
 
 
 def get_explainability_analysis(
@@ -25,10 +26,12 @@ def get_explainability_analysis(
     host_name: str = "JPRUPIWEBCRP02",
     host_ip: str = "10.78.33.83",
     top_k: int = 5,
+    model: str = "STGNN",
 ) -> ExplainabilityResponse:
     """Compute driver interdependency analysis & explainability dynamically from dataset & graph."""
     query = target_metric.strip() if target_metric else "host_cpu_usage"
-    node_id = DataLoader.resolve_node_id(query)
+    Loader = NPDataLoader if model.upper() == "NEURALPROPHET" else DataLoader
+    node_id = query if model.upper() == "NEURALPROPHET" else DataLoader.resolve_node_id(query)
     base_name = node_id.split("|")[0]
     metric_display_name = METRIC_FRIENDLY_NAMES.get(base_name, base_name.replace("_", " ").title())
     full_label = f"{metric_display_name} | {host_name} ({host_ip})"
@@ -37,7 +40,7 @@ def get_explainability_analysis(
     today = datetime.now().date()
     st_date = today
     et_date = today + timedelta(days=30)
-    pred_tuples = DataLoader.get_forecast_series(node_id, st_date, et_date)
+    pred_tuples = Loader.get_forecast_series(node_id, host_name, st_date, et_date) if model.upper() == "NEURALPROPHET" else DataLoader.get_forecast_series(node_id, st_date, et_date)
 
     p50_vals = [t[1] for t in pred_tuples]
     p10_vals = [t[2] for t in pred_tuples]
@@ -60,7 +63,7 @@ def get_explainability_analysis(
 
     # 2. DYNAMIC BASELINE SHIFT (from coarse_values.parquet)
     hist_st = today - timedelta(days=30)
-    hist_tuples = DataLoader.get_historical_series(node_id, hist_st, today - timedelta(days=1))
+    hist_tuples = Loader.get_historical_series(node_id, host_name, hist_st, today - timedelta(days=1)) if model.upper() == "NEURALPROPHET" else DataLoader.get_historical_series(node_id, hist_st, today - timedelta(days=1))
     hist_vals = [t[1] for t in hist_tuples]
     historical_avg_30d = round(float(sum(hist_vals) / max(len(hist_vals), 1)), 2)
 
@@ -77,10 +80,10 @@ def get_explainability_analysis(
     )
 
     # 3. DYNAMIC CONFIDENCE & RISK LEVEL
-    confidence, risk_level = DataLoader.get_confidence_and_risk(node_id)
+    confidence, risk_level = Loader.get_confidence_and_risk(node_id, host_name) if model.upper() == "NEURALPROPHET" else DataLoader.get_confidence_and_risk(node_id)
 
     # 4. DYNAMIC LEARNED GRAPH INTERDEPENDENCY DRIVERS (from stgnn_learned_graph.json)
-    raw_drivers = DataLoader.get_top_drivers(node_id, top_k=top_k)
+    raw_drivers = Loader.get_top_drivers(node_id, host_name, top_k=top_k) if model.upper() == "NEURALPROPHET" else DataLoader.get_top_drivers(node_id, top_k=top_k)
     driver_objects: List[DriverInfo] = [
         DriverInfo(
             rank=d["rank"],

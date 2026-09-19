@@ -26,6 +26,20 @@ from app.models.schemas import (
     MetricPredictionItem,
 )
 from app.services.data_loader import DataLoader, METRIC_FRIENDLY_NAMES
+from app.services.np_data_loader import NPDataLoader
+from app.services.csv_data_loader import CSVDataLoader
+
+_CSV_MODELS = frozenset({"CHRONOS", "HOLT_WINTERS", "TIMESFM"})
+
+
+def _get_loader(model: str):
+    """Return the appropriate data-loader for the requested model."""
+    m = model.upper()
+    if m == "NEURALPROPHET":
+        return NPDataLoader
+    if m in _CSV_MODELS:
+        return CSVDataLoader(m)
+    return DataLoader  # STGNN (default)
 
 
 def _parse_date(date_val: Optional[str], default_date: datetime.date) -> datetime.date:
@@ -70,9 +84,13 @@ def get_host_prediction_summary(
     host_name: str = "JPRUPIWEBCRP02",
     prediction_duration: Optional[str] = None,
     host_ip: str = "10.78.33.83",
+    model: str = "STGNN",
 ) -> HostPredictionSummaryResponse:
     """Compute host prediction summary dynamically from dataset parquet & model artifacts."""
     today = datetime.now().date()
+    model_upper = model.upper()
+    Loader = _get_loader(model_upper)
+    is_stgnn = model_upper not in {"NEURALPROPHET"} | _CSV_MODELS
 
     if st or et:
         default_st = datetime(today.year, today.month, 1).date()
@@ -93,26 +111,26 @@ def get_host_prediction_summary(
         days = parse_duration_days(duration_str)
         canonical_duration = f"{days}d"
 
-        as_of_str = DataLoader.get_as_of_date()
+        as_of_str = Loader.get_as_of_date(host_name) if not is_stgnn else DataLoader.get_as_of_date()
         try:
             pred_st = datetime.strptime(as_of_str, "%Y-%m-%d").date() + timedelta(days=1)
         except Exception:
             pred_st = today
         pred_et = pred_st + timedelta(days=days - 1)
 
-    as_of_date_str = DataLoader.get_as_of_date()
+    as_of_date_str = Loader.get_as_of_date(host_name) if not is_stgnn else DataLoader.get_as_of_date()
 
     # Helper function to build dynamic metric item
     def build_metric_item(query: str, default_label: str, unit: str = "%") -> MetricPredictionItem:
-        node_id = DataLoader.resolve_node_id(query)
+        node_id = query if not is_stgnn else DataLoader.resolve_node_id(query)
         base_name = node_id.split("|")[0]
         metric_label = METRIC_FRIENDLY_NAMES.get(base_name, default_label)
 
         # 1. Current value: last recorded non-null data point in dataset
-        current_val = DataLoader.get_last_recorded_value(node_id)
+        current_val = Loader.get_last_recorded_value(node_id, host_name) if not is_stgnn else DataLoader.get_last_recorded_value(node_id)
 
         # 2. Predicted P50 value: mean forecast value over [pred_st, pred_et]
-        pred_tuples = DataLoader.get_forecast_series(node_id, pred_st, pred_et)
+        pred_tuples = Loader.get_forecast_series(node_id, host_name, pred_st, pred_et) if not is_stgnn else DataLoader.get_forecast_series(node_id, pred_st, pred_et)
         p50_vals = [t[1] for t in pred_tuples]
         predicted_p50 = round(float(sum(p50_vals) / max(len(p50_vals), 1)), 2)
 
@@ -125,7 +143,7 @@ def get_host_prediction_summary(
         trend = "INCREASING" if pct_change > 1.0 else ("DECREASING" if pct_change < -1.0 else "STABLE")
 
         # 4. Confidence & Risk Level
-        confidence, risk_level = DataLoader.get_confidence_and_risk(node_id)
+        confidence, risk_level = Loader.get_confidence_and_risk(node_id, host_name) if not is_stgnn else DataLoader.get_confidence_and_risk(node_id)
 
         return MetricPredictionItem(
             metric_key=base_name,

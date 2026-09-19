@@ -75,6 +75,8 @@ def _get_clean_label(node_id: str) -> tuple[str, str, str]:
         metric_name = "Memory Available (%)"
     elif key == "host_disk_read_ops_sec":
         metric_name = "Disk Read Ops/sec"
+    elif key == "host_disk_read_bytes_sec":
+        metric_name = "Disk Read Bytes/sec"
     elif key == "host_disk_write_bytes_sec":
         metric_name = "Disk Write Bytes/sec"
     else:

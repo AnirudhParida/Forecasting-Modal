@@ -1,0 +1,1863 @@
+{
+  "host": "JPRUPIWEBCRP02",
+  "horizon_days": 60,
+  "as_of_date": "2026-08-28",
+  "generated_at": "2026-09-07T15:59:38",
+  "metrics": {
+    "cpu_pct": {
+      "label": "CPU Usage (%)",
+      "unit": "%",
+      "evaluation": {
+        "mae": 0.0,
+        "rmse": 0.0,
+        "mape": 0.0
+      },
+      "forecast": [
+        {
+          "date": "2026-08-29",
+          "yhat": 0.0,
+          "yhat_lower": 0.0,
+          "yhat_upper": 0.0
+        },
+        {
+          "date": "2026-08-30",
+          "yhat": 3.5624,
+          "yhat_lower": 0.0,
+          "yhat_upper": 18.3053
+        },
+        {
+          "date": "2026-08-31",
+          "yhat": 3.9868,
+          "yhat_lower": 0.0,
+          "yhat_upper": 3.9868
+        },
+        {
+          "date": "2026-09-01",
+          "yhat": 0.0,
+          "yhat_lower": 0.0,
+          "yhat_upper": 18.3053
+        },
+        {
+          "date": "2026-09-02",
+          "yhat": 0.7181,
+          "yhat_lower": 0.7181,
+          "yhat_upper": 6.5657
+        },
+        {
+          "date": "2026-09-03",
+          "yhat": 3.1854,
+          "yhat_lower": 3.1854,
+          "yhat_upper": 3.9868
+        },
+        {
+          "date": "2026-09-04",
+          "yhat": 4.5557,
+          "yhat_lower": 0.0,
+          "yhat_upper": 15.9721
+        },
+        {
+          "date": "2026-09-05",
+          "yhat": 0.0,
+          "yhat_lower": 0.0,
+          "yhat_upper": 16.3738
+        },
+        {
+          "date": "2026-09-06",
+          "yhat": 11.736,
+          "yhat_lower": 0.0,
+          "yhat_upper": 31.4949
+        },
+        {
+          "date": "2026-09-07",
+          "yhat": 0.0,
+          "yhat_lower": 0.0,
+          "yhat_upper": 6.5657
+        },
+        {
+          "date": "2026-09-08",
+          "yhat": 6.5816,
+          "yhat_lower": 0.0,
+          "yhat_upper": 17.4032
+        },
+        {
+          "date": "2026-09-09",
+          "yhat": 0.0,
+          "yhat_lower": 0.0,
+          "yhat_upper": 3.1854
+        },
+        {
+          "date": "2026-09-10",
+          "yhat": 0.0,
+          "yhat_lower": 0.0,
+          "yhat_upper": 9.2496
+        },
+        {
+          "date": "2026-09-11",
+          "yhat": 4.4166,
+          "yhat_lower": 4.4166,
+          "yhat_upper": 15.9721
+        },
+        {
+          "date": "2026-09-12",
+          "yhat": 0.0,
+          "yhat_lower": 0.0,
+          "yhat_upper": 5.4432
+        },
+        {
+          "date": "2026-09-13",
+          "yhat": 4.5286,
+          "yhat_lower": 4.5286,
+          "yhat_upper": 16.3738
+        },
+        {
+          "date": "2026-09-14",
+          "yhat": 0.0,
+          "yhat_lower": 0.0,
+          "yhat_upper": 2.8917
+        },
+        {
+          "date": "2026-09-15",
+          "yhat": 0.0,
+          "yhat_lower": 0.0,
+          "yhat_upper": 31.4949
+        },
+        {
+          "date": "2026-09-16",
+          "yhat": 0.2831,
+          "yhat_lower": 0.0,
+          "yhat_upper": 7.426
+        },
+        {
+          "date": "2026-09-17",
+          "yhat": 6.1252,
+          "yhat_lower": 0.0,
+          "yhat_upper": 6.1252
+        },
+        {
+          "date": "2026-09-18",
+          "yhat": 0.0,
+          "yhat_lower": 0.0,
+          "yhat_upper": 4.8538
+        },
+        {
+          "date": "2026-09-19",
+          "yhat": 2.9289,
+          "yhat_lower": 2.9289,
+          "yhat_upper": 17.4032
+        },
+        {
+          "date": "2026-09-20",
+          "yhat": 3.9386,
+          "yhat_lower": 0.0,
+          "yhat_upper": 10.4021
+        },
+        {
+          "date": "2026-09-21",
+          "yhat": 3.533,
+          "yhat_lower": 0.0,
+          "yhat_upper": 5.6835
+        },
+        {
+          "date": "2026-09-22",
+          "yhat": 1.8157,
+          "yhat_lower": 0.0,
+          "yhat_upper": 3.4543
+        },
+        {
+          "date": "2026-09-23",
+          "yhat": 8.0443,
+          "yhat_lower": 8.0443,
+          "yhat_upper": 11.9522
+        },
+        {
+          "date": "2026-09-24",
+          "yhat": 0.0,
+          "yhat_lower": 0.0,
+          "yhat_upper": 8.4085
+        },
+        {
+          "date": "2026-09-25",
+          "yhat": 6.4337,
+          "yhat_lower": 6.4337,
+          "yhat_upper": 23.0096
+        },
+        {
+          "date": "2026-09-26",
+          "yhat": 0.0,
+          "yhat_lower": 0.0,
+          "yhat_upper": 4.7297
+        },
+        {
+          "date": "2026-09-27",
+          "yhat": 0.0,
+          "yhat_lower": 0.0,
+          "yhat_upper": 5.4432
+        },
+        {
+          "date": "2026-09-28",
+          "yhat": 0.0,
+          "yhat_lower": 0.0,
+          "yhat_upper": 4.8097
+        },
+        {
+          "date": "2026-09-29",
+          "yhat": 4.2408,
+          "yhat_lower": 4.2408,
+          "yhat_upper": 14.5101
+        },
+        {
+          "date": "2026-09-30",
+          "yhat": 0.0,
+          "yhat_lower": 0.0,
+          "yhat_upper": 8.7395
+        },
+        {
+          "date": "2026-10-01",
+          "yhat": 13.782,
+          "yhat_lower": 2.8917,
+          "yhat_upper": 23.1142
+        },
+        {
+          "date": "2026-10-02",
+          "yhat": 0.2888,
+          "yhat_lower": 0.0,
+          "yhat_upper": 5.1079
+        },
+        {
+          "date": "2026-10-03",
+          "yhat": 0.0,
+          "yhat_lower": 0.0,
+          "yhat_upper": 0.0741
+        },
+        {
+          "date": "2026-10-04",
+          "yhat": 0.0,
+          "yhat_lower": 0.0,
+          "yhat_upper": 2.2747
+        },
+        {
+          "date": "2026-10-05",
+          "yhat": 3.8696,
+          "yhat_lower": 3.8696,
+          "yhat_upper": 15.7824
+        },
+        {
+          "date": "2026-10-06",
+          "yhat": 3.0726,
+          "yhat_lower": 0.0,
+          "yhat_upper": 7.031
+        },
+        {
+          "date": "2026-10-07",
+          "yhat": 0.1305,
+          "yhat_lower": 0.1305,
+          "yhat_upper": 13.1381
+        },
+        {
+          "date": "2026-10-08",
+          "yhat": 4.4369,
+          "yhat_lower": 0.0,
+          "yhat_upper": 4.4369
+        },
+        {
+          "date": "2026-10-09",
+          "yhat": 3.1614,
+          "yhat_lower": 3.1614,
+          "yhat_upper": 5.1916
+        },
+        {
+          "date": "2026-10-10",
+          "yhat": 0.0,
+          "yhat_lower": 0.0,
+          "yhat_upper": 6.7137
+        },
+        {
+          "date": "2026-10-11",
+          "yhat": 0.2278,
+          "yhat_lower": 0.2278,
+          "yhat_upper": 13.7011
+        },
+        {
+          "date": "2026-10-12",
+          "yhat": 2.2195,
+          "yhat_lower": 2.2195,
+          "yhat_upper": 8.6285
+        },
+        {
+          "date": "2026-10-13",
+          "yhat": 0.117,
+          "yhat_lower": 0.117,
+          "yhat_upper": 10.4021
+        },
+        {
+          "date": "2026-10-14",
+          "yhat": 5.8904,
+          "yhat_lower": 3.533,
+          "yhat_upper": 8.1938
+        },
+        {
+          "date": "2026-10-15",
+          "yhat": 8.0711,
+          "yhat_lower": 5.6835,
+          "yhat_upper": 10.769
+        },
+        {
+          "date": "2026-10-16",
+          "yhat": 0.0,
+          "yhat_lower": 0.0,
+          "yhat_upper": 0.0
+        },
+        {
+          "date": "2026-10-17",
+          "yhat": 0.0,
+          "yhat_lower": 0.0,
+          "yhat_upper": 3.4543
+        },
+        {
+          "date": "2026-10-18",
+          "yhat": 0.0,
+          "yhat_lower": 0.0,
+          "yhat_upper": 8.0443
+        },
+        {
+          "date": "2026-10-19",
+          "yhat": 10.6982,
+          "yhat_lower": 10.6982,
+          "yhat_upper": 13.9186
+        },
+        {
+          "date": "2026-10-20",
+          "yhat": 5.4332,
+          "yhat_lower": 0.0,
+          "yhat_upper": 5.4332
+        },
+        {
+          "date": "2026-10-21",
+          "yhat": 0.0,
+          "yhat_lower": 0.0,
+          "yhat_upper": 8.4085
+        },
+        {
+          "date": "2026-10-22",
+          "yhat": 7.6121,
+          "yhat_lower": 0.0,
+          "yhat_upper": 11.2661
+        },
+        {
+          "date": "2026-10-23",
+          "yhat": 11.9246,
+          "yhat_lower": 11.9246,
+          "yhat_upper": 23.0096
+        },
+        {
+          "date": "2026-10-24",
+          "yhat": 4.9151,
+          "yhat_lower": 0.0,
+          "yhat_upper": 5.6546
+        },
+        {
+          "date": "2026-10-25",
+          "yhat": 0.0,
+          "yhat_lower": 0.0,
+          "yhat_upper": 4.7297
+        },
+        {
+          "date": "2026-10-26",
+          "yhat": 8.3978,
+          "yhat_lower": 0.0,
+          "yhat_upper": 12.8219
+        },
+        {
+          "date": "2026-10-27",
+          "yhat": 0.0,
+          "yhat_lower": 0.0,
+          "yhat_upper": 9.3254
+        }
+      ]
+    },
+    "memory_pct": {
+      "label": "Memory Available (%)",
+      "unit": "%",
+      "evaluation": {
+        "mae": 0.0,
+        "rmse": 0.0,
+        "mape": 0.0
+      },
+      "forecast": [
+        {
+          "date": "2026-08-29",
+          "yhat": 66.0135,
+          "yhat_lower": 65.2838,
+          "yhat_upper": 66.0135
+        },
+        {
+          "date": "2026-08-30",
+          "yhat": 42.9422,
+          "yhat_lower": 42.9422,
+          "yhat_upper": 66.0135
+        },
+        {
+          "date": "2026-08-31",
+          "yhat": 60.0611,
+          "yhat_lower": 31.4307,
+          "yhat_upper": 76.1067
+        },
+        {
+          "date": "2026-09-01",
+          "yhat": 63.3309,
+          "yhat_lower": 42.9422,
+          "yhat_upper": 92.0674
+        },
+        {
+          "date": "2026-09-02",
+          "yhat": 42.2339,
+          "yhat_lower": 42.2339,
+          "yhat_upper": 86.0447
+        },
+        {
+          "date": "2026-09-03",
+          "yhat": 48.805,
+          "yhat_lower": 48.805,
+          "yhat_upper": 76.1067
+        },
+        {
+          "date": "2026-09-04",
+          "yhat": 29.7614,
+          "yhat_lower": 0.7667,
+          "yhat_upper": 46.5645
+        },
+        {
+          "date": "2026-09-05",
+          "yhat": 79.866,
+          "yhat_lower": 79.866,
+          "yhat_upper": 100.0
+        },
+        {
+          "date": "2026-09-06",
+          "yhat": 63.25,
+          "yhat_lower": 0.0,
+          "yhat_upper": 63.25
+        },
+        {
+          "date": "2026-09-07",
+          "yhat": 72.9242,
+          "yhat_lower": 72.9242,
+          "yhat_upper": 92.1957
+        },
+        {
+          "date": "2026-09-08",
+          "yhat": 36.9894,
+          "yhat_lower": 16.9141,
+          "yhat_upper": 59.8941
+        },
+        {
+          "date": "2026-09-09",
+          "yhat": 44.3401,
+          "yhat_lower": 44.3401,
+          "yhat_upper": 50.0718
+        },
+        {
+          "date": "2026-09-10",
+          "yhat": 57.4173,
+          "yhat_lower": 23.6482,
+          "yhat_upper": 76.7501
+        },
+        {
+          "date": "2026-09-11",
+          "yhat": 63.3623,
+          "yhat_lower": 46.5645,
+          "yhat_upper": 98.5846
+        },
+        {
+          "date": "2026-09-12",
+          "yhat": 67.0991,
+          "yhat_lower": 26.7403,
+          "yhat_upper": 71.6967
+        },
+        {
+          "date": "2026-09-13",
+          "yhat": 61.1639,
+          "yhat_lower": 61.1639,
+          "yhat_upper": 100.0
+        },
+        {
+          "date": "2026-09-14",
+          "yhat": 66.9535,
+          "yhat_lower": 63.25,
+          "yhat_upper": 99.5465
+        },
+        {
+          "date": "2026-09-15",
+          "yhat": 62.7877,
+          "yhat_lower": 62.7877,
+          "yhat_upper": 100.0
+        },
+        {
+          "date": "2026-09-16",
+          "yhat": 65.3689,
+          "yhat_lower": 65.3689,
+          "yhat_upper": 72.9242
+        },
+        {
+          "date": "2026-09-17",
+          "yhat": 67.6093,
+          "yhat_lower": 67.6093,
+          "yhat_upper": 100.0
+        },
+        {
+          "date": "2026-09-18",
+          "yhat": 52.1965,
+          "yhat_lower": 20.831,
+          "yhat_upper": 83.7222
+        },
+        {
+          "date": "2026-09-19",
+          "yhat": 80.0072,
+          "yhat_lower": 59.8941,
+          "yhat_upper": 85.0652
+        },
+        {
+          "date": "2026-09-20",
+          "yhat": 62.0927,
+          "yhat_lower": 17.9924,
+          "yhat_upper": 84.8664
+        },
+        {
+          "date": "2026-09-21",
+          "yhat": 62.934,
+          "yhat_lower": 50.0718,
+          "yhat_upper": 91.8677
+        },
+        {
+          "date": "2026-09-22",
+          "yhat": 68.6199,
+          "yhat_lower": 27.897,
+          "yhat_upper": 100.0
+        },
+        {
+          "date": "2026-09-23",
+          "yhat": 71.2837,
+          "yhat_lower": 71.2837,
+          "yhat_upper": 77.6098
+        },
+        {
+          "date": "2026-09-24",
+          "yhat": 57.4925,
+          "yhat_lower": 49.2434,
+          "yhat_upper": 57.4925
+        },
+        {
+          "date": "2026-09-25",
+          "yhat": 70.4375,
+          "yhat_lower": 70.4375,
+          "yhat_upper": 98.5846
+        },
+        {
+          "date": "2026-09-26",
+          "yhat": 62.1981,
+          "yhat_lower": 42.0917,
+          "yhat_upper": 100.0
+        },
+        {
+          "date": "2026-09-27",
+          "yhat": 64.0155,
+          "yhat_lower": 64.0155,
+          "yhat_upper": 87.6585
+        },
+        {
+          "date": "2026-09-28",
+          "yhat": 63.1842,
+          "yhat_lower": 36.7956,
+          "yhat_upper": 71.2508
+        },
+        {
+          "date": "2026-09-29",
+          "yhat": 60.1016,
+          "yhat_lower": 60.1016,
+          "yhat_upper": 94.2631
+        },
+        {
+          "date": "2026-09-30",
+          "yhat": 61.7691,
+          "yhat_lower": 46.0359,
+          "yhat_upper": 91.4453
+        },
+        {
+          "date": "2026-10-01",
+          "yhat": 53.2472,
+          "yhat_lower": 53.2472,
+          "yhat_upper": 99.5465
+        },
+        {
+          "date": "2026-10-02",
+          "yhat": 62.7702,
+          "yhat_lower": 36.7035,
+          "yhat_upper": 62.7702
+        },
+        {
+          "date": "2026-10-03",
+          "yhat": 57.2405,
+          "yhat_lower": 57.2405,
+          "yhat_upper": 100.0
+        },
+        {
+          "date": "2026-10-04",
+          "yhat": 53.0802,
+          "yhat_lower": 53.0802,
+          "yhat_upper": 86.1671
+        },
+        {
+          "date": "2026-10-05",
+          "yhat": 43.7421,
+          "yhat_lower": 43.7421,
+          "yhat_upper": 68.903
+        },
+        {
+          "date": "2026-10-06",
+          "yhat": 54.5256,
+          "yhat_lower": 54.5256,
+          "yhat_upper": 57.6179
+        },
+        {
+          "date": "2026-10-07",
+          "yhat": 56.535,
+          "yhat_lower": 56.535,
+          "yhat_upper": 100.0
+        },
+        {
+          "date": "2026-10-08",
+          "yhat": 64.7892,
+          "yhat_lower": 7.6343,
+          "yhat_upper": 83.4492
+        },
+        {
+          "date": "2026-10-09",
+          "yhat": 54.9243,
+          "yhat_lower": 54.9243,
+          "yhat_upper": 83.7222
+        },
+        {
+          "date": "2026-10-10",
+          "yhat": 59.6192,
+          "yhat_lower": 59.6192,
+          "yhat_upper": 80.0072
+        },
+        {
+          "date": "2026-10-11",
+          "yhat": 65.0002,
+          "yhat_lower": 65.0002,
+          "yhat_upper": 85.0652
+        },
+        {
+          "date": "2026-10-12",
+          "yhat": 66.6217,
+          "yhat_lower": 39.6042,
+          "yhat_upper": 93.2194
+        },
+        {
+          "date": "2026-10-13",
+          "yhat": 100.0,
+          "yhat_lower": 84.8664,
+          "yhat_upper": 100.0
+        },
+        {
+          "date": "2026-10-14",
+          "yhat": 45.0813,
+          "yhat_lower": 33.9971,
+          "yhat_upper": 60.3434
+        },
+        {
+          "date": "2026-10-15",
+          "yhat": 80.9058,
+          "yhat_lower": 80.9058,
+          "yhat_upper": 100.0
+        },
+        {
+          "date": "2026-10-16",
+          "yhat": 79.787,
+          "yhat_lower": 43.7612,
+          "yhat_upper": 100.0
+        },
+        {
+          "date": "2026-10-17",
+          "yhat": 57.1195,
+          "yhat_lower": 57.1195,
+          "yhat_upper": 100.0
+        },
+        {
+          "date": "2026-10-18",
+          "yhat": 87.6206,
+          "yhat_lower": 52.8885,
+          "yhat_upper": 87.6206
+        },
+        {
+          "date": "2026-10-19",
+          "yhat": 92.6777,
+          "yhat_lower": 77.6098,
+          "yhat_upper": 100.0
+        },
+        {
+          "date": "2026-10-20",
+          "yhat": 81.4309,
+          "yhat_lower": 48.2829,
+          "yhat_upper": 93.3634
+        },
+        {
+          "date": "2026-10-21",
+          "yhat": 82.8904,
+          "yhat_lower": 57.4925,
+          "yhat_upper": 91.8232
+        },
+        {
+          "date": "2026-10-22",
+          "yhat": 86.0884,
+          "yhat_lower": 33.4859,
+          "yhat_upper": 100.0
+        },
+        {
+          "date": "2026-10-23",
+          "yhat": 65.3087,
+          "yhat_lower": 65.3087,
+          "yhat_upper": 100.0
+        },
+        {
+          "date": "2026-10-24",
+          "yhat": 82.1499,
+          "yhat_lower": 43.2964,
+          "yhat_upper": 82.1499
+        },
+        {
+          "date": "2026-10-25",
+          "yhat": 72.1125,
+          "yhat_lower": 72.1125,
+          "yhat_upper": 100.0
+        },
+        {
+          "date": "2026-10-26",
+          "yhat": 75.7413,
+          "yhat_lower": 64.0155,
+          "yhat_upper": 75.7413
+        },
+        {
+          "date": "2026-10-27",
+          "yhat": 31.7942,
+          "yhat_lower": 31.7942,
+          "yhat_upper": 87.6585
+        }
+      ]
+    },
+    "disk_pct": {
+      "label": "Disk Available (%)",
+      "unit": "%",
+      "evaluation": {
+        "mae": 0.0,
+        "rmse": 0.0,
+        "mape": 0.0
+      },
+      "forecast": [
+        {
+          "date": "2026-08-29",
+          "yhat": 73.2995,
+          "yhat_lower": 58.2542,
+          "yhat_upper": 83.1416
+        },
+        {
+          "date": "2026-08-30",
+          "yhat": 64.9291,
+          "yhat_lower": 64.9291,
+          "yhat_upper": 83.1416
+        },
+        {
+          "date": "2026-08-31",
+          "yhat": 68.7018,
+          "yhat_lower": 45.8135,
+          "yhat_upper": 83.8482
+        },
+        {
+          "date": "2026-09-01",
+          "yhat": 63.7617,
+          "yhat_lower": 63.7617,
+          "yhat_upper": 80.7134
+        },
+        {
+          "date": "2026-09-02",
+          "yhat": 68.0115,
+          "yhat_lower": 58.2962,
+          "yhat_upper": 74.4844
+        },
+        {
+          "date": "2026-09-03",
+          "yhat": 75.5385,
+          "yhat_lower": 75.5385,
+          "yhat_upper": 84.4211
+        },
+        {
+          "date": "2026-09-04",
+          "yhat": 68.9367,
+          "yhat_lower": 49.4105,
+          "yhat_upper": 82.7478
+        },
+        {
+          "date": "2026-09-05",
+          "yhat": 62.5548,
+          "yhat_lower": 62.5548,
+          "yhat_upper": 80.7134
+        },
+        {
+          "date": "2026-09-06",
+          "yhat": 61.2256,
+          "yhat_lower": 41.8479,
+          "yhat_upper": 67.2344
+        },
+        {
+          "date": "2026-09-07",
+          "yhat": 65.3449,
+          "yhat_lower": 65.3449,
+          "yhat_upper": 83.7271
+        },
+        {
+          "date": "2026-09-08",
+          "yhat": 69.5885,
+          "yhat_lower": 69.5885,
+          "yhat_upper": 76.1399
+        },
+        {
+          "date": "2026-09-09",
+          "yhat": 68.0185,
+          "yhat_lower": 68.0185,
+          "yhat_upper": 84.7413
+        },
+        {
+          "date": "2026-09-10",
+          "yhat": 67.6485,
+          "yhat_lower": 55.6836,
+          "yhat_upper": 77.0913
+        },
+        {
+          "date": "2026-09-11",
+          "yhat": 64.3809,
+          "yhat_lower": 64.3809,
+          "yhat_upper": 82.7478
+        },
+        {
+          "date": "2026-09-12",
+          "yhat": 73.3345,
+          "yhat_lower": 56.5129,
+          "yhat_upper": 85.9105
+        },
+        {
+          "date": "2026-09-13",
+          "yhat": 68.0423,
+          "yhat_lower": 68.0423,
+          "yhat_upper": 78.9618
+        },
+        {
+          "date": "2026-09-14",
+          "yhat": 69.0741,
+          "yhat_lower": 42.4833,
+          "yhat_upper": 79.612
+        },
+        {
+          "date": "2026-09-15",
+          "yhat": 63.2373,
+          "yhat_lower": 63.2373,
+          "yhat_upper": 72.6717
+        },
+        {
+          "date": "2026-09-16",
+          "yhat": 69.5526,
+          "yhat_lower": 45.1783,
+          "yhat_upper": 73.9889
+        },
+        {
+          "date": "2026-09-17",
+          "yhat": 64.8444,
+          "yhat_lower": 64.8444,
+          "yhat_upper": 83.7271
+        },
+        {
+          "date": "2026-09-18",
+          "yhat": 64.7365,
+          "yhat_lower": 56.9116,
+          "yhat_upper": 71.5677
+        },
+        {
+          "date": "2026-09-19",
+          "yhat": 63.3414,
+          "yhat_lower": 63.3414,
+          "yhat_upper": 76.1399
+        },
+        {
+          "date": "2026-09-20",
+          "yhat": 67.2499,
+          "yhat_lower": 53.7928,
+          "yhat_upper": 89.3007
+        },
+        {
+          "date": "2026-09-21",
+          "yhat": 59.6793,
+          "yhat_lower": 59.6793,
+          "yhat_upper": 84.7413
+        },
+        {
+          "date": "2026-09-22",
+          "yhat": 61.6355,
+          "yhat_lower": 56.2637,
+          "yhat_upper": 69.1606
+        },
+        {
+          "date": "2026-09-23",
+          "yhat": 68.6966,
+          "yhat_lower": 68.6966,
+          "yhat_upper": 77.0913
+        },
+        {
+          "date": "2026-09-24",
+          "yhat": 61.8059,
+          "yhat_lower": 47.6048,
+          "yhat_upper": 77.2051
+        },
+        {
+          "date": "2026-09-25",
+          "yhat": 63.4253,
+          "yhat_lower": 63.4253,
+          "yhat_upper": 76.1813
+        },
+        {
+          "date": "2026-09-26",
+          "yhat": 62.6475,
+          "yhat_lower": 62.6475,
+          "yhat_upper": 77.2047
+        },
+        {
+          "date": "2026-09-27",
+          "yhat": 63.5012,
+          "yhat_lower": 63.5012,
+          "yhat_upper": 85.9105
+        },
+        {
+          "date": "2026-09-28",
+          "yhat": 66.5834,
+          "yhat_lower": 41.4334,
+          "yhat_upper": 77.0324
+        },
+        {
+          "date": "2026-09-29",
+          "yhat": 59.3307,
+          "yhat_lower": 59.3307,
+          "yhat_upper": 69.317
+        },
+        {
+          "date": "2026-09-30",
+          "yhat": 64.3979,
+          "yhat_lower": 59.7645,
+          "yhat_upper": 84.9075
+        },
+        {
+          "date": "2026-10-01",
+          "yhat": 65.8435,
+          "yhat_lower": 65.8435,
+          "yhat_upper": 79.612
+        },
+        {
+          "date": "2026-10-02",
+          "yhat": 69.9911,
+          "yhat_lower": 63.2373,
+          "yhat_upper": 78.1821
+        },
+        {
+          "date": "2026-10-03",
+          "yhat": 70.8877,
+          "yhat_lower": 70.8877,
+          "yhat_upper": 87.6021
+        },
+        {
+          "date": "2026-10-04",
+          "yhat": 56.8448,
+          "yhat_lower": 56.8448,
+          "yhat_upper": 69.0038
+        },
+        {
+          "date": "2026-10-05",
+          "yhat": 65.2461,
+          "yhat_lower": 65.2461,
+          "yhat_upper": 73.9889
+        },
+        {
+          "date": "2026-10-06",
+          "yhat": 64.0537,
+          "yhat_lower": 58.7966,
+          "yhat_upper": 75.7924
+        },
+        {
+          "date": "2026-10-07",
+          "yhat": 67.2087,
+          "yhat_lower": 66.8733,
+          "yhat_upper": 68.0614
+        },
+        {
+          "date": "2026-10-08",
+          "yhat": 68.74,
+          "yhat_lower": 63.8647,
+          "yhat_upper": 81.6875
+        },
+        {
+          "date": "2026-10-09",
+          "yhat": 67.2078,
+          "yhat_lower": 67.2078,
+          "yhat_upper": 85.2446
+        },
+        {
+          "date": "2026-10-10",
+          "yhat": 74.5024,
+          "yhat_lower": 58.6164,
+          "yhat_upper": 78.4851
+        },
+        {
+          "date": "2026-10-11",
+          "yhat": 63.604,
+          "yhat_lower": 63.604,
+          "yhat_upper": 72.8079
+        },
+        {
+          "date": "2026-10-12",
+          "yhat": 60.6671,
+          "yhat_lower": 60.6671,
+          "yhat_upper": 79.8633
+        },
+        {
+          "date": "2026-10-13",
+          "yhat": 71.5285,
+          "yhat_lower": 71.5285,
+          "yhat_upper": 92.8643
+        },
+        {
+          "date": "2026-10-14",
+          "yhat": 65.4548,
+          "yhat_lower": 50.1913,
+          "yhat_upper": 72.7493
+        },
+        {
+          "date": "2026-10-15",
+          "yhat": 69.7874,
+          "yhat_lower": 66.6732,
+          "yhat_upper": 79.4639
+        },
+        {
+          "date": "2026-10-16",
+          "yhat": 74.2378,
+          "yhat_lower": 49.1638,
+          "yhat_upper": 85.9025
+        },
+        {
+          "date": "2026-10-17",
+          "yhat": 67.9492,
+          "yhat_lower": 67.9492,
+          "yhat_upper": 77.9661
+        },
+        {
+          "date": "2026-10-18",
+          "yhat": 75.6885,
+          "yhat_lower": 58.5381,
+          "yhat_upper": 75.6885
+        },
+        {
+          "date": "2026-10-19",
+          "yhat": 65.835,
+          "yhat_lower": 65.835,
+          "yhat_upper": 76.1782
+        },
+        {
+          "date": "2026-10-20",
+          "yhat": 72.0478,
+          "yhat_lower": 37.1809,
+          "yhat_upper": 80.9034
+        },
+        {
+          "date": "2026-10-21",
+          "yhat": 66.7629,
+          "yhat_lower": 66.7629,
+          "yhat_upper": 79.1241
+        },
+        {
+          "date": "2026-10-22",
+          "yhat": 67.8584,
+          "yhat_lower": 51.8441,
+          "yhat_upper": 73.9035
+        },
+        {
+          "date": "2026-10-23",
+          "yhat": 72.888,
+          "yhat_lower": 72.888,
+          "yhat_upper": 78.7065
+        },
+        {
+          "date": "2026-10-24",
+          "yhat": 72.3552,
+          "yhat_lower": 51.0006,
+          "yhat_upper": 76.9387
+        },
+        {
+          "date": "2026-10-25",
+          "yhat": 59.4713,
+          "yhat_lower": 59.4713,
+          "yhat_upper": 82.2176
+        },
+        {
+          "date": "2026-10-26",
+          "yhat": 69.444,
+          "yhat_lower": 46.3158,
+          "yhat_upper": 79.3612
+        },
+        {
+          "date": "2026-10-27",
+          "yhat": 73.8052,
+          "yhat_lower": 72.5889,
+          "yhat_upper": 89.9054
+        }
+      ]
+    },
+    "disk_read_bytes": {
+      "label": "Disk Read (bytes/s)",
+      "unit": "KB/s",
+      "evaluation": {
+        "mae": 0.0,
+        "rmse": 0.0,
+        "mape": 0.0
+      },
+      "forecast": [
+        {
+          "date": "2026-08-29",
+          "yhat": 0.0,
+          "yhat_lower": 0.0,
+          "yhat_upper": 0.0
+        },
+        {
+          "date": "2026-08-30",
+          "yhat": 0.0,
+          "yhat_lower": 0.0,
+          "yhat_upper": 736016.125
+        },
+        {
+          "date": "2026-08-31",
+          "yhat": 13989.7891,
+          "yhat_lower": 0.0,
+          "yhat_upper": 684611.625
+        },
+        {
+          "date": "2026-09-01",
+          "yhat": 632647.75,
+          "yhat_lower": 632647.75,
+          "yhat_upper": 1705327.875
+        },
+        {
+          "date": "2026-09-02",
+          "yhat": 393653.375,
+          "yhat_lower": 13989.7891,
+          "yhat_upper": 1193939.875
+        },
+        {
+          "date": "2026-09-03",
+          "yhat": 52036.4688,
+          "yhat_lower": 52036.4688,
+          "yhat_upper": 684611.625
+        },
+        {
+          "date": "2026-09-04",
+          "yhat": 835840.5,
+          "yhat_lower": 0.0,
+          "yhat_upper": 2228350.75
+        },
+        {
+          "date": "2026-09-05",
+          "yhat": 151961.0938,
+          "yhat_lower": 151961.0938,
+          "yhat_upper": 1705327.875
+        },
+        {
+          "date": "2026-09-06",
+          "yhat": 738906.375,
+          "yhat_lower": 0.0,
+          "yhat_upper": 2963561.25
+        },
+        {
+          "date": "2026-09-07",
+          "yhat": 158473.0,
+          "yhat_lower": 158473.0,
+          "yhat_upper": 1193939.875
+        },
+        {
+          "date": "2026-09-08",
+          "yhat": 0.0,
+          "yhat_lower": 0.0,
+          "yhat_upper": 1004446.375
+        },
+        {
+          "date": "2026-09-09",
+          "yhat": 35041.5859,
+          "yhat_lower": 35041.5859,
+          "yhat_upper": 1760077.25
+        },
+        {
+          "date": "2026-09-10",
+          "yhat": 0.0,
+          "yhat_lower": 0.0,
+          "yhat_upper": 605372.125
+        },
+        {
+          "date": "2026-09-11",
+          "yhat": 637177.6875,
+          "yhat_lower": 637177.6875,
+          "yhat_upper": 2228350.75
+        },
+        {
+          "date": "2026-09-12",
+          "yhat": 0.0,
+          "yhat_lower": 0.0,
+          "yhat_upper": 193928.7188
+        },
+        {
+          "date": "2026-09-13",
+          "yhat": 92845.8516,
+          "yhat_lower": 92845.8516,
+          "yhat_upper": 1074972.625
+        },
+        {
+          "date": "2026-09-14",
+          "yhat": 0.0,
+          "yhat_lower": 0.0,
+          "yhat_upper": 1028589.5625
+        },
+        {
+          "date": "2026-09-15",
+          "yhat": 401605.5312,
+          "yhat_lower": 401605.5312,
+          "yhat_upper": 2963561.25
+        },
+        {
+          "date": "2026-09-16",
+          "yhat": 451163.625,
+          "yhat_lower": 0.0,
+          "yhat_upper": 1817427.5
+        },
+        {
+          "date": "2026-09-17",
+          "yhat": 779077.375,
+          "yhat_lower": 779077.375,
+          "yhat_upper": 2077380.5
+        },
+        {
+          "date": "2026-09-18",
+          "yhat": 76140.9141,
+          "yhat_lower": 0.0,
+          "yhat_upper": 610547.5
+        },
+        {
+          "date": "2026-09-19",
+          "yhat": 666434.125,
+          "yhat_lower": 666434.125,
+          "yhat_upper": 1136368.25
+        },
+        {
+          "date": "2026-09-20",
+          "yhat": 620919.4375,
+          "yhat_lower": 0.0,
+          "yhat_upper": 1490812.625
+        },
+        {
+          "date": "2026-09-21",
+          "yhat": 571810.5,
+          "yhat_lower": 571810.5,
+          "yhat_upper": 1760077.25
+        },
+        {
+          "date": "2026-09-22",
+          "yhat": 213386.2188,
+          "yhat_lower": 0.0,
+          "yhat_upper": 1610198.75
+        },
+        {
+          "date": "2026-09-23",
+          "yhat": 332410.3125,
+          "yhat_lower": 332410.3125,
+          "yhat_upper": 1618193.375
+        },
+        {
+          "date": "2026-09-24",
+          "yhat": 0.0,
+          "yhat_lower": 0.0,
+          "yhat_upper": 393862.0312
+        },
+        {
+          "date": "2026-09-25",
+          "yhat": 92266.6719,
+          "yhat_lower": 92266.6719,
+          "yhat_upper": 1536738.5
+        },
+        {
+          "date": "2026-09-26",
+          "yhat": 431050.0312,
+          "yhat_lower": 0.0,
+          "yhat_upper": 1910829.75
+        },
+        {
+          "date": "2026-09-27",
+          "yhat": 255805.8438,
+          "yhat_lower": 193928.7188,
+          "yhat_upper": 842630.875
+        },
+        {
+          "date": "2026-09-28",
+          "yhat": 377013.2188,
+          "yhat_lower": 88460.6094,
+          "yhat_upper": 657142.75
+        },
+        {
+          "date": "2026-09-29",
+          "yhat": 357444.8438,
+          "yhat_lower": 357444.8438,
+          "yhat_upper": 1074972.625
+        },
+        {
+          "date": "2026-09-30",
+          "yhat": 0.0,
+          "yhat_lower": 0.0,
+          "yhat_upper": 1158599.75
+        },
+        {
+          "date": "2026-10-01",
+          "yhat": 206990.0469,
+          "yhat_lower": 206990.0469,
+          "yhat_upper": 1028589.5625
+        },
+        {
+          "date": "2026-10-02",
+          "yhat": 147098.8906,
+          "yhat_lower": 147098.8906,
+          "yhat_upper": 886150.5
+        },
+        {
+          "date": "2026-10-03",
+          "yhat": 916539.625,
+          "yhat_lower": 916539.625,
+          "yhat_upper": 2334959.5
+        },
+        {
+          "date": "2026-10-04",
+          "yhat": 395952.7812,
+          "yhat_lower": 0.0,
+          "yhat_upper": 1140419.625
+        },
+        {
+          "date": "2026-10-05",
+          "yhat": 464948.1875,
+          "yhat_lower": 464948.1875,
+          "yhat_upper": 1817427.5
+        },
+        {
+          "date": "2026-10-06",
+          "yhat": 894455.6875,
+          "yhat_lower": 364690.75,
+          "yhat_upper": 1827530.5
+        },
+        {
+          "date": "2026-10-07",
+          "yhat": 183997.1562,
+          "yhat_lower": 183997.1562,
+          "yhat_upper": 2077380.5
+        },
+        {
+          "date": "2026-10-08",
+          "yhat": 0.0,
+          "yhat_lower": 0.0,
+          "yhat_upper": 555900.4375
+        },
+        {
+          "date": "2026-10-09",
+          "yhat": 280882.2812,
+          "yhat_lower": 280882.2812,
+          "yhat_upper": 830343.0625
+        },
+        {
+          "date": "2026-10-10",
+          "yhat": 509170.5,
+          "yhat_lower": 509170.5,
+          "yhat_upper": 671635.625
+        },
+        {
+          "date": "2026-10-11",
+          "yhat": 237749.625,
+          "yhat_lower": 237749.625,
+          "yhat_upper": 1136368.25
+        },
+        {
+          "date": "2026-10-12",
+          "yhat": 392283.0,
+          "yhat_lower": 0.0,
+          "yhat_upper": 1646470.375
+        },
+        {
+          "date": "2026-10-13",
+          "yhat": 118936.2969,
+          "yhat_lower": 118936.2969,
+          "yhat_upper": 1490812.625
+        },
+        {
+          "date": "2026-10-14",
+          "yhat": 214736.7812,
+          "yhat_lower": 39471.6406,
+          "yhat_upper": 1146422.75
+        },
+        {
+          "date": "2026-10-15",
+          "yhat": 458497.2188,
+          "yhat_lower": 458497.2188,
+          "yhat_upper": 1634301.125
+        },
+        {
+          "date": "2026-10-16",
+          "yhat": 158423.5781,
+          "yhat_lower": 129961.1953,
+          "yhat_upper": 862073.875
+        },
+        {
+          "date": "2026-10-17",
+          "yhat": 146103.9531,
+          "yhat_lower": 146103.9531,
+          "yhat_upper": 1610198.75
+        },
+        {
+          "date": "2026-10-18",
+          "yhat": 709725.8125,
+          "yhat_lower": 34476.9922,
+          "yhat_upper": 709725.8125
+        },
+        {
+          "date": "2026-10-19",
+          "yhat": 0.0,
+          "yhat_lower": 0.0,
+          "yhat_upper": 1618193.375
+        },
+        {
+          "date": "2026-10-20",
+          "yhat": 394488.2812,
+          "yhat_lower": 0.0,
+          "yhat_upper": 1366549.625
+        },
+        {
+          "date": "2026-10-21",
+          "yhat": 0.0,
+          "yhat_lower": 0.0,
+          "yhat_upper": 1036121.5
+        },
+        {
+          "date": "2026-10-22",
+          "yhat": 171754.4375,
+          "yhat_lower": 0.0,
+          "yhat_upper": 1015833.0
+        },
+        {
+          "date": "2026-10-23",
+          "yhat": 103615.7969,
+          "yhat_lower": 103615.7969,
+          "yhat_upper": 1281780.125
+        },
+        {
+          "date": "2026-10-24",
+          "yhat": 42945.2656,
+          "yhat_lower": 42945.2656,
+          "yhat_upper": 915629.375
+        },
+        {
+          "date": "2026-10-25",
+          "yhat": 181900.0625,
+          "yhat_lower": 181900.0625,
+          "yhat_upper": 1910829.75
+        },
+        {
+          "date": "2026-10-26",
+          "yhat": 666860.5,
+          "yhat_lower": 0.0,
+          "yhat_upper": 2519683.25
+        },
+        {
+          "date": "2026-10-27",
+          "yhat": 0.0,
+          "yhat_lower": 0.0,
+          "yhat_upper": 842630.875
+        }
+      ]
+    },
+    "disk_write_bytes": {
+      "label": "Disk Write (bytes/s)",
+      "unit": "KB/s",
+      "evaluation": {
+        "mae": 0.0,
+        "rmse": 0.0,
+        "mape": 0.0
+      },
+      "forecast": [
+        {
+          "date": "2026-08-29",
+          "yhat": 0.0,
+          "yhat_lower": 0.0,
+          "yhat_upper": 0.0
+        },
+        {
+          "date": "2026-08-30",
+          "yhat": 131566.9375,
+          "yhat_lower": 0.0,
+          "yhat_upper": 215717.25
+        },
+        {
+          "date": "2026-08-31",
+          "yhat": 78595.0938,
+          "yhat_lower": 71730.5859,
+          "yhat_upper": 179720.3125
+        },
+        {
+          "date": "2026-09-01",
+          "yhat": 67740.8203,
+          "yhat_lower": 67740.8203,
+          "yhat_upper": 215717.25
+        },
+        {
+          "date": "2026-09-02",
+          "yhat": 0.0,
+          "yhat_lower": 0.0,
+          "yhat_upper": 34395.7734
+        },
+        {
+          "date": "2026-09-03",
+          "yhat": 144347.3594,
+          "yhat_lower": 144347.3594,
+          "yhat_upper": 179720.3125
+        },
+        {
+          "date": "2026-09-04",
+          "yhat": 93206.1875,
+          "yhat_lower": 0.0,
+          "yhat_upper": 93206.1875
+        },
+        {
+          "date": "2026-09-05",
+          "yhat": 0.0,
+          "yhat_lower": 0.0,
+          "yhat_upper": 67740.8203
+        },
+        {
+          "date": "2026-09-06",
+          "yhat": 122116.9688,
+          "yhat_lower": 0.0,
+          "yhat_upper": 207576.6719
+        },
+        {
+          "date": "2026-09-07",
+          "yhat": 0.0,
+          "yhat_lower": 0.0,
+          "yhat_upper": 0.0
+        },
+        {
+          "date": "2026-09-08",
+          "yhat": 12887.1973,
+          "yhat_lower": 0.0,
+          "yhat_upper": 88594.3594
+        },
+        {
+          "date": "2026-09-09",
+          "yhat": 0.0,
+          "yhat_lower": 0.0,
+          "yhat_upper": 151344.0156
+        },
+        {
+          "date": "2026-09-10",
+          "yhat": 67529.9609,
+          "yhat_lower": 0.0,
+          "yhat_upper": 67529.9609
+        },
+        {
+          "date": "2026-09-11",
+          "yhat": 16075.835,
+          "yhat_lower": 16075.835,
+          "yhat_upper": 94160.4688
+        },
+        {
+          "date": "2026-09-12",
+          "yhat": 8848.6387,
+          "yhat_lower": 0.0,
+          "yhat_upper": 12398.0801
+        },
+        {
+          "date": "2026-09-13",
+          "yhat": 0.0,
+          "yhat_lower": 0.0,
+          "yhat_upper": 36744.9883
+        },
+        {
+          "date": "2026-09-14",
+          "yhat": 0.0,
+          "yhat_lower": 0.0,
+          "yhat_upper": 0.0
+        },
+        {
+          "date": "2026-09-15",
+          "yhat": 44070.3281,
+          "yhat_lower": 44070.3281,
+          "yhat_upper": 207576.6719
+        },
+        {
+          "date": "2026-09-16",
+          "yhat": 50362.3047,
+          "yhat_lower": 0.0,
+          "yhat_upper": 56463.1016
+        },
+        {
+          "date": "2026-09-17",
+          "yhat": 0.0,
+          "yhat_lower": 0.0,
+          "yhat_upper": 4934.9282
+        },
+        {
+          "date": "2026-09-18",
+          "yhat": 0.0,
+          "yhat_lower": 0.0,
+          "yhat_upper": 37337.1484
+        },
+        {
+          "date": "2026-09-19",
+          "yhat": 27915.832,
+          "yhat_lower": 27915.832,
+          "yhat_upper": 88594.3594
+        },
+        {
+          "date": "2026-09-20",
+          "yhat": 24260.6934,
+          "yhat_lower": 0.0,
+          "yhat_upper": 238435.2812
+        },
+        {
+          "date": "2026-09-21",
+          "yhat": 0.0,
+          "yhat_lower": 0.0,
+          "yhat_upper": 50656.7344
+        },
+        {
+          "date": "2026-09-22",
+          "yhat": 46337.6953,
+          "yhat_lower": 46337.6953,
+          "yhat_upper": 67529.9609
+        },
+        {
+          "date": "2026-09-23",
+          "yhat": 0.0,
+          "yhat_lower": 0.0,
+          "yhat_upper": 67529.9609
+        },
+        {
+          "date": "2026-09-24",
+          "yhat": 0.0,
+          "yhat_lower": 0.0,
+          "yhat_upper": 193749.875
+        },
+        {
+          "date": "2026-09-25",
+          "yhat": 56889.7344,
+          "yhat_lower": 56889.7344,
+          "yhat_upper": 98342.9219
+        },
+        {
+          "date": "2026-09-26",
+          "yhat": 30292.875,
+          "yhat_lower": 0.0,
+          "yhat_upper": 30292.875
+        },
+        {
+          "date": "2026-09-27",
+          "yhat": 0.0,
+          "yhat_lower": 0.0,
+          "yhat_upper": 76520.3906
+        },
+        {
+          "date": "2026-09-28",
+          "yhat": 0.0,
+          "yhat_lower": 0.0,
+          "yhat_upper": 22764.9609
+        },
+        {
+          "date": "2026-09-29",
+          "yhat": 53199.8125,
+          "yhat_lower": 0.0,
+          "yhat_upper": 159870.25
+        },
+        {
+          "date": "2026-09-30",
+          "yhat": 0.0,
+          "yhat_lower": 0.0,
+          "yhat_upper": 39134.5
+        },
+        {
+          "date": "2026-10-01",
+          "yhat": 18869.9336,
+          "yhat_lower": 0.0,
+          "yhat_upper": 93944.1172
+        },
+        {
+          "date": "2026-10-02",
+          "yhat": 55775.5547,
+          "yhat_lower": 217.1431,
+          "yhat_upper": 83073.0078
+        },
+        {
+          "date": "2026-10-03",
+          "yhat": 0.0,
+          "yhat_lower": 0.0,
+          "yhat_upper": 48010.9375
+        },
+        {
+          "date": "2026-10-04",
+          "yhat": 0.0,
+          "yhat_lower": 0.0,
+          "yhat_upper": 76336.9375
+        },
+        {
+          "date": "2026-10-05",
+          "yhat": 43748.2656,
+          "yhat_lower": 43748.2656,
+          "yhat_upper": 94751.7734
+        },
+        {
+          "date": "2026-10-06",
+          "yhat": 28745.9941,
+          "yhat_lower": 0.0,
+          "yhat_upper": 221721.5
+        },
+        {
+          "date": "2026-10-07",
+          "yhat": 67568.0,
+          "yhat_lower": 4934.9282,
+          "yhat_upper": 67568.0
+        },
+        {
+          "date": "2026-10-08",
+          "yhat": 0.0,
+          "yhat_lower": 0.0,
+          "yhat_upper": 0.0
+        },
+        {
+          "date": "2026-10-09",
+          "yhat": 0.0,
+          "yhat_lower": 0.0,
+          "yhat_upper": 37337.1484
+        },
+        {
+          "date": "2026-10-10",
+          "yhat": 43745.5938,
+          "yhat_lower": 0.0,
+          "yhat_upper": 59640.1016
+        },
+        {
+          "date": "2026-10-11",
+          "yhat": 39073.2656,
+          "yhat_lower": 27915.832,
+          "yhat_upper": 39073.2656
+        },
+        {
+          "date": "2026-10-12",
+          "yhat": 26664.2969,
+          "yhat_lower": 0.0,
+          "yhat_upper": 108612.3359
+        },
+        {
+          "date": "2026-10-13",
+          "yhat": 93830.9062,
+          "yhat_lower": 93830.9062,
+          "yhat_upper": 238435.2812
+        },
+        {
+          "date": "2026-10-14",
+          "yhat": 8048.1855,
+          "yhat_lower": 0.0,
+          "yhat_upper": 49853.1953
+        },
+        {
+          "date": "2026-10-15",
+          "yhat": 4352.9805,
+          "yhat_lower": 4352.9805,
+          "yhat_upper": 50656.7344
+        },
+        {
+          "date": "2026-10-16",
+          "yhat": 0.0,
+          "yhat_lower": 0.0,
+          "yhat_upper": 76519.3984
+        },
+        {
+          "date": "2026-10-17",
+          "yhat": 0.0,
+          "yhat_lower": 0.0,
+          "yhat_upper": 46337.6953
+        },
+        {
+          "date": "2026-10-18",
+          "yhat": 0.0,
+          "yhat_lower": 0.0,
+          "yhat_upper": 0.0
+        },
+        {
+          "date": "2026-10-19",
+          "yhat": 0.0,
+          "yhat_lower": 0.0,
+          "yhat_upper": 0.0
+        },
+        {
+          "date": "2026-10-20",
+          "yhat": 25032.0059,
+          "yhat_lower": 0.0,
+          "yhat_upper": 74443.1406
+        },
+        {
+          "date": "2026-10-21",
+          "yhat": 0.0,
+          "yhat_lower": 0.0,
+          "yhat_upper": 193749.875
+        },
+        {
+          "date": "2026-10-22",
+          "yhat": 0.0,
+          "yhat_lower": 0.0,
+          "yhat_upper": 36965.5742
+        },
+        {
+          "date": "2026-10-23",
+          "yhat": 103426.0781,
+          "yhat_lower": 98342.9219,
+          "yhat_upper": 103426.0781
+        },
+        {
+          "date": "2026-10-24",
+          "yhat": 0.0,
+          "yhat_lower": 0.0,
+          "yhat_upper": 30292.875
+        },
+        {
+          "date": "2026-10-25",
+          "yhat": 0.0,
+          "yhat_lower": 0.0,
+          "yhat_upper": 30292.875
+        },
+        {
+          "date": "2026-10-26",
+          "yhat": 20298.6875,
+          "yhat_lower": 0.0,
+          "yhat_upper": 20298.6875
+        },
+        {
+          "date": "2026-10-27",
+          "yhat": 0.0,
+          "yhat_lower": 0.0,
+          "yhat_upper": 76520.3906
+        }
+      ]
+    }
+  }
+}

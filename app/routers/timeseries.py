@@ -49,6 +49,10 @@ async def get_timeseries(
         "10.78.33.83",
         description="Target host IP address",
     ),
+    model: str = Query(
+        "STGNN",
+        description="Forecasting model to use (STGNN | NEURALPROPHET | CHRONOS | HOLT_WINTERS | TIMESFM)",
+    ),
 ) -> TimeseriesResponse:
     """FastAPI endpoint handler for timeseries data retrieval with st & et parameters."""
     return get_timeseries_data(
@@ -58,4 +62,5 @@ async def get_timeseries(
         metric=metric,
         host_name=host_name,
         host_ip=host_ip,
+        model=model,
     )
